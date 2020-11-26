@@ -16,6 +16,10 @@
 		A134FFF9256099D4005D811C /* Home_Ease.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A134FFF7256099D4005D811C /* Home_Ease.xcdatamodeld */; };
 		A134FFFB256099D7005D811C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A134FFFA256099D7005D811C /* Assets.xcassets */; };
 		A134FFFE256099D7005D811C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A134FFFC256099D7005D811C /* LaunchScreen.storyboard */; };
+		A16C3C69256F24EA008C38D7 /* UtilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16C3C68256F24EA008C38D7 /* UtilityViewController.swift */; };
+		A16C3C6B256F24F9008C38D7 /* ElectricityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16C3C6A256F24F9008C38D7 /* ElectricityViewController.swift */; };
+		A16C3C6D256F252D008C38D7 /* RentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16C3C6C256F252D008C38D7 /* RentViewController.swift */; };
+		A16C3C6F256F29F9008C38D7 /* FinancesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16C3C6E256F29F9008C38D7 /* FinancesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +56,10 @@
 		A134FFFD256099D7005D811C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A134FFFF256099D7005D811C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A16C3C65256EDCD2008C38D7 /* readme.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
+		A16C3C68256F24EA008C38D7 /* UtilityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityViewController.swift; sourceTree = "<group>"; };
+		A16C3C6A256F24F9008C38D7 /* ElectricityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityViewController.swift; sourceTree = "<group>"; };
+		A16C3C6C256F252D008C38D7 /* RentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentViewController.swift; sourceTree = "<group>"; };
+		A16C3C6E256F29F9008C38D7 /* FinancesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinancesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +132,10 @@
 				A134FFF0256099D4005D811C /* SceneDelegate.swift */,
 				A134FFF2256099D4005D811C /* ViewController.swift */,
 				A134FFF4256099D4005D811C /* Main.storyboard */,
+				A16C3C6C256F252D008C38D7 /* RentViewController.swift */,
+				A16C3C6E256F29F9008C38D7 /* FinancesViewController.swift */,
+				A16C3C68256F24EA008C38D7 /* UtilityViewController.swift */,
+				A16C3C6A256F24F9008C38D7 /* ElectricityViewController.swift */,
 				A134FFFA256099D7005D811C /* Assets.xcassets */,
 				A134FFFC256099D7005D811C /* LaunchScreen.storyboard */,
 				A134FFFF256099D7005D811C /* Info.plist */,
@@ -281,8 +293,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				A134FFF9256099D4005D811C /* Home_Ease.xcdatamodeld in Sources */,
+				A16C3C6D256F252D008C38D7 /* RentViewController.swift in Sources */,
 				A134FFF3256099D4005D811C /* ViewController.swift in Sources */,
 				A134FFEF256099D4005D811C /* AppDelegate.swift in Sources */,
+				A16C3C69256F24EA008C38D7 /* UtilityViewController.swift in Sources */,
+				A16C3C6F256F29F9008C38D7 /* FinancesViewController.swift in Sources */,
+				A16C3C6B256F24F9008C38D7 /* ElectricityViewController.swift in Sources */,
 				A134FFF1256099D4005D811C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

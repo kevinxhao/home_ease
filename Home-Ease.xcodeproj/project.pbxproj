@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		703063C72571D87D00028888 /* TasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703063C62571D87D00028888 /* TasksViewController.swift */; };
 		A1340009256099D7005D811C /* Home_EaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1340008256099D7005D811C /* Home_EaseTests.swift */; };
 		A1340014256099D7005D811C /* Home_EaseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1340013256099D7005D811C /* Home_EaseUITests.swift */; };
 		A134FFEF256099D4005D811C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A134FFEE256099D4005D811C /* AppDelegate.swift */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		703063C62571D87D00028888 /* TasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewController.swift; sourceTree = "<group>"; };
 		A1340004256099D7005D811C /* Home-EaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Home-EaseTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1340008256099D7005D811C /* Home_EaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home_EaseTests.swift; sourceTree = "<group>"; };
 		A134000A256099D7005D811C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				A134FFF0256099D4005D811C /* SceneDelegate.swift */,
 				A134FFF2256099D4005D811C /* ViewController.swift */,
 				A134FFF4256099D4005D811C /* Main.storyboard */,
+				703063C62571D87D00028888 /* TasksViewController.swift */,
 				A15CC0262571D40500F3754D /* FinancesCollectionViewCell.swift */,
 				A16C3C6C256F252D008C38D7 /* RentViewController.swift */,
 				A16C3C6E256F29F9008C38D7 /* FinancesViewController.swift */,
@@ -302,6 +305,7 @@
 				A16C3C69256F24EA008C38D7 /* UtilityViewController.swift in Sources */,
 				A15CC0272571D40500F3754D /* FinancesCollectionViewCell.swift in Sources */,
 				A16C3C6F256F29F9008C38D7 /* FinancesViewController.swift in Sources */,
+				703063C72571D87D00028888 /* TasksViewController.swift in Sources */,
 				A16C3C6B256F24F9008C38D7 /* ElectricityViewController.swift in Sources */,
 				A134FFF1256099D4005D811C /* SceneDelegate.swift in Sources */,
 			);

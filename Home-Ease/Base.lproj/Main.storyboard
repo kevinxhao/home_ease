@@ -80,11 +80,25 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="340" height="138"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uj2-8k-1bs">
-                                                            <rect key="frame" x="0.0" y="8" width="139" height="38.999999999999957"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uj2-8k-1bs">
+                                                            <rect key="frame" x="100.18518460803443" y="13" width="139.00000000000023" height="38.999999999999936"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                                                            <nil key="textColor"/>
+                                                            <color key="textColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x8t-21-byg">
+                                                            <rect key="frame" x="15" y="49.666666666666664" width="139" height="39"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                            <color key="textColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UQq-rN-5Hb">
+                                                            <rect key="frame" x="15" y="91" width="139" height="39"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                            <color key="textColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -95,46 +109,50 @@
                                         <size key="customSize" width="340" height="138"/>
                                         <connections>
                                             <outlet property="label" destination="uj2-8k-1bs" id="m8R-ag-34o"/>
+                                            <outlet property="label2" destination="x8t-21-byg" id="QaV-YJ-d0R"/>
+                                            <outlet property="label3" destination="UQq-rN-5Hb" id="2XN-65-AuN"/>
                                             <outlet property="mainView" destination="45u-y6-n2b" id="Qaq-n1-hXe"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Venmo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p32-Ay-Jpg">
-                                <rect key="frame" x="16" y="124" width="166" height="64"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cj6-c4-imh">
+                                <rect key="frame" x="16" y="124" width="343" height="127"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.3651808647260274" green="0.84238150092465758" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="118" translatesAutoresizingMaskIntoConstraints="NO" id="uDS-8V-a0j">
-                                <rect key="frame" x="71" y="217" width="232" height="39"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vTT-ML-5wQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="79" height="39"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                        <state key="normal" title="Request"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iE8-6d-Djy">
-                                        <rect key="frame" x="197" y="0.0" width="35" height="39"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                        <state key="normal" title="Pay"/>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" distribution="equalCentering" spacing="118" translatesAutoresizingMaskIntoConstraints="NO" id="uDS-8V-a0j">
+                                        <rect key="frame" x="55" y="72" width="232" height="39"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vTT-ML-5wQ">
+                                                <rect key="frame" x="0.0" y="0.0" width="79" height="39"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                <state key="normal" title="Request"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iE8-6d-Djy">
+                                                <rect key="frame" x="197" y="0.0" width="35" height="39"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                <state key="normal" title="Pay"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Venmo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p32-Ay-Jpg">
+                                        <rect key="frame" x="88" y="8" width="166" height="64"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="46"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
-                            </stackView>
+                                <color key="backgroundColor" red="0.3651808647" green="0.84238150089999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="qSG-bv-IsV" firstAttribute="trailing" secondItem="uDS-8V-a0j" secondAttribute="trailing" constant="72" id="063-bl-FWX"/>
-                            <constraint firstItem="uDS-8V-a0j" firstAttribute="top" secondItem="qSG-bv-IsV" secondAttribute="top" constant="129" id="l8M-pY-CIW"/>
-                            <constraint firstItem="uDS-8V-a0j" firstAttribute="leading" secondItem="qSG-bv-IsV" secondAttribute="leading" constant="71" id="w97-6X-LJo"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="qSG-bv-IsV"/>
                     </view>
                     <navigationItem key="navigationItem" title="Finances" id="NLq-0h-wPv"/>
                     <connections>
                         <outlet property="collectionView" destination="bwg-cK-21M" id="0if-Fv-o5J"/>
+                        <outlet property="venmoView" destination="cj6-c4-imh" id="0c3-kd-4WJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OZy-B9-ujf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

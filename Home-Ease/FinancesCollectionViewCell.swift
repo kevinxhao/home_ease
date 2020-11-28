@@ -11,4 +11,7 @@ import UIKit
 class FinancesCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var label2: UILabel!
+    @IBOutlet weak var label3: UILabel!
+    
 }

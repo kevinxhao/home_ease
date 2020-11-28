@@ -11,8 +11,10 @@ import UIKit
 class FinancesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
     let expenses = ["Rent", "Electricity", "Utility"]
+    let backgroundColors:[UIColor] = [UIColor.init(red: 224/255, green: 187/255, blue: 228/255, alpha: 1),UIColor.init(red: 149/255, green: 125/255, blue: 173/155, alpha: 1),UIColor.init(red: 210/255, green: 145/255, blue: 188/255, alpha: 1)]
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var venmoView: UIView!
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 3
@@ -20,8 +22,11 @@ class FinancesViewController: UIViewController, UICollectionViewDelegate, UIColl
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "financeCell", for: indexPath) as! FinancesCollectionViewCell
         cell.mainView.bounds = cell.bounds
-        cell.mainView.backgroundColor = .cyan
+        cell.mainView.backgroundColor = backgroundColors[indexPath.row]
+        cell.mainView.layer.cornerRadius = 8
         cell.label.text = expenses[indexPath.row]
+        cell.label2.text = "Amount: "
+        cell.label3.text = "You Owe: "
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -32,10 +37,14 @@ class FinancesViewController: UIViewController, UICollectionViewDelegate, UIColl
         collectionView.dataSource = self
         collectionView.delegate = self
     }
+    func setUpLabels() {
+        venmoView.layer.cornerRadius = 8
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpCollectionView()
+        setUpLabels()
         
         // Do any additional setup after loading the view.
     }

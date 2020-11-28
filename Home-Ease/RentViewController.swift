@@ -11,12 +11,16 @@ import UIKit
 class RentViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
-
+    @IBAction func add(_ sender: Any) {
+        let alert = UIAlertController(title: "Add Expense", message: "", preferredStyle: .alert)
+        present(alert, animated: true)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return tableView.frame.height/3
+        return 172
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return UITableViewCell.init()
@@ -26,9 +30,10 @@ class RentViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.dataSource = self
         tableView.delegate = self
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpTableView()
 
         // Do any additional setup after loading the view.
     }

@@ -8,32 +8,37 @@
 
 import UIKit
 
-class UtilityViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class UtilityViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    @IBOutlet weak var tableView: UITableView!
-    @IBAction func add(_ sender: Any) {
-    }
+    let users = ["Roommate 1", "Roommate 2", "Roommate 3"]
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
-    }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 172
-
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell.init()
-    }
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
     
-    func setUpTableView() {
-        tableView.dataSource = self
-        tableView.delegate = self
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+         return 3
+    }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "utilityCell", for: indexPath) as! DetailedFinancesCollectionViewCell
+        cell.imageView.layer.cornerRadius = 0.5*cell.imageView.bounds.size.width
+        cell.imageView.clipsToBounds = true
+        cell.imageView.image = UIImage.init(named: "Profile")
+        cell.nameLabel.text = users[indexPath.row]
+        return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+         CGSize(width: 340, height: 138)
+    }
+    func setUpCollectionView() {
+        collectionView.dataSource = self
+        collectionView.delegate = self
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        setUpTableView()
+        setUpCollectionView()
     }
     
 

@@ -29,7 +29,7 @@ class FinancesViewController: UIViewController, UICollectionViewDelegate, UIColl
         cell.mainView.backgroundColor = backgroundColors[indexPath.row]
         cell.mainView.layer.cornerRadius = 8
         cell.label.text = expenses[indexPath.row]
-        cell.label2.text = "Amount: "
+        cell.label2.text = "Balance: "
         cell.label3.text = "You Owe: "
         if amounts > 0 {
             cell.amount1.textColor = .red
@@ -42,17 +42,14 @@ class FinancesViewController: UIViewController, UICollectionViewDelegate, UIColl
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.row == 0 {
             let vc = storyboard?.instantiateViewController(identifier: "rent") as! RentViewController
-//            vc.title = "Rent"
             navigationController?.pushViewController(vc, animated: true)
         }
         else if indexPath.row == 1 {
             let vc = storyboard?.instantiateViewController(identifier: "electricity") as! ElectricityViewController
-//            vc.title = "Electricity"
             navigationController?.pushViewController(vc, animated: true)
         }
         else if indexPath.row == 2 {
             let vc = storyboard?.instantiateViewController(identifier: "utility") as! UtilityViewController
-//            vc.title = "Utility"
             navigationController?.pushViewController(vc, animated: true)
         }
     }

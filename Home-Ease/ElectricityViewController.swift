@@ -8,32 +8,35 @@
 
 import UIKit
 
-class ElectricityViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
+class ElectricityViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    @IBOutlet weak var tableView: UITableView!
-    @IBAction func add(_ sender: Any) {
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
-    }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 172
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell.init()
-    }
+    let users = ["Roommate 1", "Roommate 2", "Roommate 3"]
 
-    func setUpTableView() {
-        tableView.dataSource = self
-        tableView.delegate = self
+    @IBOutlet weak var collectionView: UICollectionView!
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+         return 3
+    }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "electricityCell", for: indexPath) as! DetailedFinancesCollectionViewCell
+        cell.imageView.layer.cornerRadius = 0.5*cell.imageView.bounds.size.width
+        cell.imageView.clipsToBounds = true
+        cell.imageView.image = UIImage.init(named: "Profile")
+        cell.nameLabel.text = users[indexPath.row]
+        return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+         CGSize(width: 340, height: 138)
+    }
+    func setUpCollectionView() {
+        collectionView.dataSource = self
+        collectionView.delegate = self
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        setUpTableView()
+        setUpCollectionView()
     }
     
     

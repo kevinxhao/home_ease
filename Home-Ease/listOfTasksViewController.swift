@@ -17,6 +17,11 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
     var myCompletedTasksNames: [String] = []
     var myPendingTasksNames: [String] = []
     
+    @IBAction func exitAddNewTask(_ sender: Any) {
+        addTaskView.isHidden = true;
+        taskField.text = ""
+        roommateField.text = ""
+    }
     
     
     @IBOutlet weak var markAllAsCompletedBtn: UIButton!
@@ -41,7 +46,7 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if showOnlyMine{
+       /* if showOnlyMine{
             let currentUser = "Jackson"
             for i in 0..<completedTasksNames.count{
                 if(completedTasksRoommates[i] == currentUser){
@@ -60,14 +65,14 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
                 return myPendingTasksNames.count;
             }
         }
-        else{
+        else{*/
             if tableView == self.completedTableView{
                 return completedTasksRoommates.count
             }
             else if tableView == self.pendingTableView{
                 return pendingTasksRoommates.count
             }
-        }
+        //}
         return 0;
     }
     
@@ -80,17 +85,17 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
         myCompletedTasksNames = []
         myPendingTasksNames = []
         let currentUser = "Jackson"
-        for i in 0..<completedTasksNames.count{
+        for i in 0..<completedTasksRoommates.count{
             if(completedTasksRoommates[i] == currentUser){
                 myCompletedTasksNames.append(completedTasksNames[i])
             }
         }
-        for i in 0..<pendingTasksNames.count{
+        for i in 0..<pendingTasksRoommates.count{
             if(pendingTasksRoommates[i] == currentUser){
                 myPendingTasksNames.append(pendingTasksNames[i])
             }
         }
-        if showOnlyMine{
+     /*   if showOnlyMine{
             if tableView == self.completedTableView{
                 myCell.textLabel!.text = "\(myCompletedTasksNames[indexPath.row])"
             }
@@ -98,14 +103,14 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
                 myCell.textLabel!.text = "\(myPendingTasksNames[indexPath.row])"
             }
         }
-        else{
+        else{*/
             if tableView == self.completedTableView{
                 myCell.textLabel!.text = "\(completedTasksNames[indexPath.row])"
             }
             else if tableView == self.pendingTableView{
                 myCell.textLabel!.text = "\(pendingTasksNames[indexPath.row])"
             }
-        }
+        //}
         return myCell
     }
     
@@ -132,14 +137,15 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
         completedTasksRoommates = UserDefaults.standard.object(forKey:"tasksRoommatesCompleted") as? [String] ?? []
         pendingTasksNames = UserDefaults.standard.object(forKey:"tasksNamesPending") as? [String] ?? []
         pendingTasksRoommates = UserDefaults.standard.object(forKey:"tasksRoommatesPending") as? [String] ?? []
-        for i in pendingTasksRoommates{
-            completedTasksRoommates.append(i)
+        
+        for i in 0..<pendingTasksRoommates.count-1{
+            if(pendingTasksRoommates[i] == "Jackson"){
+                completedTasksRoommates.append(pendingTasksRoommates[i])
+                completedTasksNames.append(pendingTasksNames[i])
+                pendingTasksRoommates.remove(at: i)
+                pendingTasksNames.remove(at: i)
+            }
         }
-        for i in pendingTasksNames{
-            completedTasksNames.append(i)
-        }
-        pendingTasksNames.removeAll()
-        pendingTasksRoommates.removeAll()
         UserDefaults.standard.set(pendingTasksRoommates, forKey: "tasksRoommatesPending")
         UserDefaults.standard.set(pendingTasksNames, forKey: "tasksNamesPending")
         UserDefaults.standard.set(completedTasksRoommates, forKey: "tasksRoommatesCompleted")
@@ -168,6 +174,8 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
         UserDefaults.standard.set(pendingTasksRoommates, forKey: "tasksRoommatesPending")
         UserDefaults.standard.set(pendingTasksNames, forKey: "tasksNamesPending")
         addTaskView.isHidden = true
+        taskField.text = ""
+        roommateField.text = ""
         pendingTableView.reloadData()
     }
     

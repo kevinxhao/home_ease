@@ -285,6 +285,9 @@
                                 <rect key="frame" x="8" y="88" width="156" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Mark All As Completed"/>
+                                <connections>
+                                    <action selector="markAllAsCompleted:" destination="9VF-xu-bhN" eventType="touchUpInside" id="Ebh-Px-pEv"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wcf-5E-aEv">
                                 <rect key="frame" x="261" y="88" width="98" height="30"/>
@@ -294,8 +297,8 @@
                                     <action selector="addNewTask:" destination="9VF-xu-bhN" eventType="touchUpInside" id="8ng-z9-Coo"/>
                                 </connections>
                             </button>
-                            <view alpha="0.80000000000000004" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Clt-E8-0qD">
-                                <rect key="frame" x="67" y="294" width="240" height="110"/>
+                            <view alpha="0.90000000000000002" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Clt-E8-0qD">
+                                <rect key="frame" x="67" y="294" width="240" height="159"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add New Task" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LKl-80-o9r">
@@ -305,22 +308,35 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text=" " borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9fI-W8-Nw6">
-                                        <rect key="frame" x="72" y="30" width="160" height="34"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9fI-W8-Nw6">
+                                        <rect key="frame" x="111" y="30" width="121" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lum-FB-E3F">
+                                        <rect key="frame" x="111" y="85" width="121" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HVJ-jR-eL6">
-                                        <rect key="frame" x="89" y="72" width="63" height="30"/>
+                                        <rect key="frame" x="89" y="121" width="63" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Add Task"/>
                                         <connections>
                                             <action selector="addTaskAndCloseSubview:" destination="9VF-xu-bhN" eventType="touchUpInside" id="cdY-1e-6iY"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Roommate:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VNS-k9-Q4X">
+                                        <rect key="frame" x="22" y="92" width="88" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Task:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nt3-5B-uQN">
-                                        <rect key="frame" x="22" y="34" width="42" height="22"/>
+                                        <rect key="frame" x="45" y="36" width="42" height="22"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <nil key="textColor"/>
@@ -343,7 +359,9 @@
                     <connections>
                         <outlet property="addTaskView" destination="Clt-E8-0qD" id="wDc-sQ-s8d"/>
                         <outlet property="completedTableView" destination="CSo-3b-krv" id="wTE-Jm-f3j"/>
+                        <outlet property="markAllAsCompletedBtn" destination="FyJ-ti-hFY" id="qFO-2F-kn5"/>
                         <outlet property="pendingTableView" destination="p0A-bo-m4I" id="O9m-VO-t8t"/>
+                        <outlet property="roommateField" destination="lum-FB-E3F" id="VJ3-uV-NhN"/>
                         <outlet property="scopeOfTasksButton" destination="zuM-gi-vz9" id="svh-QF-KKp"/>
                         <outlet property="taskField" destination="9fI-W8-Nw6" id="7Vo-ct-b10"/>
                         <outlet property="weekLabel" destination="O19-a4-fI0" id="Bku-eW-C3s"/>

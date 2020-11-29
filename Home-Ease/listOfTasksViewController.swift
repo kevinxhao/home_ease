@@ -12,6 +12,15 @@ import UIKit
 
 class listOfTasksViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    var showOnlyMine: Bool = false;
+    
+    var myCompletedTasksNames: [String] = []
+    var myPendingTasksNames: [String] = []
+    
+    
+    
+    @IBOutlet weak var markAllAsCompletedBtn: UIButton!
+    
     @IBOutlet weak var addTaskView: UIView!
     
     @IBOutlet weak var pendingTableView: UITableView!
@@ -32,24 +41,70 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView == self.completedTableView{
-            return completedTasksRoommates.count
-        }
-        else if tableView == self.pendingTableView{
-            return pendingTasksRoommates.count
+        if showOnlyMine{
+            let currentUser = "Jackson"
+            for i in 0..<completedTasksNames.count{
+                if(completedTasksRoommates[i] == currentUser){
+                    myCompletedTasksNames.append(completedTasksNames[i])
+                }
+            }
+            for i in 0..<pendingTasksNames.count{
+                if(pendingTasksRoommates[i] == currentUser){
+                    myPendingTasksNames.append(pendingTasksNames[i])
+                }
+            }
+            if tableView == self.completedTableView{
+                return myCompletedTasksNames.count;
+            }
+            else if tableView == self.pendingTableView{
+                return myPendingTasksNames.count;
+            }
         }
         else{
-            return 0
+            if tableView == self.completedTableView{
+                return completedTasksRoommates.count
+            }
+            else if tableView == self.pendingTableView{
+                return pendingTasksRoommates.count
+            }
         }
+        return 0;
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let myCell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        if tableView == self.completedTableView{
-            myCell.textLabel!.text = "\(completedTasksRoommates[indexPath.row] ): \(completedTasksNames[indexPath.row] )"
+        completedTasksNames = UserDefaults.standard.object(forKey:"tasksNamesCompleted") as? [String] ?? []
+        completedTasksRoommates = UserDefaults.standard.object(forKey:"tasksRoommatesCompleted") as? [String] ?? []
+        pendingTasksNames = UserDefaults.standard.object(forKey:"tasksNamesPending") as? [String] ?? []
+        pendingTasksRoommates = UserDefaults.standard.object(forKey:"tasksRoommatesPending") as? [String] ?? []
+        myCompletedTasksNames = []
+        myPendingTasksNames = []
+        let currentUser = "Jackson"
+        for i in 0..<completedTasksNames.count{
+            if(completedTasksRoommates[i] == currentUser){
+                myCompletedTasksNames.append(completedTasksNames[i])
+            }
         }
-        else if tableView == self.pendingTableView{
-            myCell.textLabel!.text = "\(pendingTasksRoommates[indexPath.row] ):  \(pendingTasksNames[indexPath.row] )"
+        for i in 0..<pendingTasksNames.count{
+            if(pendingTasksRoommates[i] == currentUser){
+                myPendingTasksNames.append(pendingTasksNames[i])
+            }
+        }
+        if showOnlyMine{
+            if tableView == self.completedTableView{
+                myCell.textLabel!.text = "\(myCompletedTasksNames[indexPath.row])"
+            }
+            else if tableView == self.pendingTableView{
+                myCell.textLabel!.text = "\(myPendingTasksNames[indexPath.row])"
+            }
+        }
+        else{
+            if tableView == self.completedTableView{
+                myCell.textLabel!.text = "\(completedTasksNames[indexPath.row])"
+            }
+            else if tableView == self.pendingTableView{
+                myCell.textLabel!.text = "\(pendingTasksNames[indexPath.row])"
+            }
         }
         return myCell
     }
@@ -64,12 +119,38 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
     @IBAction func changeTasksShown(_ sender: Any) {
         if scopeOfTasksButton.title == "Show Only My Tasks"{
             scopeOfTasksButton.title = "Show All Tasks"
+            markAllAsCompletedBtn.isHidden = false;
         }
         else if scopeOfTasksButton.title == "Show All Tasks"{
             scopeOfTasksButton.title = "Show Only My Tasks"
+            markAllAsCompletedBtn.isHidden = true
         }
     }
+    
+    @IBAction func markAllAsCompleted(_ sender: Any) {
+        completedTasksNames = UserDefaults.standard.object(forKey:"tasksNamesCompleted") as? [String] ?? []
+        completedTasksRoommates = UserDefaults.standard.object(forKey:"tasksRoommatesCompleted") as? [String] ?? []
+        pendingTasksNames = UserDefaults.standard.object(forKey:"tasksNamesPending") as? [String] ?? []
+        pendingTasksRoommates = UserDefaults.standard.object(forKey:"tasksRoommatesPending") as? [String] ?? []
+        for i in pendingTasksRoommates{
+            completedTasksRoommates.append(i)
+        }
+        for i in pendingTasksNames{
+            completedTasksNames.append(i)
+        }
+        pendingTasksNames.removeAll()
+        pendingTasksRoommates.removeAll()
+        UserDefaults.standard.set(pendingTasksRoommates, forKey: "tasksRoommatesPending")
+        UserDefaults.standard.set(pendingTasksNames, forKey: "tasksNamesPending")
+        UserDefaults.standard.set(completedTasksRoommates, forKey: "tasksRoommatesCompleted")
+        UserDefaults.standard.set(completedTasksNames, forKey: "tasksNamesCompleted")
+        pendingTableView.reloadData()
+        completedTableView.reloadData()
+    }
+    
     @IBOutlet weak var taskField: UITextField!
+    
+    @IBOutlet weak var roommateField: UITextField!
     
     @IBAction func addNewTask(_ sender: Any) {
         addTaskView.isHidden = false
@@ -78,10 +159,12 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
     @IBAction func addTaskAndCloseSubview(_ sender: Any) {
         pendingTasksRoommates = UserDefaults.standard.object(forKey: "tasksRoommatesPending") as? [String] ?? []
         pendingTasksNames = UserDefaults.standard.object(forKey: "tasksNamesPending") as? [String] ?? []
-        let newRoommateName = "Roommate"
+        let newRoommateName = roommateField.text
         let newTaskName = taskField.text
-        pendingTasksRoommates.append(newRoommateName)
+        pendingTasksRoommates.append(newRoommateName!)
         pendingTasksNames.append(newTaskName!)
+        print("pending Tasks roommates:  \(pendingTasksRoommates)")
+        print("pending Tasks Names:  \(pendingTasksNames)")
         UserDefaults.standard.set(pendingTasksRoommates, forKey: "tasksRoommatesPending")
         UserDefaults.standard.set(pendingTasksNames, forKey: "tasksNamesPending")
         addTaskView.isHidden = true
@@ -90,15 +173,24 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addTaskView.isHidden = true
         // Do any additional setup after loading the view.
+        scopeOfTasksButton.title = "Show Only My Tasks"
+        addTaskView.isHidden = true
+        markAllAsCompletedBtn.isHidden = true
+        pendingTableView.dataSource = self;
+        pendingTableView.reloadData();
+        pendingTableView.delegate = self;
+        completedTableView.dataSource = self;
+        completedTableView.reloadData();
+        completedTableView.delegate = self;
     }
     
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true);
-        
+        scopeOfTasksButton.title = "Show Only My Tasks"
+        markAllAsCompletedBtn.isHidden = true
         completedTasksNames = UserDefaults.standard.object(forKey:"tasksNamesCompleted") as? [String] ?? []
         completedTasksRoommates = UserDefaults.standard.object(forKey:"tasksRoommatesCompleted") as? [String] ?? []
         pendingTasksNames = UserDefaults.standard.object(forKey:"tasksNamesPending") as? [String] ?? []
@@ -109,6 +201,8 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
     }
 
     override func viewDidAppear(_ animated: Bool) {
+        markAllAsCompletedBtn.isHidden = true
+        scopeOfTasksButton.title = "Show Only My Tasks"
         completedTableView.reloadData();
         pendingTableView.reloadData();
     }

@@ -303,6 +303,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="completedTableView" destination="CSo-3b-krv" id="wTE-Jm-f3j"/>
+                        <outlet property="pendingTableView" destination="p0A-bo-m4I" id="O9m-VO-t8t"/>
                         <outlet property="scopeOfTasksButton" destination="zuM-gi-vz9" id="svh-QF-KKp"/>
                         <outlet property="weekLabel" destination="O19-a4-fI0" id="Bku-eW-C3s"/>
                     </connections>

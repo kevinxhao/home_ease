@@ -8,7 +8,30 @@
 
 import UIKit
 
-class listOfTasksViewController: UIViewController {
+
+
+class listOfTasksViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    @IBOutlet weak var pendingTableView: UITableView!
+    
+    @IBOutlet weak var completedTableView: UITableView!
+    
+    var completedTasks: [Task] = UserDefaults.standard.object(forKey: "tasksCompleted") as? [Task] ?? []
+    var pendingTasks: [Task] = UserDefaults.standard.object(forKey: "tasksPending") as? [Task] ?? []
+       
+    struct Task {
+        let roommateName: String!
+        let taskName: String!
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        <#code#>
+    }
+    
     
     @IBOutlet weak var scopeOfTasksButton: UIBarButtonItem!
     

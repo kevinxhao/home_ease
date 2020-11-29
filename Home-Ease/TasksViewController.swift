@@ -12,7 +12,6 @@ class TasksViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     @IBOutlet weak var taskCollectionView: UICollectionView!
     
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 2;
     }

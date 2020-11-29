@@ -457,18 +457,102 @@
         <!--Home-->
         <scene sceneID="hSr-qP-dcP">
             <objects>
-                <viewController title="Home" id="CRL-k3-Wwt" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FdV-Se-LFS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController title="Home" id="CRL-k3-Wwt" customClass="HomeViewController" customModule="Home_Ease" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OTe-AO-XZy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="CaG-QI-HxA">
+                                <rect key="frame" x="10" y="123" width="355" height="556"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="VK2-Sf-nKW">
+                                    <size key="itemSize" width="341" height="235"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="homeCell" id="jrb-yj-44C" customClass="HomeCollectionViewCell" customModule="Home_Ease" customModuleProvider="target">
+                                        <rect key="frame" x="7" y="0.0" width="341" height="235"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="N5v-j8-DKU">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="235"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B1P-JG-BN9">
+                                                    <rect key="frame" x="0.0" y="0.0" width="341" height="235"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CJb-Kh-G50">
+                                                            <rect key="frame" x="84" y="25" width="173" height="52"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="CJb-Kh-G50" firstAttribute="top" secondItem="N5v-j8-DKU" secondAttribute="top" constant="75" id="2lH-Z2-7tY"/>
+                                                <constraint firstAttribute="bottom" secondItem="CJb-Kh-G50" secondAttribute="bottom" constant="40" id="7BJ-iG-o8K"/>
+                                                <constraint firstItem="CJb-Kh-G50" firstAttribute="leading" secondItem="N5v-j8-DKU" secondAttribute="leading" constant="70" id="hBu-p5-jcP"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="341" height="235"/>
+                                        <connections>
+                                            <outlet property="homeInfoLabel" destination="CJb-Kh-G50" id="4h3-2O-bHh"/>
+                                            <outlet property="homeInfoView" destination="B1P-JG-BN9" id="tND-fE-NfG"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="Dw0-hR-kdF"/>
                     </view>
-                    <navigationItem key="navigationItem" id="whC-pz-Nx7"/>
+                    <navigationItem key="navigationItem" title="Home-Ease" id="whC-pz-Nx7"/>
+                    <connections>
+                        <outlet property="collectionView" destination="CaG-QI-HxA" id="N5y-KE-BdI"/>
+                        <outlet property="view" destination="CaG-QI-HxA" id="7Ol-c3-Pyu"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FdV-Se-LFS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1647.826086956522" y="825"/>
+            <point key="canvasLocation" x="850" y="1567"/>
+        </scene>
+        <!--Roomate Scene-->
+        <scene sceneID="buD-td-PJM">
+            <objects>
+                <viewController title="Roomate Scene" id="8io-3t-8To" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SJT-Hb-Ivv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HP7-Q7-eca">
+                                <rect key="frame" x="67" y="134" width="240" height="574"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E2S-Ms-hNM">
+                                <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Roommates" id="coj-MS-ex3">
+                                        <barButtonItem key="backBarButtonItem" title="Home-Ease" id="wpE-5L-BBd"/>
+                                        <barButtonItem key="rightBarButtonItem" title="Add" id="Zwp-Rl-So5"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="C05-qT-aur"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="be6-V5-O8G" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1557.5999999999999" y="1566.5024630541873"/>
         </scene>
         <!--Settings-->
         <scene sceneID="YKT-rj-WF7">

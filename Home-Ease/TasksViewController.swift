@@ -21,15 +21,17 @@ class TasksViewController: UIViewController, UICollectionViewDelegate, UICollect
         let myCell = taskCollectionView.dequeueReusableCell(withReuseIdentifier: "TaskCollectionViewCell", for: indexPath) as! TaskCollectionViewCell
         var myCellFrame = CGRect()
         if(indexPath.row == 0){
-            myCellFrame = CGRect(x: view.frame.minX, y: view.frame.minY, width: view.frame.width, height: taskCollectionView.frame.height/2 - 10)
+            myCellFrame = CGRect(x: view.frame.minX, y: view.frame.minY, width: view.frame.width-35, height: taskCollectionView.frame.height/2 - 10)
             myCell.weekLabel.text = "This Week"
         }
         else if(indexPath.row == 1){
-            myCellFrame = CGRect(x: view.frame.minX, y: taskCollectionView.frame.height/2 + 10, width: view.frame.width, height: taskCollectionView.frame.height/2 - 10)
+            myCellFrame = CGRect(x: view.frame.minX, y: taskCollectionView.frame.height/2 + 10, width: view.frame.width-35, height: taskCollectionView.frame.height/2 - 10)
             myCell.weekLabel.text = "Next Week"
         }
         myCell.frame = myCellFrame
-        myCell.backgroundColor = .blue
+        myCell.backgroundColor = .white
+        myCell.layer.borderColor = UIColor.black.cgColor
+        myCell.layer.borderWidth = 1
         
         return myCell;
     }

@@ -9,7 +9,19 @@
 import UIKit
 
 class listOfTasksViewController: UIViewController {
-
+    
+    @IBOutlet weak var scopeOfTasksButton: UIBarButtonItem!
+    
+    @IBOutlet weak var weekLabel: UILabel!
+    
+    @IBAction func changeTasksShown(_ sender: Any) {
+        if scopeOfTasksButton.title == "Show Only My Tasks"{
+            scopeOfTasksButton.title = "Show All Tasks"
+        }
+        else if scopeOfTasksButton.title == "Show All Tasks"{
+            scopeOfTasksButton.title = "Show Only My Tasks"
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -17,6 +17,11 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
     var myCompletedTasksNames: [String] = []
     var myPendingTasksNames: [String] = []
     
+    @IBAction func exitAddNewTask(_ sender: Any) {
+        addTaskView.isHidden = true;
+        taskField.text = ""
+        roommateField.text = ""
+    }
     
     
     @IBOutlet weak var markAllAsCompletedBtn: UIButton!

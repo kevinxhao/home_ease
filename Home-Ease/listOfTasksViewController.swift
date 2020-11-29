@@ -24,7 +24,7 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     
-    @IBOutlet weak var markAllAsCompletedBtn: UIButton!
+    //@IBOutlet weak var markAllAsCompletedBtn: UIButton!
     
     @IBOutlet weak var addTaskView: UIView!
     
@@ -66,6 +66,7 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
             }
         }
         else{*/
+        //I consulted this when I was unsure about how to set up multiple table cells within the same view controller: https://stackoverflow.com/questions/37447124/how-do-i-create-two-table-views-in-one-view-controller-with-two-custom-uitablevi
             if tableView == self.completedTableView{
                 return completedTasksRoommates.count
             }
@@ -124,14 +125,14 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
     @IBAction func changeTasksShown(_ sender: Any) {
         if scopeOfTasksButton.title == "Show Only My Tasks"{
             scopeOfTasksButton.title = "Show All Tasks"
-            markAllAsCompletedBtn.isHidden = false;
+    //        markAllAsCompletedBtn.isHidden = false;
         }
         else if scopeOfTasksButton.title == "Show All Tasks"{
             scopeOfTasksButton.title = "Show Only My Tasks"
-            markAllAsCompletedBtn.isHidden = true
+           // markAllAsCompletedBtn.isHidden = true
         }
     }
-    
+    /*
     @IBAction func markAllAsCompleted(_ sender: Any) {
         completedTasksNames = UserDefaults.standard.object(forKey:"tasksNamesCompleted") as? [String] ?? []
         completedTasksRoommates = UserDefaults.standard.object(forKey:"tasksRoommatesCompleted") as? [String] ?? []
@@ -152,7 +153,7 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
         UserDefaults.standard.set(completedTasksNames, forKey: "tasksNamesCompleted")
         pendingTableView.reloadData()
         completedTableView.reloadData()
-    }
+    }*/
     
     @IBOutlet weak var taskField: UITextField!
     
@@ -182,9 +183,13 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        /*UserDefaults.standard.set([], forKey: "tasksRoommatesPending")
+        UserDefaults.standard.set([], forKey: "tasksNamesPending")
+        UserDefaults.standard.set([], forKey: "tasksRoommatesCompleted")
+        UserDefaults.standard.set([], forKey: "tasksNamesCompleted")*/
         scopeOfTasksButton.title = "Show Only My Tasks"
         addTaskView.isHidden = true
-        markAllAsCompletedBtn.isHidden = true
+   //     markAllAsCompletedBtn.isHidden = true
         pendingTableView.dataSource = self;
         pendingTableView.reloadData();
         pendingTableView.delegate = self;
@@ -198,7 +203,7 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true);
         scopeOfTasksButton.title = "Show Only My Tasks"
-        markAllAsCompletedBtn.isHidden = true
+       // markAllAsCompletedBtn.isHidden = true
         completedTasksNames = UserDefaults.standard.object(forKey:"tasksNamesCompleted") as? [String] ?? []
         completedTasksRoommates = UserDefaults.standard.object(forKey:"tasksRoommatesCompleted") as? [String] ?? []
         pendingTasksNames = UserDefaults.standard.object(forKey:"tasksNamesPending") as? [String] ?? []
@@ -209,7 +214,7 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        markAllAsCompletedBtn.isHidden = true
+     //   markAllAsCompletedBtn.isHidden = true
         scopeOfTasksButton.title = "Show Only My Tasks"
         completedTableView.reloadData();
         pendingTableView.reloadData();

@@ -281,14 +281,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FyJ-ti-hFY">
-                                <rect key="frame" x="8" y="88" width="156" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Mark All As Completed"/>
-                                <connections>
-                                    <action selector="markAllAsCompleted:" destination="9VF-xu-bhN" eventType="touchUpInside" id="Ebh-Px-pEv"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wcf-5E-aEv">
                                 <rect key="frame" x="261" y="88" width="98" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -367,7 +359,6 @@
                     <connections>
                         <outlet property="addTaskView" destination="Clt-E8-0qD" id="wDc-sQ-s8d"/>
                         <outlet property="completedTableView" destination="CSo-3b-krv" id="wTE-Jm-f3j"/>
-                        <outlet property="markAllAsCompletedBtn" destination="FyJ-ti-hFY" id="qFO-2F-kn5"/>
                         <outlet property="pendingTableView" destination="p0A-bo-m4I" id="O9m-VO-t8t"/>
                         <outlet property="roommateField" destination="lum-FB-E3F" id="VJ3-uV-NhN"/>
                         <outlet property="scopeOfTasksButton" destination="zuM-gi-vz9" id="svh-QF-KKp"/>

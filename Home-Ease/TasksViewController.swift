@@ -29,6 +29,7 @@ class TasksViewController: UIViewController, UICollectionViewDelegate, UICollect
         }
         myCell.frame = myCellFrame
         myCell.backgroundColor = .white
+        //I consulted https://stackoverflow.com/questions/49935711/adding-borders-on-collectionview-cell to see if there was a way to add borders to collection view cells
         myCell.layer.borderColor = UIColor.black.cgColor
         myCell.layer.borderWidth = 1
         

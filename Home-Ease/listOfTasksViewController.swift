@@ -18,21 +18,25 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
     
     @IBOutlet weak var completedTableView: UITableView!
         
-    var completedTasks: [Task] = UserDefaults.standard.object(forKey: "tasksCompleted") as? [Task] ?? []
+    var completedTasksRoommates: [String] = UserDefaults.standard.object(forKey: "tasksRoommatesCompleted") as? [String] ?? []
     
-    var pendingTasks: [Task] = UserDefaults.standard.object(forKey: "tasksPending") as? [Task] ?? []
+    var completedTasksNames: [String] = UserDefaults.standard.object(forKey: "tasksNamesCompleted") as? [String] ?? []
+    
+    var pendingTasksRoommates: [String] = UserDefaults.standard.object(forKey: "tasksRoommatesPending") as? [String] ?? []
+    
+     var pendingTasksNames: [String] = UserDefaults.standard.object(forKey: "tasksNamesPending") as? [String] ?? []
        
     struct Task {
-        let roommateName: String!
-        let taskName: String!
+        var roommateName: String!
+        var taskName: String!
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == self.completedTableView{
-            return completedTasks.count
+            return completedTasksRoommates.count
         }
         else if tableView == self.pendingTableView{
-            return pendingTasks.count
+            return pendingTasksRoommates.count
         }
         else{
             return 0
@@ -42,10 +46,10 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let myCell = UITableViewCell(style: .default, reuseIdentifier: nil)
         if tableView == self.completedTableView{
-            myCell.textLabel!.text = "\(completedTasks[indexPath.row].roommateName ?? "") \(completedTasks[indexPath.row].taskName ?? "")"
+            myCell.textLabel!.text = "\(completedTasksRoommates[indexPath.row] ): \(completedTasksNames[indexPath.row] )"
         }
         else if tableView == self.pendingTableView{
-            myCell.textLabel!.text = "\(pendingTasks[indexPath.row].roommateName ?? "") \(pendingTasks[indexPath.row].taskName ?? "")"
+            myCell.textLabel!.text = "\(pendingTasksRoommates[indexPath.row] ):  \(pendingTasksNames[indexPath.row] )"
         }
         return myCell
     }
@@ -65,9 +69,23 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
             scopeOfTasksButton.title = "Show Only My Tasks"
         }
     }
+    @IBOutlet weak var taskField: UITextField!
     
     @IBAction func addNewTask(_ sender: Any) {
-        
+        addTaskView.isHidden = false
+    }
+    
+    @IBAction func addTaskAndCloseSubview(_ sender: Any) {
+        pendingTasksRoommates = UserDefaults.standard.object(forKey: "tasksRoommatesPending") as? [String] ?? []
+        pendingTasksNames = UserDefaults.standard.object(forKey: "tasksNamesPending") as? [String] ?? []
+        let newRoommateName = "Roommate"
+        let newTaskName = taskField.text
+        pendingTasksRoommates.append(newRoommateName)
+        pendingTasksNames.append(newTaskName!)
+        UserDefaults.standard.set(pendingTasksRoommates, forKey: "tasksRoommatesPending")
+        UserDefaults.standard.set(pendingTasksNames, forKey: "tasksNamesPending")
+        addTaskView.isHidden = true
+        pendingTableView.reloadData()
     }
     
     override func viewDidLoad() {
@@ -81,9 +99,10 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true);
         
-        completedTasks = UserDefaults.standard.object(forKey:"tasksCompleted") as? [Task] ?? []
-        
-        pendingTasks = UserDefaults.standard.object(forKey: "tasksPending") as? [Task] ?? []
+        completedTasksNames = UserDefaults.standard.object(forKey:"tasksNamesCompleted") as? [String] ?? []
+        completedTasksRoommates = UserDefaults.standard.object(forKey:"tasksRoommatesCompleted") as? [String] ?? []
+        pendingTasksNames = UserDefaults.standard.object(forKey:"tasksNamesPending") as? [String] ?? []
+        pendingTasksRoommates = UserDefaults.standard.object(forKey:"tasksRoommatesPending") as? [String] ?? []
         
         completedTableView.reloadData();
         pendingTableView.reloadData();

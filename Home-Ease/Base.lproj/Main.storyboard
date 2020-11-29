@@ -297,7 +297,7 @@
                                     <action selector="addNewTask:" destination="9VF-xu-bhN" eventType="touchUpInside" id="8ng-z9-Coo"/>
                                 </connections>
                             </button>
-                            <view alpha="0.90000000000000002" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Clt-E8-0qD">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Clt-E8-0qD">
                                 <rect key="frame" x="67" y="294" width="240" height="159"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>

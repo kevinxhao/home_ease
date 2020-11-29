@@ -12,11 +12,14 @@ import UIKit
 
 class listOfTasksViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var addTaskView: UIView!
+    
     @IBOutlet weak var pendingTableView: UITableView!
     
     @IBOutlet weak var completedTableView: UITableView!
-    
+        
     var completedTasks: [Task] = UserDefaults.standard.object(forKey: "tasksCompleted") as? [Task] ?? []
+    
     var pendingTasks: [Task] = UserDefaults.standard.object(forKey: "tasksPending") as? [Task] ?? []
        
     struct Task {
@@ -25,12 +28,29 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+        if tableView == self.completedTableView{
+            return completedTasks.count
+        }
+        else if tableView == self.pendingTableView{
+            return pendingTasks.count
+        }
+        else{
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        let myCell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        if tableView == self.completedTableView{
+            myCell.textLabel!.text = "\(completedTasks[indexPath.row].roommateName ?? "") \(completedTasks[indexPath.row].taskName ?? "")"
+        }
+        else if tableView == self.pendingTableView{
+            myCell.textLabel!.text = "\(pendingTasks[indexPath.row].roommateName ?? "") \(pendingTasks[indexPath.row].taskName ?? "")"
+        }
+        return myCell
     }
+    
+    
     
     
     @IBOutlet weak var scopeOfTasksButton: UIBarButtonItem!
@@ -45,11 +65,36 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
             scopeOfTasksButton.title = "Show Only My Tasks"
         }
     }
+    
+    @IBAction func addNewTask(_ sender: Any) {
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        addTaskView.isHidden = true
         // Do any additional setup after loading the view.
     }
+    
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true);
+        
+        completedTasks = UserDefaults.standard.object(forKey:"tasksCompleted") as? [Task] ?? []
+        
+        pendingTasks = UserDefaults.standard.object(forKey: "tasksPending") as? [Task] ?? []
+        
+        completedTableView.reloadData();
+        pendingTableView.reloadData();
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        completedTableView.reloadData();
+        pendingTableView.reloadData();
+    }
+    
+    
     
 
     /*

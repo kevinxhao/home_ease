@@ -11,8 +11,7 @@ import UIKit
 class FinancesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
     let expenses = ["Rent", "Electricity", "Utility"]
-    let identifiers = ["rent", "electricity", "utility"]
-    let amounts = 0.01
+    let amounts = 0.00
     let backgroundColors:[UIColor] = [UIColor.init(red: 224/255, green: 187/255, blue: 228/255, alpha: 1),UIColor.init(red: 149/255, green: 125/255, blue: 173/155, alpha: 1),UIColor.init(red: 210/255, green: 145/255, blue: 188/255, alpha: 1)]
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -30,7 +29,7 @@ class FinancesViewController: UIViewController, UICollectionViewDelegate, UIColl
         cell.mainView.backgroundColor = backgroundColors[indexPath.row]
         cell.mainView.layer.cornerRadius = 8
         cell.label.text = expenses[indexPath.row]
-        cell.label2.text = "Amount: "
+        cell.label2.text = "Balance: "
         cell.label3.text = "You Owe: "
         if amounts > 0 {
             cell.amount1.textColor = .red
@@ -43,17 +42,14 @@ class FinancesViewController: UIViewController, UICollectionViewDelegate, UIColl
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.row == 0 {
             let vc = storyboard?.instantiateViewController(identifier: "rent") as! RentViewController
-            vc.title = "Rent"
             navigationController?.pushViewController(vc, animated: true)
         }
         else if indexPath.row == 1 {
             let vc = storyboard?.instantiateViewController(identifier: "electricity") as! ElectricityViewController
-            vc.title = "Electricity"
             navigationController?.pushViewController(vc, animated: true)
         }
         else if indexPath.row == 2 {
             let vc = storyboard?.instantiateViewController(identifier: "utility") as! UtilityViewController
-            vc.title = "Utility"
             navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -85,3 +81,4 @@ class FinancesViewController: UIViewController, UICollectionViewDelegate, UIColl
     */
 
 }
+//Utility vc title

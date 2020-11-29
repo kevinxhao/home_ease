@@ -8,27 +8,35 @@
 
 import UIKit
 
-class RentViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class RentViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+  
+    let users = ["Roommate 1", "Roommate 2", "Roommate 3"]
     
-    @IBOutlet weak var tableView: UITableView!
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    @IBOutlet weak var collectionView: UICollectionView!
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 3
     }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return tableView.frame.height/3
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "rentCell", for: indexPath) as! DetailedFinancesCollectionViewCell
+        cell.imageView.layer.cornerRadius = 0.5*cell.imageView.bounds.size.width
+        cell.imageView.clipsToBounds = true
+        cell.imageView.image = UIImage.init(named: "Profile")
+        cell.nameLabel.text = users[indexPath.row]
+        return cell
     }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell.init()
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        CGSize(width: 340, height: 138)
     }
     
-    func setUpTableView() {
-        tableView.dataSource = self
-        tableView.delegate = self
+    func setUpCollectionView() {
+        collectionView.dataSource = self
+        collectionView.delegate = self
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpCollectionView()
 
         // Do any additional setup after loading the view.
     }

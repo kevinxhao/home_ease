@@ -10,9 +10,10 @@
 		703063C72571D87D00028888 /* TasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703063C62571D87D00028888 /* TasksViewController.swift */; };
 		703063CB2572D26C00028888 /* TaskCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703063CA2572D26C00028888 /* TaskCollectionViewCell.swift */; };
 		703063CD2573113E00028888 /* listOfTasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703063CC2573113E00028888 /* listOfTasksViewController.swift */; };
+		73A410FF2574541E0078436F /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A410FE2574541E0078436F /* SettingsTableViewController.swift */; };
 		73CBDDA52574424200F36E2F /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBDDA42574424200F36E2F /* HomeCollectionViewCell.swift */; };
 		73CBDDAF257453BD00F36E2F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBDDAE257453BD00F36E2F /* HomeViewController.swift */; };
-		73A410FF2574541E0078436F /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A410FE2574541E0078436F /* SettingsTableViewController.swift */; };
+		73CBDDB3257475E100F36E2F /* RoommateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBDDB2257475E100F36E2F /* RoommateViewController.swift */; };
 		A1340009256099D7005D811C /* Home_EaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1340008256099D7005D811C /* Home_EaseTests.swift */; };
 		A1340014256099D7005D811C /* Home_EaseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1340013256099D7005D811C /* Home_EaseUITests.swift */; };
 		A134FFEF256099D4005D811C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A134FFEE256099D4005D811C /* AppDelegate.swift */; };
@@ -51,9 +52,10 @@
 		703063C62571D87D00028888 /* TasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewController.swift; sourceTree = "<group>"; };
 		703063CA2572D26C00028888 /* TaskCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCollectionViewCell.swift; sourceTree = "<group>"; };
 		703063CC2573113E00028888 /* listOfTasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = listOfTasksViewController.swift; sourceTree = "<group>"; };
+		73A410FE2574541E0078436F /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		73CBDDA42574424200F36E2F /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		73CBDDAE257453BD00F36E2F /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		73A410FE2574541E0078436F /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		73CBDDB2257475E100F36E2F /* RoommateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoommateViewController.swift; sourceTree = "<group>"; };
 		A1340004256099D7005D811C /* Home-EaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Home-EaseTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1340008256099D7005D811C /* Home_EaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home_EaseTests.swift; sourceTree = "<group>"; };
 		A134000A256099D7005D811C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				A16C3C6E256F29F9008C38D7 /* FinancesViewController.swift */,
 				73CBDDAE257453BD00F36E2F /* HomeViewController.swift */,
 				73CBDDA42574424200F36E2F /* HomeCollectionViewCell.swift */,
+				73CBDDB2257475E100F36E2F /* RoommateViewController.swift */,
 				A16C3C6C256F252D008C38D7 /* RentViewController.swift */,
 				A1599E4A25731C1500C68C8A /* DetailedFinancesCollectionViewCell.swift */,
 				A16C3C68256F24EA008C38D7 /* UtilityViewController.swift */,
@@ -332,6 +335,7 @@
 				73CBDDAF257453BD00F36E2F /* HomeViewController.swift in Sources */,
 				703063CB2572D26C00028888 /* TaskCollectionViewCell.swift in Sources */,
 				A134FFF1256099D4005D811C /* SceneDelegate.swift in Sources */,
+				73CBDDB3257475E100F36E2F /* RoommateViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

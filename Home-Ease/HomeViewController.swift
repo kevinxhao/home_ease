@@ -50,7 +50,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate,UICollectio
             navigationController?.pushViewController(vc, animated: true)
         }
         if indexPath.row == 2{
-            let vc = storyboard?.instantiateViewController(identifier: "rommateTableView") as! RentViewController
+            let vc = storyboard?.instantiateViewController(identifier: "roommateView") as! RoommateViewController
             navigationController?.pushViewController(vc, animated: true)
         }
         

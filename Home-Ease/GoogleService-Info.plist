@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>260814020929-v80g8fb3i9esu602u1rioj2hboom0s02.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.260814020929-v80g8fb3i9esu602u1rioj2hboom0s02</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA2iU5tJl-c8JQdykxoz7Dacp7dF8Kro40</string>
+	<key>GCM_SENDER_ID</key>
+	<string>260814020929</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>Dhruv-Patel.Home-Ease</string>
+	<key>PROJECT_ID</key>
+	<string>usersigninhomeease</string>
+	<key>STORAGE_BUCKET</key>
+	<string>usersigninhomeease.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:260814020929:ios:3b5ee6c73622846fd241c0</string>
+</dict>
+</plist>

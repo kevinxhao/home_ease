@@ -1,0 +1,6 @@
+framework module Pods_Home_EaseTests {
+  umbrella header "Pods-Home-EaseTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,6 @@
+framework module Pods_Home_Ease {
+  umbrella header "Pods-Home-Ease-umbrella.h"
+
+  export *
+  module * { export * }
+}

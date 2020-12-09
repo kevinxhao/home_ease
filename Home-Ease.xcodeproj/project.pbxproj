@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		45494D85C1CD0EE63FED6357 /* Pods_Home_Ease_Home_EaseUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8B831754FCFBE7E54D3B67A /* Pods_Home_Ease_Home_EaseUITests.framework */; };
 		703063C72571D87D00028888 /* TasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703063C62571D87D00028888 /* TasksViewController.swift */; };
 		703063CB2572D26C00028888 /* TaskCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703063CA2572D26C00028888 /* TaskCollectionViewCell.swift */; };
 		703063CD2573113E00028888 /* listOfTasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703063CC2573113E00028888 /* listOfTasksViewController.swift */; };
@@ -15,6 +16,7 @@
 		73CBDDA52574424200F36E2F /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBDDA42574424200F36E2F /* HomeCollectionViewCell.swift */; };
 		73CBDDAF257453BD00F36E2F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBDDAE257453BD00F36E2F /* HomeViewController.swift */; };
 		73CBDDB3257475E100F36E2F /* RoommateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBDDB2257475E100F36E2F /* RoommateViewController.swift */; };
+		82B799458D67503F84C2C37A /* Pods_Home_EaseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4F0ECC117A0236601235B55 /* Pods_Home_EaseTests.framework */; };
 		A1340009256099D7005D811C /* Home_EaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1340008256099D7005D811C /* Home_EaseTests.swift */; };
 		A1340014256099D7005D811C /* Home_EaseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1340013256099D7005D811C /* Home_EaseUITests.swift */; };
 		A134FFEF256099D4005D811C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A134FFEE256099D4005D811C /* AppDelegate.swift */; };
@@ -30,6 +32,8 @@
 		A16C3C6B256F24F9008C38D7 /* ElectricityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16C3C6A256F24F9008C38D7 /* ElectricityViewController.swift */; };
 		A16C3C6D256F252D008C38D7 /* RentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16C3C6C256F252D008C38D7 /* RentViewController.swift */; };
 		A16C3C6F256F29F9008C38D7 /* FinancesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16C3C6E256F29F9008C38D7 /* FinancesViewController.swift */; };
+		A9DD5FB625814287003FD798 /* SchedulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DD5FB525814287003FD798 /* SchedulesViewController.swift */; };
+		FDB48CFA293F36C3207D3D69 /* Pods_Home_Ease.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1D9ACF102E236E5E433660E /* Pods_Home_Ease.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +54,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1570B7602AC05FD39D43A415 /* Pods-Home-Ease-Home-EaseUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Home-Ease-Home-EaseUITests.release.xcconfig"; path = "Target Support Files/Pods-Home-Ease-Home-EaseUITests/Pods-Home-Ease-Home-EaseUITests.release.xcconfig"; sourceTree = "<group>"; };
+		36BF864855FA071D186DA24D /* Pods-Home-Ease.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Home-Ease.release.xcconfig"; path = "Target Support Files/Pods-Home-Ease/Pods-Home-Ease.release.xcconfig"; sourceTree = "<group>"; };
 		703063C62571D87D00028888 /* TasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewController.swift; sourceTree = "<group>"; };
 		703063CA2572D26C00028888 /* TaskCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCollectionViewCell.swift; sourceTree = "<group>"; };
 		703063CC2573113E00028888 /* listOfTasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = listOfTasksViewController.swift; sourceTree = "<group>"; };
@@ -58,6 +64,8 @@
 		73CBDDA42574424200F36E2F /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		73CBDDAE257453BD00F36E2F /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		73CBDDB2257475E100F36E2F /* RoommateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoommateViewController.swift; sourceTree = "<group>"; };
+		90D55DD1C005DC9A4033BE5C /* Pods-Home-EaseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Home-EaseTests.release.xcconfig"; path = "Target Support Files/Pods-Home-EaseTests/Pods-Home-EaseTests.release.xcconfig"; sourceTree = "<group>"; };
+		9895CE775B0D23E21073FC3F /* Pods-Home-EaseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Home-EaseTests.debug.xcconfig"; path = "Target Support Files/Pods-Home-EaseTests/Pods-Home-EaseTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A1340004256099D7005D811C /* Home-EaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Home-EaseTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1340008256099D7005D811C /* Home_EaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home_EaseTests.swift; sourceTree = "<group>"; };
 		A134000A256099D7005D811C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -80,6 +88,12 @@
 		A16C3C6A256F24F9008C38D7 /* ElectricityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityViewController.swift; sourceTree = "<group>"; };
 		A16C3C6C256F252D008C38D7 /* RentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentViewController.swift; sourceTree = "<group>"; };
 		A16C3C6E256F29F9008C38D7 /* FinancesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinancesViewController.swift; sourceTree = "<group>"; };
+		A9DD5FB525814287003FD798 /* SchedulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulesViewController.swift; sourceTree = "<group>"; };
+		B2E3C8A02AE9242B94CA2A00 /* Pods-Home-Ease.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Home-Ease.debug.xcconfig"; path = "Target Support Files/Pods-Home-Ease/Pods-Home-Ease.debug.xcconfig"; sourceTree = "<group>"; };
+		C4F0ECC117A0236601235B55 /* Pods_Home_EaseTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Home_EaseTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1D9ACF102E236E5E433660E /* Pods_Home_Ease.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Home_Ease.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D52108391B456435581553AD /* Pods-Home-Ease-Home-EaseUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Home-Ease-Home-EaseUITests.debug.xcconfig"; path = "Target Support Files/Pods-Home-Ease-Home-EaseUITests/Pods-Home-Ease-Home-EaseUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		E8B831754FCFBE7E54D3B67A /* Pods_Home_Ease_Home_EaseUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Home_Ease_Home_EaseUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82B799458D67503F84C2C37A /* Pods_Home_EaseTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45494D85C1CD0EE63FED6357 /* Pods_Home_Ease_Home_EaseUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,12 +117,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDB48CFA293F36C3207D3D69 /* Pods_Home_Ease.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		75BFA4E500AEE33E16CC1D06 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D1D9ACF102E236E5E433660E /* Pods_Home_Ease.framework */,
+				E8B831754FCFBE7E54D3B67A /* Pods_Home_Ease_Home_EaseUITests.framework */,
+				C4F0ECC117A0236601235B55 /* Pods_Home_EaseTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A1340007256099D7005D811C /* Home-EaseTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +159,8 @@
 				A1340007256099D7005D811C /* Home-EaseTests */,
 				A1340012256099D7005D811C /* Home-EaseUITests */,
 				A134FFEC256099D4005D811C /* Products */,
+				F77FC3CBE06D24AC8740D10B /* Pods */,
+				75BFA4E500AEE33E16CC1D06 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -171,8 +200,22 @@
 				A134FFFF256099D7005D811C /* Info.plist */,
 				A134FFF7256099D4005D811C /* Home_Ease.xcdatamodeld */,
 				A16C3C65256EDCD2008C38D7 /* readme.txt */,
+				A9DD5FB525814287003FD798 /* SchedulesViewController.swift */,
 			);
 			path = "Home-Ease";
+			sourceTree = "<group>";
+		};
+		F77FC3CBE06D24AC8740D10B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B2E3C8A02AE9242B94CA2A00 /* Pods-Home-Ease.debug.xcconfig */,
+				36BF864855FA071D186DA24D /* Pods-Home-Ease.release.xcconfig */,
+				D52108391B456435581553AD /* Pods-Home-Ease-Home-EaseUITests.debug.xcconfig */,
+				1570B7602AC05FD39D43A415 /* Pods-Home-Ease-Home-EaseUITests.release.xcconfig */,
+				9895CE775B0D23E21073FC3F /* Pods-Home-EaseTests.debug.xcconfig */,
+				90D55DD1C005DC9A4033BE5C /* Pods-Home-EaseTests.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -182,6 +225,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A134001B256099D7005D811C /* Build configuration list for PBXNativeTarget "Home-EaseTests" */;
 			buildPhases = (
+				2487E746688422E959617D9A /* [CP] Check Pods Manifest.lock */,
 				A1340000256099D7005D811C /* Sources */,
 				A1340001256099D7005D811C /* Frameworks */,
 				A1340002256099D7005D811C /* Resources */,
@@ -200,9 +244,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A134001E256099D7005D811C /* Build configuration list for PBXNativeTarget "Home-EaseUITests" */;
 			buildPhases = (
+				ADB1EB1B3C18A6A43A8FDBBD /* [CP] Check Pods Manifest.lock */,
 				A134000B256099D7005D811C /* Sources */,
 				A134000C256099D7005D811C /* Frameworks */,
 				A134000D256099D7005D811C /* Resources */,
+				57DAB90A297B5D25F4CC222E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -218,9 +264,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A1340018256099D7005D811C /* Build configuration list for PBXNativeTarget "Home-Ease" */;
 			buildPhases = (
+				74C4F68FBDA3B56EC3C82FC6 /* [CP] Check Pods Manifest.lock */,
 				A134FFE7256099D4005D811C /* Sources */,
 				A134FFE8256099D4005D811C /* Frameworks */,
 				A134FFE9256099D4005D811C /* Resources */,
+				62DBCB4A4E9378A56D253652 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -302,6 +350,109 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2487E746688422E959617D9A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Home-EaseTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		57DAB90A297B5D25F4CC222E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Home-Ease-Home-EaseUITests/Pods-Home-Ease-Home-EaseUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Home-Ease-Home-EaseUITests/Pods-Home-Ease-Home-EaseUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Home-Ease-Home-EaseUITests/Pods-Home-Ease-Home-EaseUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		62DBCB4A4E9378A56D253652 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Home-Ease/Pods-Home-Ease-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Home-Ease/Pods-Home-Ease-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Home-Ease/Pods-Home-Ease-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		74C4F68FBDA3B56EC3C82FC6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Home-Ease-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ADB1EB1B3C18A6A43A8FDBBD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Home-Ease-Home-EaseUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A1340000256099D7005D811C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -334,6 +485,7 @@
 				73CBDDA52574424200F36E2F /* HomeCollectionViewCell.swift in Sources */,
 				A15CC0272571D40500F3754D /* FinancesCollectionViewCell.swift in Sources */,
 				A16C3C6F256F29F9008C38D7 /* FinancesViewController.swift in Sources */,
+				A9DD5FB625814287003FD798 /* SchedulesViewController.swift in Sources */,
 				703063C72571D87D00028888 /* TasksViewController.swift in Sources */,
 				A16C3C6B256F24F9008C38D7 /* ElectricityViewController.swift in Sources */,
 				73CBDDAF257453BD00F36E2F /* HomeViewController.swift in Sources */,
@@ -494,6 +646,7 @@
 		};
 		A1340019256099D7005D811C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B2E3C8A02AE9242B94CA2A00 /* Pods-Home-Ease.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -511,6 +664,7 @@
 		};
 		A134001A256099D7005D811C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 36BF864855FA071D186DA24D /* Pods-Home-Ease.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -528,6 +682,7 @@
 		};
 		A134001C256099D7005D811C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9895CE775B0D23E21073FC3F /* Pods-Home-EaseTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -549,6 +704,7 @@
 		};
 		A134001D256099D7005D811C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 90D55DD1C005DC9A4033BE5C /* Pods-Home-EaseTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -570,6 +726,7 @@
 		};
 		A134001F256099D7005D811C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D52108391B456435581553AD /* Pods-Home-Ease-Home-EaseUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -589,6 +746,7 @@
 		};
 		A1340020256099D7005D811C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1570B7602AC05FD39D43A415 /* Pods-Home-Ease-Home-EaseUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

@@ -11,6 +11,7 @@
 		703063CB2572D26C00028888 /* TaskCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703063CA2572D26C00028888 /* TaskCollectionViewCell.swift */; };
 		703063CD2573113E00028888 /* listOfTasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703063CC2573113E00028888 /* listOfTasksViewController.swift */; };
 		73A410FF2574541E0078436F /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A410FE2574541E0078436F /* SettingsTableViewController.swift */; };
+		73BD1FBD2580515600B8A319 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 73BD1FBC2580515600B8A319 /* GoogleService-Info.plist */; };
 		73CBDDA52574424200F36E2F /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBDDA42574424200F36E2F /* HomeCollectionViewCell.swift */; };
 		73CBDDAF257453BD00F36E2F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBDDAE257453BD00F36E2F /* HomeViewController.swift */; };
 		73CBDDB3257475E100F36E2F /* RoommateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBDDB2257475E100F36E2F /* RoommateViewController.swift */; };
@@ -53,6 +54,7 @@
 		703063CA2572D26C00028888 /* TaskCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCollectionViewCell.swift; sourceTree = "<group>"; };
 		703063CC2573113E00028888 /* listOfTasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = listOfTasksViewController.swift; sourceTree = "<group>"; };
 		73A410FE2574541E0078436F /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		73BD1FBC2580515600B8A319 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		73CBDDA42574424200F36E2F /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		73CBDDAE257453BD00F36E2F /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		73CBDDB2257475E100F36E2F /* RoommateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoommateViewController.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 		A134FFED256099D4005D811C /* Home-Ease */ = {
 			isa = PBXGroup;
 			children = (
+				73BD1FBC2580515600B8A319 /* GoogleService-Info.plist */,
 				A134FFEE256099D4005D811C /* AppDelegate.swift */,
 				A134FFF0256099D4005D811C /* SceneDelegate.swift */,
 				A134FFF2256099D4005D811C /* ViewController.swift */,
@@ -291,6 +294,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A134FFFE256099D7005D811C /* LaunchScreen.storyboard in Resources */,
+				73BD1FBD2580515600B8A319 /* GoogleService-Info.plist in Resources */,
 				A134FFFB256099D7005D811C /* Assets.xcassets in Resources */,
 				A134FFF6256099D4005D811C /* Main.storyboard in Resources */,
 			);

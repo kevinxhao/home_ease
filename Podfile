@@ -7,6 +7,10 @@ target 'Home-Ease' do
 
   # Pods for Home-Ease
 	pod 'FSCalendar'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
+  pod 'Firebase/Database'
+  pod 'FirebaseUI'
 
   target 'Home-EaseTests' do
     inherit! :search_paths

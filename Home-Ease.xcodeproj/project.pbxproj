@@ -249,6 +249,7 @@
 				A134000C256099D7005D811C /* Frameworks */,
 				A134000D256099D7005D811C /* Resources */,
 				57DAB90A297B5D25F4CC222E /* [CP] Embed Pods Frameworks */,
+				22E85CAC8E680B6C2ACED3AD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -269,6 +270,7 @@
 				A134FFE8256099D4005D811C /* Frameworks */,
 				A134FFE9256099D4005D811C /* Resources */,
 				62DBCB4A4E9378A56D253652 /* [CP] Embed Pods Frameworks */,
+				43468698850E31550599C5D2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -351,6 +353,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		22E85CAC8E680B6C2ACED3AD /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Home-Ease-Home-EaseUITests/Pods-Home-Ease-Home-EaseUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Home-Ease-Home-EaseUITests/Pods-Home-Ease-Home-EaseUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Home-Ease-Home-EaseUITests/Pods-Home-Ease-Home-EaseUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		2487E746688422E959617D9A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -371,6 +390,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		43468698850E31550599C5D2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Home-Ease/Pods-Home-Ease-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Home-Ease/Pods-Home-Ease-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Home-Ease/Pods-Home-Ease-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		57DAB90A297B5D25F4CC222E /* [CP] Embed Pods Frameworks */ = {

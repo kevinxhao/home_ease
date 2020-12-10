@@ -98,16 +98,17 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uED-03-87C">
-                                <rect key="frame" x="338" y="115" width="21" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" image="pencil" catalog="system"/>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Rent" id="Pne-IM-noA"/>
+                    <navigationItem key="navigationItem" title="Rent" id="Pne-IM-noA">
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="MQb-Ac-QHp">
+                            <connections>
+                                <segue destination="d0C-Sx-MWD" kind="presentation" id="Hqb-v4-HTt"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="collectionView" destination="9OA-Xa-uWP" id="KOX-Sx-kzM"/>
@@ -203,9 +204,7 @@
                         <color key="backgroundColor" red="0.082352941176470587" green="0.19607843137254902" blue="0.40784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                         <viewLayoutGuide key="safeArea" id="qSG-bv-IsV"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Finances" id="NLq-0h-wPv">
-                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="MQb-Ac-QHp"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Finances" id="NLq-0h-wPv"/>
                     <connections>
                         <outlet property="collectionView" destination="bwg-cK-21M" id="0if-Fv-o5J"/>
                     </connections>
@@ -882,7 +881,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="gI0-pb-99l"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Electricity" id="bE1-ZK-7a8"/>
+                    <navigationItem key="navigationItem" title="Electricity" id="bE1-ZK-7a8">
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="VUY-Wg-zsi">
+                            <connections>
+                                <segue destination="d0C-Sx-MWD" kind="presentation" id="NFV-ac-ElR"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="collectionView" destination="8kA-fP-4BM" id="2bM-S7-UAZ"/>
@@ -891,6 +896,58 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hdd-ZE-tBV" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5842.3999999999996" y="126.35467980295567"/>
+        </scene>
+        <!--PopUp-->
+        <scene sceneID="hjz-wa-F5K">
+            <objects>
+                <viewController storyboardIdentifier="popup" title="PopUp" modalPresentationStyle="overCurrentContext" id="d0C-Sx-MWD" customClass="PopUpViewController" customModule="Home_Ease" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="a8A-wE-3qk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZNk-9A-6XI">
+                                <rect key="frame" x="23.885793871866554" y="269.19777158774355" width="324" height="278.00000000000006"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vdy-5R-ofI">
+                                        <rect key="frame" x="0.0" y="0.0" width="324" height="47"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.48151959309999998" green="0.57784430190000002" blue="0.79539669879999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="dpD-e7-mOD">
+                                        <rect key="frame" x="0.0" y="47" width="324" height="186"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    </datePicker>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tN9-Ku-JeO">
+                                        <rect key="frame" x="83.42094292918955" y="241" width="156.99999999999909" height="36.999999999999886"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.48151959309999998" green="0.57784430190000002" blue="0.79539669879999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Save">
+                                            <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="saveDate:" destination="d0C-Sx-MWD" eventType="touchUpInside" id="PJ8-rl-qvn"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.08235294118" green="0.1960784314" blue="0.40784313729999999" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <viewLayoutGuide key="safeArea" id="wfe-FA-rZQ"/>
+                    </view>
+                    <connections>
+                        <outlet property="date" destination="vdy-5R-ofI" id="bDN-mq-t60"/>
+                        <outlet property="datePicker" destination="dpD-e7-mOD" id="4EU-4A-nzO"/>
+                        <outlet property="save" destination="tN9-Ku-JeO" id="Dx2-ct-yUZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="biz-Ew-lkD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6628" y="125.61576354679804"/>
         </scene>
         <!--Schedules-->
         <scene sceneID="UyE-Bg-dOa">
@@ -1094,7 +1151,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="FeY-cu-6Xi"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Utility" id="QjB-QJ-jj7"/>
+                    <navigationItem key="navigationItem" title="Utility" id="QjB-QJ-jj7">
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="u1O-U3-xDL">
+                            <connections>
+                                <segue destination="d0C-Sx-MWD" kind="presentation" id="AV1-UQ-KC8"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="collectionView" destination="3XB-CK-5Of" id="9wK-08-2Rr"/>
@@ -1328,12 +1391,14 @@
             <point key="canvasLocation" x="456.80000000000001" y="2282.5123152709361"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Hqb-v4-HTt"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="calendar" catalog="system" width="128" height="106"/>
         <image name="checkmark.circle" catalog="system" width="128" height="121"/>
         <image name="dollarsign.circle.fill" catalog="system" width="128" height="121"/>
         <image name="gear" catalog="system" width="128" height="119"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
-        <image name="pencil" catalog="system" width="128" height="113"/>
     </resources>
 </document>

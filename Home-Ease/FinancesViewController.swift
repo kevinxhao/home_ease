@@ -10,15 +10,14 @@ import UIKit
 
 class FinancesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
-    let expenses = ["Rent", "Electricity", "Utility"]
+    let expenses = ["Total","Rent", "Electricity", "Utility"]
     let amounts = 0.00
-    let backgroundColors:[UIColor] = [UIColor.init(red: 224/255, green: 187/255, blue: 228/255, alpha: 1),UIColor.init(red: 149/255, green: 125/255, blue: 173/155, alpha: 1),UIColor.init(red: 210/255, green: 145/255, blue: 188/255, alpha: 1)]
+    let backgroundColors:[UIColor] = [UIColor.init(red: 141/255, green: 144/255, blue: 226/255, alpha: 1),UIColor.init(red: 224/255, green: 187/255, blue: 228/255, alpha: 1),UIColor.init(red: 189/255, green: 152/255, blue: 224/155, alpha: 1),UIColor.init(red: 210/255, green: 145/255, blue: 188/255, alpha: 1)]
     
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var venmoView: UIView!
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return 4
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 340, height: 138)
@@ -40,15 +39,15 @@ class FinancesViewController: UIViewController, UICollectionViewDelegate, UIColl
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.row == 0 {
+        if indexPath.row == 1 {
             let vc = storyboard?.instantiateViewController(identifier: "rent") as! RentViewController
             navigationController?.pushViewController(vc, animated: true)
         }
-        else if indexPath.row == 1 {
+        else if indexPath.row == 2 {
             let vc = storyboard?.instantiateViewController(identifier: "electricity") as! ElectricityViewController
             navigationController?.pushViewController(vc, animated: true)
         }
-        else if indexPath.row == 2 {
+        else if indexPath.row == 3 {
             let vc = storyboard?.instantiateViewController(identifier: "utility") as! UtilityViewController
             navigationController?.pushViewController(vc, animated: true)
         }
@@ -57,14 +56,10 @@ class FinancesViewController: UIViewController, UICollectionViewDelegate, UIColl
         collectionView.dataSource = self
         collectionView.delegate = self
     }
-    func setUpLabels() {
-        venmoView.layer.cornerRadius = 8
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpCollectionView()
-        setUpLabels()
         
         // Do any additional setup after loading the view.
     }

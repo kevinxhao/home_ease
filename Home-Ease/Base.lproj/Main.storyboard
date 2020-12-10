@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3mL-hE-neL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WhG-2n-Srz">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -98,6 +98,11 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uED-03-87C">
+                                <rect key="frame" x="176" y="152" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="pencil" catalog="system"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -121,9 +126,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bwg-cK-21M">
-                                <rect key="frame" x="0.0" y="275" width="374" height="454"/>
+                                <rect key="frame" x="0.0" y="121" width="374" height="608"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" red="0.08289951745031468" green="0.19470310215227865" blue="0.40777534904142798" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="npt-J4-Wt0">
                                     <size key="itemSize" width="314" height="112"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -194,48 +199,15 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cj6-c4-imh">
-                                <rect key="frame" x="16" y="124" width="343" height="127"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="118" translatesAutoresizingMaskIntoConstraints="NO" id="uDS-8V-a0j">
-                                        <rect key="frame" x="55" y="72" width="232" height="39"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vTT-ML-5wQ">
-                                                <rect key="frame" x="0.0" y="0.0" width="79" height="39"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                                <state key="normal" title="Request"/>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iE8-6d-Djy">
-                                                <rect key="frame" x="197" y="0.0" width="35" height="39"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                                <state key="normal" title="Pay"/>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Venmo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p32-Ay-Jpg">
-                                        <rect key="frame" x="88" y="8" width="166" height="64"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="46"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="0.3651808647" green="0.84238150089999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="uDS-8V-a0j" firstAttribute="leading" secondItem="qSG-bv-IsV" secondAttribute="leading" constant="71" id="CrE-8H-92C"/>
-                            <constraint firstItem="uDS-8V-a0j" firstAttribute="top" secondItem="qSG-bv-IsV" secondAttribute="top" constant="108" id="HR7-Tu-Yw7"/>
-                            <constraint firstItem="qSG-bv-IsV" firstAttribute="trailing" secondItem="uDS-8V-a0j" secondAttribute="trailing" constant="72" id="saq-0F-2Ia"/>
-                        </constraints>
+                        <color key="backgroundColor" red="0.082352941176470587" green="0.19607843137254902" blue="0.40784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                         <viewLayoutGuide key="safeArea" id="qSG-bv-IsV"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Finances" id="NLq-0h-wPv"/>
+                    <navigationItem key="navigationItem" title="Finances" id="NLq-0h-wPv">
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="MQb-Ac-QHp"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="bwg-cK-21M" id="0if-Fv-o5J"/>
-                        <outlet property="venmoView" destination="cj6-c4-imh" id="0c3-kd-4WJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OZy-B9-ujf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1362,5 +1334,6 @@
         <image name="dollarsign.circle.fill" catalog="system" width="128" height="121"/>
         <image name="gear" catalog="system" width="128" height="119"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
+        <image name="pencil" catalog="system" width="128" height="113"/>
     </resources>
 </document>

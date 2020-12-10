@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseAuth
+import Firebase
 
 class CreateNewUserViewController: UIViewController {
 
@@ -36,13 +38,21 @@ class CreateNewUserViewController: UIViewController {
        }
        @IBAction func logInTapped(_ sender: Any) {
            //validate field
-            let error = validate()
+           // let error = validate()
             
-        else{
+        
            //create users
-            
+            Auth.auth().createUser(withEmail: <#T##String#>, password: <#T##String#>) { (result, err) in
+                //check for errors
+                //implement if we implement error message
+//                if let err = err{
+//                    //error exists
+//
+                }
+                
+        let db = Firestore.firestore()
            //transition to home screen
-        }
+        
        }
         
 

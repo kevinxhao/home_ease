@@ -17,6 +17,7 @@ class CreateNewUserViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var errorLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,24 +39,44 @@ class CreateNewUserViewController: UIViewController {
        }
        @IBAction func logInTapped(_ sender: Any) {
            //validate field
-           // let error = validate()
-            
-        
+            let error = validate()
+        if error != nil {
+            //error exists
+            showError(error!)
+        }
+        else{
            //create users
-            Auth.auth().createUser(withEmail: <#T##String#>, password: <#T##String#>) { (result, err) in
+            let firstName = firstNameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            
+            Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
                 //check for errors
-                //implement if we implement error message
-//                if let err = err{
-//                    //error exists
-//
-                }
                 
-        let db = Firestore.firestore()
-           //transition to home screen
-        
-       }
-        
-
-
-
+                if err != nil {
+                    self.showError("Error Creating User")
+                }
+                    
+                else{
+                    let db = Firestore.firestore()
+                    db.collection("users").addDocument(data: ["firstName": firstName,"uid": result!.user.uid ]) { (error) in
+                        if error != nil {
+                            self.showError("User data could not be saved")
+                        }
+                    }
+                    //transition to home screen
+                    self.transitionToHome()
+                }
+                }
+        }
 }
+    func showError(_ message:String){
+        errorLabel.text = message
+        errorLabel.alpha = 1
+    }
+    func transitionToHome(){
+        let vc = storyboard?.instantiateViewController(identifier: "HomeVC") as! HomeViewController
+        navigationController?.pushViewController(vc, animated: true)
+    }
+}
+

@@ -1150,10 +1150,10 @@
             </objects>
             <point key="canvasLocation" x="-1597.5999999999999" y="125.61576354679804"/>
         </scene>
-        <!--View Controller-->
+        <!--Sign In View Controller-->
         <scene sceneID="L5K-84-WzK">
             <objects>
-                <viewController id="Rkc-Oh-UMn" sceneMemberID="viewController">
+                <viewController id="Rkc-Oh-UMn" customClass="SignInViewController" customModule="Home_Ease" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="usQ-y1-cXa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1183,19 +1183,34 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ONN-IR-PsX">
+                                <rect key="frame" x="166" y="330" width="42" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Log In"/>
+                                <connections>
+                                    <action selector="logInTapped:" destination="Rkc-Oh-UMn" eventType="touchUpInside" id="lSL-77-4Qz"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="JDQ-RV-Vqa"/>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="nPO-vz-ljf" id="Lfw-p7-B42"/>
+                        <outlet property="firstNameTextField" destination="nqs-TQ-7KZ" id="XWz-ro-5Kg"/>
+                        <outlet property="logInButton" destination="ONN-IR-PsX" id="B7T-VD-nGS"/>
+                        <outlet property="passwordTextField" destination="sfB-vV-hW9" id="ApT-r8-Xtw"/>
+                        <outlet property="signInLabel" destination="qj9-yM-IGj" id="nVy-SF-ZjS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yfs-Fd-GA5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2297" y="1573"/>
+            <point key="canvasLocation" x="2296.8000000000002" y="1572.4137931034484"/>
         </scene>
-        <!--View Controller-->
+        <!--Create New User View Controller-->
         <scene sceneID="iWY-qj-q3g">
             <objects>
-                <viewController id="8dH-JM-80h" sceneMemberID="viewController">
+                <viewController id="8dH-JM-80h" customClass="CreateNewUserViewController" customModule="Home_Ease" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7yg-hJ-Ts4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1225,10 +1240,22 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LwQ-mN-9PG">
+                                <rect key="frame" x="160" y="300" width="54" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Sign Up"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="zqh-xP-WVl"/>
                     </view>
+                    <connections>
+                        <outlet property="createNewUserLabel" destination="lwh-CZ-f7g" id="1DU-mV-ho2"/>
+                        <outlet property="emailTextField" destination="BrL-iz-bOI" id="5AW-VD-Jaq"/>
+                        <outlet property="firstNameTextField" destination="w93-Kl-8pj" id="LI4-Y3-AVL"/>
+                        <outlet property="passwordTextField" destination="j5u-2O-9rY" id="iEH-IL-cJM"/>
+                        <outlet property="signUpButton" destination="LwQ-mN-9PG" id="4Ut-io-gbA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V52-Ue-e47" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

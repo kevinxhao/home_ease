@@ -7,11 +7,11 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 //using "FSCalendar" by WenchaoD via cocoapod
 //https://github.com/WenchaoD/FSCalendar
 import FSCalendar
-
 
 class SchedulesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -36,108 +36,136 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
     
     
     
+    
+    //data pool
+//     var arrayOfEvents = [["2020-11-29", "CSE438 Project Update Submission Due"], ["2020-11-28", "Grocery"], ["2020-11-30", "CSE438 Project Status Update"], ["2020-12-02", "CSE438 Lecture"], ["2020-11-20", "event0"], ["2020-11-20", "event1"], ["2020-11-20", "event2"], ["2020-11-20", "event3"], ["2020-11-21", "event5"], ["2020-11-29","zoom meeting"]]
+    
+    var arrayOfEvents : [[String]] = []
+     
+     //
+     
+    
+   var fireArray = [[String]]()
+    
+//    @IBAction func fetchFirebase(_ sender: Any) {
+//        let ref = Database.database().reference()
+//        fireArray = []
+//        ref.observe(.value, with: {
+//                 snapshot in
+//
+//                 //before waiting, grab current state
+//                 print("\(snapshot.key) -> \(String(describing: snapshot.value))")
+//                 let someData = snapshot.value! as! Dictionary<String, [String]>
+//                 //cast data as dictionary
+//
+//                 //iterate though key and value in the dictionary
+//                 for (_,value) in someData {
+//                     print("value is \(value)")
+//                    self.fireArray.append(value)
+////                    print(self.fireArray)
+//                     //we need self here to reference myArray
+//                 }
+////                 reload data for calendar
+//            print(self.fireArray)
+//            self.arrayOfEvents = self.fireArray
+//            self.calendar.reloadData()
+//
+//             })
+//    }
+    
+    
+    //
+        
+    //
+    
+    
+    @IBAction func write(_ sender: Any) {
+        let object : [String: Any] = [
+            "0": "2020-12-26" ,
+            "1" :  "real day after christmas"
+        ]
+//        ref.child("eventWrite").setValue(object)
+        ref.childByAutoId().setValue(object)
+        calendar.reloadData()
+    }
+    
+    @IBOutlet weak var write: UIButton!
+    
+    
+    
     fileprivate weak var calendar: FSCalendar!
     
     //"yyyy-MM-dd" of the date tapped
     var dateSelected : String?
     
-//    @IBOutlet weak var eventTableView: UITableView!
-    
     @IBOutlet weak var eventTableView: UITableView!
+    
     
     //using alert and action to add cells to table view
     //reference: https://www.youtube.com/watch?v=Wu5l4e5uW4w&ab_channel=KiloLoco
-   
-    
-    
     @IBAction func add(_ sender: Any) {
-               if dateSelected == nil{
-                   //don't add anything when no date is selected
-                   return
-               }
-               var newEvent = ["",""]
-               let alert = UIAlertController(title: "Add Event", message: nil, preferredStyle: .alert)
-               alert.addTextField { (eventTF) in
-                   eventTF.placeholder = "Enter Event"
-               }
-               let action = UIAlertAction(title: "Add", style: .default) { (_) in
-                   guard let event = alert.textFields?.first?.text
-                       else {
-                           return
-                   }
-                   if event == ""{
-                       //if user doesnt enter any event in the text field
-                       return
-                   }
-                   
-                   self.arrayForTableView.append(event)
-                   //append the event description in array for table view
-                   
-                   self.eventTableView.reloadData()
-                   
-                   
-                   newEvent[0] = self.dateSelected ?? "2021-01-01"
-                   //force upwrap or not?
-                   
-                   newEvent[1] = event
-                   //event decription
-                   
-                   //            print(newEvent)
-                   
-                   self.arrayOfEvents.append(newEvent)
-                   //append this new event data into data pool
-                   
-                   self.calendar.reloadData()
-               }
-               alert.addAction(action)
-               present(alert, animated: true)
-               
+        
+      
+        
+        if dateSelected == nil{
+            //don't add anything when no date is selected
+            return
+        }
+        var newEvent = ["",""]
+        let alert = UIAlertController(title: "Add Event", message: nil, preferredStyle: .alert)
+        alert.addTextField { (eventTF) in
+            eventTF.placeholder = "Enter Event"
+        }
+        let action = UIAlertAction(title: "Add", style: .default) { (_) in
+            guard let event = alert.textFields?.first?.text
+                else {
+                    return
+            }
+            if event == ""{
+                //if user doesnt enter any event in the text field
+                return
+            }
            
-    }
-    
-//    @IBAction func add(_ sender: Any) {
-//        if dateSelected == nil{
-//            //don't add anything when no date is selected
-//            return
-//        }
-//        var newEvent = ["",""]
-//        let alert = UIAlertController(title: "Add Event", message: nil, preferredStyle: .alert)
-//        alert.addTextField { (eventTF) in
-//            eventTF.placeholder = "Enter Event"
-//        }
-//        let action = UIAlertAction(title: "Add", style: .default) { (_) in
-//            guard let event = alert.textFields?.first?.text
-//                else {
-//                    return
-//            }
-//            if event == ""{
-//                //if user doesnt enter any event in the text field
+//             let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (_) in
 //                return
 //            }
-//
-//            self.arrayForTableView.append(event)
-//            //append the event description in array for table view
-//
-//            self.eventTableView.reloadData()
-//
-//
-//            newEvent[0] = self.dateSelected ?? "2021-01-01"
-//            //force upwrap or not?
-//
-//            newEvent[1] = event
-//            //event decription
-//
-//            //            print(newEvent)
-//
-//            self.arrayOfEvents.append(newEvent)
-//            //append this new event data into data pool
-//
-//            self.calendar.reloadData()
-//        }
-//        alert.addAction(action)
-//        present(alert, animated: true)
-//
-//    }
+
+            
+            self.arrayForTableView.append(event)
+            //append the event description in array for table view
+            
+            self.eventTableView.reloadData()
+            
+            
+            newEvent[0] = self.dateSelected ?? "2021-01-01"
+            //force upwrap or not?
+            
+            newEvent[1] = event
+            //event decription
+            
+               let object : [String: Any] = [
+                        "0": newEvent[0] ,
+                        "1" :  event
+                    ]
+            //        ref.child("eventWrite").setValue(object)
+            self.ref.childByAutoId().setValue(object)
+            self.calendar.reloadData()
+            
+            //            print(newEvent)
+            
+            self.arrayOfEvents.append(newEvent)
+            //append this new event data into data pool
+            
+            self.calendar.reloadData()
+        }
+        alert.addAction(action)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
+                        return
+                    }
+                    ))
+        present(alert, animated: true)
+        
+    }
     
     
     var arrayForTableView: [String?] = []
@@ -171,24 +199,55 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
             arrayForTableView.remove(at: indexPath.row)
             eventTableView.deleteRows(at: [indexPath], with: .none)
             
-            print("array of events is \(arrayOfEvents)")
-            print("array for tableview is \(arrayForTableView)")
+//            print("array of events is \(arrayOfEvents)")
+//            print("array for tableview is \(arrayForTableView)")
+            
+            
+            
+            ref.observeSingleEvent(of: .value, with: { (snapshot) in
+              let dictionaryForDelete = snapshot.value! as! Dictionary<String, [String]>
+
+               if snapshot.childrenCount > 0 {
+                
+                for (key,value) in dictionaryForDelete {
+                    if (value[0] == self.dateSelected  && value[1] == cell?.textLabel?.text){
+                        print("key is: \(key)")
+                        self.ref.child(key).removeValue()
+                        
+                        print("removed")
+                    }
+                }
+                
+                }
+              // ...
+              }) { (error) in
+                print(error.localizedDescription)
+            }
+            
             
         }
     }
     
     
+    //pull data as dictionary
     
-    //data pool
-    var arrayOfEvents = [["2020-11-29", "CSE438 Project Update"], ["2020-11-28", "grocery day"], ["2020-11-30", "CSE438 Lecture"], ["2020-12-02", "CSE438 Lecture"], ["2020-11-30", "Zoom with advisor"], ["2020-11-20", "event0"], ["2020-11-20", "event1"], ["2020-11-20", "event2"], ["2020-11-20", "event3"], ["2020-11-21", "event5"]]
+//    event1:
+    //name:
+    //date:
     
     
+    
+    let ref = Database.database().reference().child("calendar")
+    //.child("calendar")
+    
+     var tempArray: [String] = []
+ 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        let calendar = FSCalendar(frame: CGRect(x: 25, y: 100, width: 320, height: 300))
+        let calendar = FSCalendar(frame: CGRect(x: 25, y: 70, width: 320, height: 300))
         calendar.dataSource = self
         calendar.delegate = self
         view.addSubview(calendar)
@@ -201,7 +260,7 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
         eventTableView.reloadData()
         
         let today = dateFormatter2.string(from: calendar.today!)
-        print(today)
+//        print(today)
         
         //display today's event as view loads
         for index in 0..<arrayOfEvents.count{
@@ -210,6 +269,87 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
                       self.eventTableView.reloadData()
                   }
               }
+        
+       //
+        
+
+        //
+    
+        
+                       ref.observe(.value, with: {
+                                snapshot in
+
+                                //before waiting, grab current state
+                                print("\(snapshot.key) -> \(String(describing: snapshot.value))")
+
+                           if snapshot.childrenCount > 0 {
+
+                                let someData = snapshot.value! as! Dictionary<String, [String]>
+                                //cast data as dictionary
+                            print("someData is\(someData)")
+//                            for (key, value) in someData{
+//                               print("\(key) : \(value)")
+//                             }
+
+                                //iterate though key and value in the dictionary
+                                for (_,value) in someData {
+                                    print("value is \(value)")
+                                   self.fireArray.append(value)
+               //                    print(self.fireArray)
+                                    //we need self here to reference myArray
+                                }
+               //                 reload data for calendar
+                           print("fireArray is \(self.fireArray)")
+                           self.arrayOfEvents = self.fireArray
+                           self.calendar.reloadData()
+                           self.fireArray = []
+                           }
+                            })
+        /*
+        
+        //mkae dictionary variable
+        
+        //firebase
+//         let ref = Database.database().reference()
+//
+                ref.observe(.value, with: {
+                         snapshot in
+
+                         //before waiting, grab current state
+                         print("\(snapshot.key) -> \(String(describing: snapshot.value))")
+
+                    if snapshot.childrenCount > 0 {
+
+                         let someData = snapshot.value! as! Dictionary<String, Dictionary<String, String>>
+                         //cast data as dictionary
+
+                         //iterate though key and value in the dictionary
+                         for (_,value) in someData {
+                             print("value is \(value)")
+                            for (_,valuePrime) in value{
+                                print("valuePrime is \(valuePrime)")
+//                               self.tempArray.append(keyPrime)
+                                self.tempArray.append(valuePrime)
+//                                self.fireArray.append(self.tempArray)
+                            }
+                            print("tempArray is \(self.tempArray)")
+                            self.fireArray.append(self.tempArray)
+                            print("fireArray is \(self.fireArray)")
+                             //we need self here to reference myArray
+                         }
+        //                 reload data for calendar
+//                    print("fireArray is: \(self.fireArray)")
+                    self.arrayOfEvents = self.fireArray
+                    self.calendar.reloadData()
+                    self.fireArray = []
+                        self.tempArray = []
+                    }
+                     })
+        
+        
+        */
+        
+        
         
     }
 }  //end of scope for class ViewController
@@ -248,7 +388,7 @@ extension SchedulesViewController: FSCalendarDataSource, FSCalendarDelegate{
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         
         let dateString = dateFormatter2.string(from: date)
-        print("date selected == \(dateString)")
+//        print("date selected == \(dateString)")
         
         dateSelected = dateString
         
@@ -267,4 +407,3 @@ extension SchedulesViewController: FSCalendarDataSource, FSCalendarDelegate{
 //        }
     }
 }
-

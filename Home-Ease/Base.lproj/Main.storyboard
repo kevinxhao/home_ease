@@ -999,7 +999,6 @@
         <!--Navigation Controller-->
         <scene sceneID="0yf-zC-byf">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0tm-X2-9ry" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="v85-SL-3Sm" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="house.fill" catalog="system" id="Byv-zY-068"/>
                     <toolbarItems/>
@@ -1012,6 +1011,7 @@
                         <segue destination="CRL-k3-Wwt" kind="relationship" relationship="rootViewController" id="XlT-bP-8AL"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0tm-X2-9ry" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="849" y="841"/>
         </scene>
@@ -1327,10 +1327,10 @@
             </objects>
             <point key="canvasLocation" x="4618.3999999999996" y="-644.33497536945811"/>
         </scene>
-        <!--View Controller-->
+        <!--Create New Group View Controller-->
         <scene sceneID="GPX-YW-Hd1">
             <objects>
-                <viewController id="ADQ-sa-9J1" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateNewGroupViewController" id="ADQ-sa-9J1" customClass="CreateNewGroupViewController" customModule="Home_Ease" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RTH-zw-0bZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1354,44 +1354,39 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Join Existing Group" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RbL-4B-7rA">
-                                <rect key="frame" x="110" y="311" width="148" height="21"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WKH-or-lpp">
+                                <rect key="frame" x="161" y="248" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Create"/>
+                                <connections>
+                                    <action selector="CreateNewGroup:" destination="ADQ-sa-9J1" eventType="touchUpInside" id="ec4-Hm-6J1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UvY-nE-j6o">
+                                <rect key="frame" x="80" y="294" width="209" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Join an Already Existing Group"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="or" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wyy-w7-YNk">
+                                <rect key="frame" x="176" y="277" width="16" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Group Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kae-X4-d14">
-                                <rect key="frame" x="91" y="362" width="186" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TvR-1M-kPr">
-                                <rect key="frame" x="91" y="416" width="186" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WKH-or-lpp">
-                                <rect key="frame" x="161" y="248" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Create"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UvY-nE-j6o">
-                                <rect key="frame" x="169" y="482" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Join"/>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="mme-An-fSz"/>
                     </view>
                     <navigationItem key="navigationItem" id="fB4-N8-Pib"/>
+                    <connections>
+                        <outlet property="groupName" destination="c9X-ri-MRo" id="CRr-QU-qGF"/>
+                        <outlet property="groupPassword" destination="nc2-on-3E8" id="eG0-UE-cya"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FjJ-Rz-qf0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5401" y="-644"/>
+            <point key="canvasLocation" x="5400.8000000000002" y="-644.33497536945811"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="sB0-vs-FAw">

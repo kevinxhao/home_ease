@@ -77,7 +77,8 @@ class CreateNewUserViewController: UIViewController {
     }
     func transitionToHome(){
         //TRANSITION TO GROUP INSTEAD OF HOME PAGE
-        let vc = storyboard?.instantiateViewController(identifier: "InitialTabBar") as! UITabBarController
+       // let vc = storyboard?.instantiateViewController(identifier: "InitialTabBar") as! UITabBarController
+        let vc = storyboard?.instantiateViewController(identifier: "CreateNewGroupViewController") as! UIViewController
         navigationController?.pushViewController(vc, animated: true)
     }
 }

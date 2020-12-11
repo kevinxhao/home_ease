@@ -11,6 +11,7 @@
 		703063C72571D87D00028888 /* TasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703063C62571D87D00028888 /* TasksViewController.swift */; };
 		703063CB2572D26C00028888 /* TaskCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703063CA2572D26C00028888 /* TaskCollectionViewCell.swift */; };
 		703063CD2573113E00028888 /* listOfTasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703063CC2573113E00028888 /* listOfTasksViewController.swift */; };
+		703F10512582FB1100C1E433 /* CreateNewGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703F10502582FB1100C1E433 /* CreateNewGroupViewController.swift */; };
 		73A410FF2574541E0078436F /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A410FE2574541E0078436F /* SettingsTableViewController.swift */; };
 		73B8414D2581C16A003112AE /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B8414C2581C16A003112AE /* SignInViewController.swift */; };
 		73B8414F2581C579003112AE /* CreateNewUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B8414E2581C579003112AE /* CreateNewUserViewController.swift */; };
@@ -62,6 +63,7 @@
 		703063C62571D87D00028888 /* TasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewController.swift; sourceTree = "<group>"; };
 		703063CA2572D26C00028888 /* TaskCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCollectionViewCell.swift; sourceTree = "<group>"; };
 		703063CC2573113E00028888 /* listOfTasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = listOfTasksViewController.swift; sourceTree = "<group>"; };
+		703F10502582FB1100C1E433 /* CreateNewGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewGroupViewController.swift; sourceTree = "<group>"; };
 		73A410FE2574541E0078436F /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		73B8414C2581C16A003112AE /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		73B8414E2581C579003112AE /* CreateNewUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewUserViewController.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				73BD1FBC2580515600B8A319 /* GoogleService-Info.plist */,
 				73B8414C2581C16A003112AE /* SignInViewController.swift */,
 				73B8414E2581C579003112AE /* CreateNewUserViewController.swift */,
+				703F10502582FB1100C1E433 /* CreateNewGroupViewController.swift */,
 				A134FFEE256099D4005D811C /* AppDelegate.swift */,
 				A134FFF0256099D4005D811C /* SceneDelegate.swift */,
 				A134FFF2256099D4005D811C /* ViewController.swift */,
@@ -540,6 +543,7 @@
 				703063CB2572D26C00028888 /* TaskCollectionViewCell.swift in Sources */,
 				A134FFF1256099D4005D811C /* SceneDelegate.swift in Sources */,
 				73CBDDB3257475E100F36E2F /* RoommateViewController.swift in Sources */,
+				703F10512582FB1100C1E433 /* CreateNewGroupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

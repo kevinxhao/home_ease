@@ -7,28 +7,35 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseUI
 
 class SignInViewController: UIViewController {
 
-    @IBOutlet weak var signInLabel: UILabel!
     
-    @IBOutlet weak var firstNameTextField: UITextField!
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var signInLogInLabel: UILabel!
+    
+    @IBOutlet weak var emailLogInTextField: UITextField!
+    
+    
+    @IBOutlet weak var passwordLogInTextField: UITextField!
+    
+    
     @IBOutlet weak var logInButton: UIButton!
     
+    @IBOutlet weak var errorLogInlabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.errorLogInlabel.alpha = 0
     }
     //check fields and validate. if correct return nil, otherwise return error
     func validate() -> String?{
         
         //check all fields are filled in
-        if firstNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-            emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-            passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == ""
+        if emailLogInTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            passwordLogInTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == ""
         {
             return "Please fill in all fields"
         }
@@ -37,8 +44,22 @@ class SignInViewController: UIViewController {
     }
     @IBAction func logInTapped(_ sender: Any) {
         //validate field
-        //create users
-        //transition to home screen
+        
+        //create cleaned versions
+        let email = emailLogInTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let password = passwordLogInTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        //sign in the user
+        Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
+            if error != nil {
+                //sign in fail
+                self.errorLogInlabel.text = error!.localizedDescription
+                self.errorLogInlabel.alpha = 1
+            }
+            else{
+                let vc = self.storyboard?.instantiateViewController(identifier: "InitialTabBar") as! UITabBarController
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
     }
     
 

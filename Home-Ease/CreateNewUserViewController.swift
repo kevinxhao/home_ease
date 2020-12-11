@@ -75,7 +75,7 @@ class CreateNewUserViewController: UIViewController {
         errorLabel.alpha = 1
     }
     func transitionToHome(){
-        let vc = storyboard?.instantiateViewController(identifier: "HomeVC") as! HomeViewController
+        let vc = storyboard?.instantiateViewController(identifier: "InitialTabBar") as! UITabBarController
         navigationController?.pushViewController(vc, animated: true)
     }
 }

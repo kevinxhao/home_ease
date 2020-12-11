@@ -68,7 +68,7 @@ class CreateNewUserViewController: UIViewController {
                     //transition to home screen
                     self.transitionToHome()
                 }
-                }
+            }
         }
 }
     func showError(_ message:String){

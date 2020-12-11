@@ -249,8 +249,17 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-//        print( "current user is \(String(describing: Auth.auth().currentUser?.displayName))")
-//        let db = Firestore.firestore()
+        print( "current user is \(String(describing: Auth.auth().currentUser?.email))")
+//        let db = Firestore.firestore().collection("groups").document("3BFCtbQVQcE567BkYgoi").getDocument(source: .cache) { (document, error) in
+//            if let document = document {
+//                let property = document.get("groupName")
+//                print("property is \(property)")
+//            } else {
+//                print("Document does not exist in cache")
+//            }
+//
+//
+//        }
         
         let calendar = FSCalendar(frame: CGRect(x: 25, y: 70, width: 320, height: 300))
         calendar.dataSource = self

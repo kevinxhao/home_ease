@@ -39,7 +39,15 @@ class RentViewController: UIViewController, UICollectionViewDelegate, UICollecti
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpCollectionView()
-        let db = Firestore.firestore().collection("users")
+        let db = Firestore.firestore().collection("groups")
+        db.document("3BFCtbQVQcE567BkYgoi").getDocument(source: .cache) { document , error in
+            if let document = document {
+                let property = document.get("groupName")
+            } else {
+                print("Document does not exist in cache")
+            }
+        }
+        
 
         // Do any additional setup after loading the view.
     }

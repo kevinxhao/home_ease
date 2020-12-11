@@ -58,6 +58,7 @@ class CreateNewUserViewController: UIViewController {
                 }
                     
                 else{
+                    //create the database and add the document into it
                     let db = Firestore.firestore()
                     db.collection("users").addDocument(data: ["firstName": firstName,"uid": result!.user.uid ]) { (error) in
                         if error != nil {
@@ -75,6 +76,7 @@ class CreateNewUserViewController: UIViewController {
         errorLabel.alpha = 1
     }
     func transitionToHome(){
+        //TRANSITION TO GROUP INSTEAD OF HOME PAGE
         let vc = storyboard?.instantiateViewController(identifier: "InitialTabBar") as! UITabBarController
         navigationController?.pushViewController(vc, animated: true)
     }

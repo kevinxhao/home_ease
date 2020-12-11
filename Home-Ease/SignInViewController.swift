@@ -56,6 +56,7 @@ class SignInViewController: UIViewController {
                 self.errorLogInlabel.alpha = 1
             }
             else{
+                //TRANSITION TO GROUP INSTEAD OF HOME PAGE
                 let vc = self.storyboard?.instantiateViewController(identifier: "InitialTabBar") as! UITabBarController
                 self.navigationController?.pushViewController(vc, animated: true)
             }

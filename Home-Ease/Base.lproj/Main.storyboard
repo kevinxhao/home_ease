@@ -1233,6 +1233,7 @@
                                 <state key="normal" title="Log In"/>
                                 <connections>
                                     <action selector="logInTapped:" destination="Rkc-Oh-UMn" eventType="touchUpInside" id="lSL-77-4Qz"/>
+                                    <segue destination="ADQ-sa-9J1" kind="show" id="cjx-QO-czF"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Error Message" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JXh-iZ-5g0">
@@ -1298,6 +1299,7 @@
                                 <state key="normal" title="Sign Up"/>
                                 <connections>
                                     <action selector="logInTapped:" destination="8dH-JM-80h" eventType="touchUpInside" id="qu5-Qe-5PI"/>
+                                    <segue destination="ADQ-sa-9J1" kind="show" id="P65-Tj-JYE"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Error Message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rdv-du-HT0">
@@ -1371,14 +1373,25 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WKH-or-lpp">
+                                <rect key="frame" x="161" y="248" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Create"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UvY-nE-j6o">
+                                <rect key="frame" x="169" y="482" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Join"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="mme-An-fSz"/>
                     </view>
+                    <navigationItem key="navigationItem" id="fB4-N8-Pib"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FjJ-Rz-qf0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3334" y="1567"/>
+            <point key="canvasLocation" x="5401" y="-644"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="sB0-vs-FAw">
@@ -1400,6 +1413,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="P65-Tj-JYE"/>
         <segue reference="Hqb-v4-HTt"/>
     </inferredMetricsTieBreakers>
     <resources>

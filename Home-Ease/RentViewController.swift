@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class RentViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
   
@@ -37,6 +38,7 @@ class RentViewController: UIViewController, UICollectionViewDelegate, UICollecti
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpCollectionView()
+        let db = Firestore.firestore().collection("users")
 
         // Do any additional setup after loading the view.
     }

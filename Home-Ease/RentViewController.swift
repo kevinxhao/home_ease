@@ -20,10 +20,11 @@ class RentViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "rentCell", for: indexPath) as! DetailedFinancesCollectionViewCell
-        cell.imageView.layer.cornerRadius = 0.5*cell.imageView.bounds.size.width
-        cell.imageView.clipsToBounds = true
-        cell.imageView.image = UIImage.init(named: "Profile")
+//        cell.imageView.layer.cornerRadius = 0.5*cell.imageView.bounds.size.width
+//        cell.imageView.clipsToBounds = true
+//        cell.imageView.image = UIImage.init(named: "Profile")
         cell.nameLabel.text = users[indexPath.row]
+        cell.mainView.layer.cornerRadius = 8
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

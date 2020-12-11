@@ -9,7 +9,9 @@
 import UIKit
 
 class DetailedFinancesCollectionViewCell: UICollectionViewCell {
+    
+    @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var imageView: UIImageView!    
+//    @IBOutlet weak var imageView: UIImageView!    
     @IBOutlet weak var amountLabel: UILabel!
 }

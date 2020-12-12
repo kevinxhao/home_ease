@@ -11,10 +11,13 @@ import Firebase
 
 class ElectricityViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    let users = ["Roommate 1", "Roommate 2", "Roommate 3"]
+    var users = ["Roommate 1", "Roommate 2", "Roommate 3"]
+    var curr = 0.0
 
     @IBOutlet weak var currentBalance: UILabel!
     
+    @IBOutlet weak var collectionView: UICollectionView!
+
     @IBAction func compose(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(identifier: "popup") as! PopUpViewController
         var balance = currentBalance.text ?? ""
@@ -27,8 +30,6 @@ class ElectricityViewController: UIViewController, UICollectionViewDelegate, UIC
         }
     }
     
-    @IBOutlet weak var collectionView: UICollectionView!
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return users.count
     }
@@ -36,6 +37,10 @@ class ElectricityViewController: UIViewController, UICollectionViewDelegate, UIC
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "electricityCell", for: indexPath) as! DetailedFinancesCollectionViewCell
         cell.nameLabel.text = users[indexPath.row]
         cell.mainView.layer.cornerRadius = 8
+        if (curr > 0) {
+            cell.amountLabel.textColor = .red
+        }
+        cell.amountLabel.text = "$" + String(format:"%.02f", round(curr/Double(users.count)*100)/100)
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -59,6 +64,8 @@ class ElectricityViewController: UIViewController, UICollectionViewDelegate, UIC
                 docRefGroups.getDocument { (document2, error2) in
                     if let document2 = document2, document2.exists {
                         let finances = document2.data()?["finances"] as! [Double]
+                        self.curr = finances[2]
+                        self.users = document2.data()?["roommateNames"] as! [String]
                         let strAmount = String(format:"%.02f", round(finances[2]*100)/100)
                         self.currentBalance.text = "$" + strAmount
                         self.collectionView.reloadData()

@@ -114,7 +114,6 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="MQb-Ac-QHp">
                             <connections>
                                 <action selector="compose:" destination="BYZ-38-t0r" id="LkF-2h-VCL"/>
-                                <segue destination="d0C-Sx-MWD" kind="presentation" id="Hqb-v4-HTt"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -856,13 +855,14 @@
                     <navigationItem key="navigationItem" title="Electricity" id="bE1-ZK-7a8">
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="VUY-Wg-zsi">
                             <connections>
-                                <segue destination="d0C-Sx-MWD" kind="presentation" id="NFV-ac-ElR"/>
+                                <action selector="compose:" destination="klo-yN-dGS" id="AU5-CX-TMX"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="collectionView" destination="8kA-fP-4BM" id="2bM-S7-UAZ"/>
+                        <outlet property="currentBalance" destination="eY9-Zd-4gw" id="N1d-ZF-ARz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hdd-ZE-tBV" sceneMemberID="firstResponder"/>
@@ -1175,13 +1175,14 @@
                     <navigationItem key="navigationItem" title="Utility" id="QjB-QJ-jj7">
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="u1O-U3-xDL">
                             <connections>
-                                <segue destination="d0C-Sx-MWD" kind="presentation" id="AV1-UQ-KC8"/>
+                                <action selector="compose:" destination="Cmh-Zb-L2m" id="jT7-e8-iDP"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="collectionView" destination="3XB-CK-5Of" id="9wK-08-2Rr"/>
+                        <outlet property="currentBalance" destination="V8z-Te-Nf3" id="TVp-cG-yDr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pqG-1M-rWo" sceneMemberID="firstResponder"/>
@@ -1406,9 +1407,6 @@
             <point key="canvasLocation" x="2863.1999999999998" y="-644.33497536945811"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="Hqb-v4-HTt"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="calendar" catalog="system" width="128" height="106"/>
         <image name="checkmark.circle" catalog="system" width="128" height="121"/>

@@ -15,6 +15,7 @@ class RentViewController: UIViewController, UICollectionViewDelegate, UICollecti
     let users = ["Roommate 1", "Roommate 2", "Roommate 3"]
     
     @IBOutlet weak var collectionView: UICollectionView!
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return users.count
     }
@@ -24,8 +25,10 @@ class RentViewController: UIViewController, UICollectionViewDelegate, UICollecti
         var balance = currentBalance.text ?? ""
         balance.remove(at: balance.startIndex)
         if let bal = Double(balance) {
-            vc.amounts[0] = bal
-            vc.type = "Rent"
+            vc.amount = bal
+            vc.type = 0
+            navigationController?.setNavigationBarHidden(true, animated: true)
+            navigationController?.pushViewController(vc, animated: true)
         }
     }
     
@@ -44,6 +47,27 @@ class RentViewController: UIViewController, UICollectionViewDelegate, UICollecti
         collectionView.delegate = self
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        let dbGroups = Firestore.firestore().collection("groups")
+        let dbUsers = Firestore.firestore().collection("users")
+        let currentUser = Auth.auth().currentUser?.email
+        let docRefUsers = dbUsers.document(currentUser ?? "")
+        docRefUsers.getDocument { (document, error) in
+            if let document = document, document.exists {
+                let groupName = document.data()?["group"] as! String
+                let docRefGroups = dbGroups.document(groupName)
+                docRefGroups.getDocument { (document2, error2) in
+                    if let document2 = document2, document2.exists {
+                        let finances = document2.data()?["finances"] as! [Double]
+                        let strAmount = String(format:"%.02f", round(finances[0]*100)/100)
+                        self.currentBalance.text = "$" + strAmount
+                        self.collectionView.reloadData()
+                    }
+                }
+            }
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpCollectionView()

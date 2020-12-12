@@ -68,6 +68,9 @@ class SignInViewController: UIViewController {
             else{
                 //TRANSITION TO GROUP INSTEAD OF HOME PAGE
                 let vc = self.storyboard?.instantiateViewController(identifier: "InitialTabBar") as! UITabBarController
+//                self.showDetailViewController(vc, sender: nil)
+//                self.present(vc, animated: true)
+                self.navigationController?.setNavigationBarHidden(true, animated: true)
                 self.navigationController?.pushViewController(vc, animated: true)
                 print(Auth.auth().currentUser!.email!)
             }

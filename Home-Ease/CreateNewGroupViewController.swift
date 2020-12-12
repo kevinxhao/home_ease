@@ -46,8 +46,8 @@ class CreateNewGroupViewController: UIViewController {
                 }
             }
             let vc = storyboard?.instantiateViewController(identifier: "InitialTabBar") as! UITabBarController
-                   navigationController?.pushViewController(vc, animated: true)
-            //todo: eliminate back button in new tab bar controller
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     
@@ -56,16 +56,4 @@ class CreateNewGroupViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -16,6 +16,7 @@ import FirebaseFirestore
 import FSCalendar
 
 class SchedulesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    var ref : DatabaseReference? = nil
     
     //        struct EventData {
     ////            let date: String?
@@ -87,7 +88,7 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
             "1" :  "real day after christmas"
         ]
         //        ref.child("eventWrite").setValue(object)
-        ref.childByAutoId().setValue(object)
+        ref?.childByAutoId().setValue(object)
         calendar.reloadData()
     }
     
@@ -150,7 +151,7 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
                 "1" :  event
             ]
             //        ref.child("eventWrite").setValue(object)
-            self.ref.childByAutoId().setValue(object)
+            self.ref?.childByAutoId().setValue(object)
             self.calendar.reloadData()
             
             //            print(newEvent)
@@ -206,7 +207,7 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
             
             
             
-            ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            ref?.observeSingleEvent(of: .value, with: { (snapshot) in
                 let dictionaryForDelete = snapshot.value! as! Dictionary<String, [String]>
                 
                 if snapshot.childrenCount > 0 {
@@ -214,7 +215,7 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
                     for (key,value) in dictionaryForDelete {
                         if (value[0] == self.dateSelected  && value[1] == cell?.textLabel?.text){
                             //                        print("key is: \(key)")
-                            self.ref.child(key).removeValue()
+                            self.ref?.child(key).removeValue()
                             
                             //                        print("removed")
                         }
@@ -238,18 +239,28 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
     //date:
     
     
-    
-    let ref = Database.database().reference().child("group1")
     //.child("calendar")
     
     var tempArray: [String] = []
     
+//    let groupName = "jackGroup"
+//
+//    var ref = Database.database().reference().child(groupName)
+    
+    //.child might be an initializer
+    //
+    //1. take the isntance variables
+    //2.
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("test")
+
         // Do any additional setup after loading the view.
         
-        print( "current user is \(String(describing: Auth.auth().currentUser?.email))")
+//        print( "current user is \(String(describing: Auth.auth().currentUser?.email))")
 //        let db = Firestore.firestore().collection("groups").document("3BFCtbQVQcE567BkYgoi").getDocument(source: .cache) { (document, error) in
 //            if let document = document {
 //                let property = document.get("groupName")
@@ -257,9 +268,14 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
 //            } else {
 //                print("Document does not exist in cache")
 //            }
-//
-//
 //        }
+        
+        
+        let groupName = "jackGroup"
+        ref = Database.database().reference().child(groupName)
+        
+        
+        
         
         let calendar = FSCalendar(frame: CGRect(x: 25, y: 70, width: 320, height: 300))
         calendar.dataSource = self
@@ -290,7 +306,7 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
         //
         
         
-        ref.observe(.value, with: {
+        ref?.observe(.value, with: {
             snapshot in
             
             //before waiting, grab current state

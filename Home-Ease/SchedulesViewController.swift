@@ -22,26 +22,6 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
     
     var userGroup: String = ""
     
-    //        struct EventData {
-    ////            let date: String?
-    ////            let eventText: String?
-    //            let event: [Event]
-    //        }
-    //    struct Event {
-    //        let eventDate: String
-    //        let eventText: String
-    //    }
-    //        var event1 = Event(date: "2020-11-29", eventText: "yoyoyo")
-    //        var event2 = Event(date: "2020-11-29", eventText: "tototo")
-    //        var event3 = Event(date: "2020-11-29", eventText: "rororo")
-    //
-    //        var myArray = [event1, event2, event3]
-    
-    
-    //use struct to draw data from firebase
-    //and then from that struct, put the data into the arrayOfEvents
-    
-    
     
     
     //data pool
@@ -267,23 +247,33 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("test")
-
-        // Do any additional setup after loading the view.
         
-//        print( "current user is \(String(describing: Auth.auth().currentUser?.email))")
-//        let db = Firestore.firestore().collection("groups").document("3BFCtbQVQcE567BkYgoi").getDocument(source: .cache) { (document, error) in
-//            if let document = document {
-//                let property = document.get("groupName")
-//                print("property is \(property)")
-//            } else {
-//                print("Document does not exist in cache")
-//            }
-//        }
+        let calendar = FSCalendar(frame: CGRect(x: 25, y: 80, width: 320, height: 300))
+         calendar.dataSource = self
+         calendar.delegate = self
+         view.addSubview(calendar)
+         self.calendar = calendar
+         
+         eventTableView.register(UITableViewCell.self, forCellReuseIdentifier: "eventCell")
+         eventTableView.dataSource = self
+         
+         //        print(arrayOfEvents.count)
+         eventTableView.reloadData()
+         
+         let today = dateFormatter2.string(from: calendar.today!)
+         //        print(today)
+         
+         //display today's event as view loads
+         for index in 0..<arrayOfEvents.count{
+             if arrayOfEvents[index][0] == (today){
+                 self.arrayForTableView.append(arrayOfEvents[index][1])
+                 self.eventTableView.reloadData()
+             }
+         }
+        //##########################################
         
-        
-        let groupName = "group8"
-        ref = Database.database().reference().child(groupName)
+//        let groupName = "group8"
+//        ref = Database.database().reference().child(groupName)
         
         let email = Auth.auth().currentUser?.email
         let docRef = Firestore.firestore().collection("users").document(email ?? "")
@@ -298,32 +288,7 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
 //                document.data()["group"]
 
 //##############
-                let db = Firestore.firestore().collection("users")
-                
-//                db.document(email!).setData(["firstName" : "Deborah"])
-                
-//                db.document(email!).setData(["group" : "GroupTest"])
-                
-//                db.document(email!).updateData(["firstName" : "Rick"])
-                
-                
-                
-     /*
-                db.getDocuments() { (querySnapshot, err) in
-                        if let err = err {
-                            print("Error getting documents: \(err)")
-                        } else {
-                            for document in querySnapshot!.documents {
-                                print("\(document.documentID)")
-//                                 => \(document.data())"
-                                
-                            }
-                        }
-                }
-                
- */
-                
-                
+ 
                 print("Document uid: \(document.data()!["firstName"] ?? "")")
             } else {
                 print("Document does not exist")
@@ -331,33 +296,50 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
             
             
             self.userFirstName = document?.data()!["firstName"] as! String
-            print("my name us \(self.userFirstName)")
+            self.userGroup = document?.data()!["group"] as! String
+            print("my name is \(self.userFirstName)")
+            print("my group is \(self.userGroup)")
+            
+            self.ref = Database.database().reference().child(self.userGroup)
+            
+            
+            
+            self.ref?.observe(.value, with: {
+                snapshot in
+                
+                //before waiting, grab current state
+                //                                print("\(snapshot.key) -> \(String(describing: snapshot.value))")
+                
+                if snapshot.childrenCount > 0 {
+                    
+                    let someData = snapshot.value! as! Dictionary<String, [String]>
+                    //cast data as dictionary
+                    //                            print("someData is\(someData)")
+                    //                            for (key, value) in someData{
+                    //                               print("\(key) : \(value)")
+                    //                             }
+                    
+                    //iterate though key and value in the dictionary
+                    for (_,value) in someData {
+                        //                                    print("value is \(value)")
+                        self.fireArray.append(value)
+                        //                    print(self.fireArray)
+                        //we need self here to reference myArray
+                    }
+                    //                 reload data for calendar
+                    //                           print("fireArray is \(self.fireArray)")
+                    self.arrayOfEvents = self.fireArray
+                    self.calendar.reloadData()
+                    self.fireArray = []
+                }
+            })
+            
+            
         }
 //#############
         
         
-        let calendar = FSCalendar(frame: CGRect(x: 25, y: 70, width: 320, height: 300))
-        calendar.dataSource = self
-        calendar.delegate = self
-        view.addSubview(calendar)
-        self.calendar = calendar
-        
-        eventTableView.register(UITableViewCell.self, forCellReuseIdentifier: "eventCell")
-        eventTableView.dataSource = self
-        
-        //        print(arrayOfEvents.count)
-        eventTableView.reloadData()
-        
-        let today = dateFormatter2.string(from: calendar.today!)
-        //        print(today)
-        
-        //display today's event as view loads
-        for index in 0..<arrayOfEvents.count{
-            if arrayOfEvents[index][0] == (today){
-                self.arrayForTableView.append(arrayOfEvents[index][1])
-                self.eventTableView.reloadData()
-            }
-        }
+ 
         
         //
         
@@ -365,35 +347,7 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
         //
         
         
-        ref?.observe(.value, with: {
-            snapshot in
-            
-            //before waiting, grab current state
-            //                                print("\(snapshot.key) -> \(String(describing: snapshot.value))")
-            
-            if snapshot.childrenCount > 0 {
-                
-                let someData = snapshot.value! as! Dictionary<String, [String]>
-                //cast data as dictionary
-                //                            print("someData is\(someData)")
-                //                            for (key, value) in someData{
-                //                               print("\(key) : \(value)")
-                //                             }
-                
-                //iterate though key and value in the dictionary
-                for (_,value) in someData {
-                    //                                    print("value is \(value)")
-                    self.fireArray.append(value)
-                    //                    print(self.fireArray)
-                    //we need self here to reference myArray
-                }
-                //                 reload data for calendar
-                //                           print("fireArray is \(self.fireArray)")
-                self.arrayOfEvents = self.fireArray
-                self.calendar.reloadData()
-                self.fireArray = []
-            }
-        })
+
         /*
          
          //mkae dictionary variable

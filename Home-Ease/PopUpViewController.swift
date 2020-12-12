@@ -13,15 +13,15 @@ class PopUpViewController: UIViewController {
     @IBOutlet weak var save: UIButton!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var date: UILabel!
+    
+    @IBAction func cancel(_ sender: Any) {
+        dismiss(animated: true)
+    }
     @IBAction func saveDate(_ sender: Any) {
-        
         dismiss(animated: true)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
-
 }

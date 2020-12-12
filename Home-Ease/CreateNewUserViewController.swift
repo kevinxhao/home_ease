@@ -18,55 +18,47 @@ class CreateNewUserViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var errorLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        errorLabel.isHidden = true
     }
-    func validate() -> String?{
-           
-           //check all fields are filled in
-           if firstNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-               emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-               passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == ""
-           {
-               return "Please fill in all fields"
-           }
-        
-           //error label?
-        
-           return nil
+    
+    func validate() -> String? {
+       //check all fields are filled in
+       if firstNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+           emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+           passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
+           return "Please fill in all fields."
        }
-       @IBAction func logInTapped(_ sender: Any) {
-           //validate field
-            let error = validate()
-        if error != nil {
+       //error label?
+        return nil
+    }
+    
+    @IBAction func logInTapped(_ sender: Any) {
+        //validate field
+        let error = validate()
+        if let error = error {
             //error exists
-            showError(error!)
+            showError(error)
         }
-        else{
-           //create users
+        else {
+            //create users
             let firstName = firstNameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
-            
-            // let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            
             Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
                 //check for errors
                 if err != nil {
-                    self.showError("Error Creating User")
+                    self.showError("Error creating user.")
                 }
-                    
-                else{
+                else {
                     //create the database and add the document into it
                     let db = Firestore.firestore()
                     //db.collection("users").addDocument(data: ["firstName": firstName,"uid": result!.user.uid ]) { (error) in
-                    print("document id will be \(email)")
-                    print("firstname will be \(firstName)")
                     db.collection("users").document(email).setData(["firstName": firstName,"uid": result!.user.uid ]) { (error) in
                         if error != nil {
-                            self.showError("User data could not be saved")
+                            self.showError("User data could not be saved.")
                         }
                     }
                     //transition to home screen
@@ -74,11 +66,14 @@ class CreateNewUserViewController: UIViewController {
                 }
             }
         }
-}
+    }
+    
     func showError(_ message:String){
+        errorLabel.isHidden = false
         errorLabel.text = message
         errorLabel.alpha = 1
     }
+    
     func transitionToHome(){
         //TRANSITION TO GROUP INSTEAD OF HOME PAGE
         //let vc = storyboard?.instantiateViewController(identifier: "InitialTabBar") as! UITabBarController

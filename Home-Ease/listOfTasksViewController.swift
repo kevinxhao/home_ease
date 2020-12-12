@@ -35,6 +35,31 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
     
     var pendingCount = 0;
     var completedCount = 0;
+    
+    func updateCounts(){
+        let currentUser = Auth.auth().currentUser?.email ?? ""
+        let docRef = Firestore.firestore().collection("users").document(currentUser)
+            docRef.getDocument { (document, error) in
+                if let document = document, document.exists {
+                    let groupName = (document.data()!["group"] ?? "")
+                    let docRef2 = Firestore.firestore().collection("groups").document(groupName as! String)
+                    docRef2.getDocument { (document2, error) in
+                        if let document2 = document2, document2.exists {
+                            let pendingTasks: [String] = (document2.data()!["namesOfPendingTasks"] ?? []) as! [String]
+                            let completedTasks: [String] = (document2.data()!["namesOfCompletedTasks"] ?? []) as! [String]
+                            self.pendingCount = pendingTasks.count
+                            print("pending count is now: \(self.pendingCount)")
+                            self.completedCount = completedTasks.count
+                            print("completed count is now: \(self.completedCount)")
+                            print(self.completedCount)
+                        }
+                    }
+                } else {
+                    print("Document does not exist")
+                }
+            }
+    }
+    
         
 //    var completedTasksRoommates: [String] = UserDefaults.standard.object(forKey: "tasksRoommatesCompleted") as? [String] ?? []
 //
@@ -52,35 +77,13 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //I consulted this when I was unsure about how to set up multiple table cells within the same view controller: https://stackoverflow.com/questions/37447124/how-do-i-create-two-table-views-in-one-view-controller-with-two-custom-uitablevi
         
-        var count: Int = 2
-        let currentUser = Auth.auth().currentUser?.email ?? ""
-        let docRef = Firestore.firestore().collection("users").document(currentUser)
-            docRef.getDocument { (document, error) in
-                if let document = document, document.exists {
-                    let groupName = (document.data()!["group"] ?? "")
-                    let docRef2 = Firestore.firestore().collection("groups").document(groupName as! String)
-                    docRef2.getDocument { (document2, error) in
-                        if let document2 = document2, document2.exists {
-                            let pendingTasks: [String] = (document2.data()!["namesOfPendingTasks"] ?? []) as! [String]
-                            let completedTasks: [String] = (document2.data()!["namesOfCompletedTasks"] ?? []) as! [String]
-                            if tableView == self.completedTableView{
-                                count = completedTasks.count
-                                print("count changed to: \(count)")
-                            }
-                            else if tableView == self.pendingTableView{
-                                count = pendingTasks.count
-                                print("count changed to: \(count)")
-                            }
-                        }
-                    }
-                } else {
-                    print("Document does not exist")
-                }
-            }
-        print("now returning")
-        while(count == 0){
+        if tableView == self.completedTableView{
+            return self.completedCount
         }
-        return count
+        else if tableView == self.pendingTableView{
+            return self.pendingCount
+        }
+        return 0;
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -192,13 +195,14 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
         addTaskView.isHidden = true
    //     markAllAsCompletedBtn.isHidden = true
         pendingTableView.dataSource = self;
+        updateCounts();
         pendingTableView.reloadData();
         pendingTableView.delegate = self;
         completedTableView.dataSource = self;
         completedTableView.reloadData();
         completedTableView.delegate = self;
+        
     }
-    
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -209,7 +213,7 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
 //        completedTasksRoommates = UserDefaults.standard.object(forKey:"tasksRoommatesCompleted") as? [String] ?? []
 //        pendingTasksNames = UserDefaults.standard.object(forKey:"tasksNamesPending") as? [String] ?? []
 //        pendingTasksRoommates = UserDefaults.standard.object(forKey:"tasksRoommatesPending") as? [String] ?? []
-        
+        updateCounts();
         completedTableView.reloadData();
         pendingTableView.reloadData();
     }

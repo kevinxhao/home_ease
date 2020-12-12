@@ -965,6 +965,9 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="textField:" destination="d0C-Sx-MWD" eventType="editingChanged" id="FBx-n9-pas"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tN9-Ku-JeO">
                                         <rect key="frame" x="167" y="383" width="156.99999999999909" height="36.999999999999886"/>
@@ -989,6 +992,13 @@
                                             <action selector="saveDate:" destination="d0C-Sx-MWD" eventType="touchUpInside" id="SUR-nI-z0e"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Error Message" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W44-15-PaY">
+                                        <rect key="frame" x="17.176453156659591" y="112" width="289" height="21.000000000000199"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
@@ -999,6 +1009,8 @@
                     <connections>
                         <outlet property="date" destination="vdy-5R-ofI" id="bDN-mq-t60"/>
                         <outlet property="datePicker" destination="dpD-e7-mOD" id="4EU-4A-nzO"/>
+                        <outlet property="errorLabel" destination="W44-15-PaY" id="kF7-8f-GOw"/>
+                        <outlet property="inputAmount" destination="8LM-9P-dzk" id="Uww-2o-ECG"/>
                         <outlet property="save" destination="tN9-Ku-JeO" id="Dx2-ct-yUZ"/>
                     </connections>
                 </viewController>

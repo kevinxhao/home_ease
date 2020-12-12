@@ -39,13 +39,31 @@ class CreateNewGroupViewController: UIViewController {
             let newPassword = groupPassword.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let database = Firestore.firestore()
             database.collection("groups").addDocument(data: ["groupName": newGroupName,"password":newPassword,"taskNames":[],"taskUsers":[]])
-            { (error) in
-                if error != nil {
-                    //todo: display error message here
-                    // also, check if group already exists
+            var arr: [String] = []
+            let finances: [Double] = [0,0,0]
+            let completion: [Bool] = []
+            let taskRoommates: [String] = []
+            let namesOfTasks: [String] = []
+            let email = Auth.auth().currentUser?.email
+            let docRef = Firestore.firestore().collection("users").document(email ?? "")
+            docRef.getDocument { (document, error) in
+                if let document = document, document.exists {
+                    print("Document uid: \(document.data()!["firstName"] ?? "")")
+                    arr.append(document.data()!["firstName"] as! String)
+                    database.collection("groups").document(newGroupName).setData(["password": newPassword, "count": 1, "roommateNames": arr, "finances": finances, "taskCompletion": completion, "taskRoommates": taskRoommates, "namesOfTasks": namesOfTasks])
+                    { (error) in
+                        if error != nil {
+                            //todo: display error message here
+                            // also, check if group already exists
+                        }
+                    }
+                    print("we appended this: \(arr[0])")
+                } else {
+                    print("Document does not exist")
                 }
             }
-            let vc = storyboard?.instantiateViewController(identifier: "InitialTabBar") as! UITabBarController
+           // arr.append()
+            let vc = self.storyboard?.instantiateViewController(identifier: "InitialTabBar") as! UITabBarController
             self.navigationController?.setNavigationBarHidden(true, animated: true)
             self.navigationController?.pushViewController(vc, animated: true)
         }

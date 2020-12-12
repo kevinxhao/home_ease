@@ -54,6 +54,7 @@ class CreateNewGroupViewController: UIViewController {
                     let database = Firestore.firestore()
                     //            database.collection("groups").addDocument(data: ["groupName": newGroupName,"password":newPassword,"taskNames":[],"taskUsers":[]])
                     var arr: [String] = []
+                    let currentUser = Auth.auth().currentUser?.email
                     let finances: [Double] = [0,0,0]
                     let completion: [Bool] = []
                     let taskRoommates: [String] = []
@@ -63,6 +64,7 @@ class CreateNewGroupViewController: UIViewController {
                     docRef.getDocument { (document, error) in
                         if let document = document, document.exists {
                             print("Document uid: \(document.data()!["firstName"] ?? "")")
+                            database.collection("users").document(currentUser ?? "").updateData(["group":newGroupName])
                             arr.append(document.data()!["firstName"] as! String)
                             database.collection("groups").document(newGroupName).setData(["password": newPassword, "count": 1, "roommateNames": arr, "finances": finances, "taskCompletion": completion, "taskRoommates": taskRoommates, "namesOfTasks": namesOfTasks])
                             { (error) in
@@ -73,6 +75,7 @@ class CreateNewGroupViewController: UIViewController {
                                     // also, check if group already exists
                                 }
                             }
+                            
                         } else {
                             print("Document does not exist")
                         }
@@ -86,7 +89,68 @@ class CreateNewGroupViewController: UIViewController {
     }
     
     @IBAction func joinExistingGroup(_ sender: Any) {
-        
+        let error = validate()
+        if let error = error {
+            errorLabel.text = error
+            errorLabel.isHidden = false
+        }
+        let potentialGroupName = groupName.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let potentialGroupPassword = groupPassword.text!.trimmingCharacters(in:.whitespacesAndNewlines)
+        let dbGroups = Firestore.firestore().collection("groups")
+        let dbUsers = Firestore.firestore().collection("users")
+        dbGroups.getDocuments() { (querySnapshot, err) in
+        if let err = err {
+            print("Error getting documents: \(err)")
+        }
+        else {
+            let currentUser = Auth.auth().currentUser?.email
+            for document in querySnapshot!.documents {
+                print(document.documentID)
+                print(potentialGroupName)
+                if (document.documentID == potentialGroupName && (document.data()["password"] as! String) == potentialGroupPassword) {
+                    //the group name exists AND the password matches
+                    //need to get count and roommate names array from group
+                    let docRef = dbGroups.document(potentialGroupName)
+                    docRef.getDocument { (document, error) in
+                        if let document = document, document.exists {
+                            print("Group Found")
+                            var nameArray = document.data()!["roommateNames"] as! [String]
+                            var currentCount = document.data()!["count"] as! Int
+                            let docRef2 = dbUsers.document(currentUser ?? "")
+                            docRef2.getDocument { (document2, error2) in
+                                if let document2 = document2, document2.exists{
+                                    print("User Found")
+                                    nameArray.append(document2.data()!["firstName"] as! String)
+                                    currentCount += 1
+                                    dbGroups.document(potentialGroupName).updateData(["count": currentCount, "roommateNames": nameArray])
+                                    dbUsers.document(currentUser ?? "").updateData(["group": potentialGroupName])
+                                    { (error) in
+                                        if error != nil {
+                                            self.errorLabel.isHidden = false
+                                            self.errorLabel.text = error?.localizedDescription
+                                            //todo: display error message here
+                                            // also, check if group already exists
+                                        }
+                                    }
+                                    self.errorLabel.isHidden = true
+                                    let vc = self.storyboard?.instantiateViewController(identifier: "InitialTabBar") as! UITabBarController
+                                    self.navigationController?.setNavigationBarHidden(true, animated: true)
+                                    self.navigationController?.pushViewController(vc, animated: true)
+                                    return
+                                    //dbUsers.document(currentUser).updateData([""])
+                                }
+                            }
+                        }
+                    }
+                } else {
+                print("Document does not exist")
+                }
+            }
+                self.errorLabel.isHidden = false
+                self.errorLabel.text = "Invalid User/Password Combination"
+                return
+            }
+        }
     }
     
     override func viewDidLoad() {

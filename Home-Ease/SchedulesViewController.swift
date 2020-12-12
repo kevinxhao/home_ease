@@ -18,6 +18,10 @@ import FSCalendar
 class SchedulesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var ref : DatabaseReference? = nil
     
+    var userFirstName: String = ""
+    
+    var userGroup: String = ""
+    
     //        struct EventData {
     ////            let date: String?
     ////            let eventText: String?
@@ -134,32 +138,39 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
             //            }
             
             
-            self.arrayForTableView.append(event)
+//            self.arrayForTableView.append(event)
             //append the event description in array for table view
             
-            self.eventTableView.reloadData()
+//            self.eventTableView.reloadData()
             
             
             newEvent[0] = self.dateSelected ?? "2021-01-01"
             //force upwrap or not?
             
-            newEvent[1] = event
+            newEvent[1] = self.userFirstName + ": " + event
             //event decription
-            
             let object : [String: Any] = [
                 "0": newEvent[0] ,
-                "1" :  event
+                "1" :  newEvent[1]
             ]
             //        ref.child("eventWrite").setValue(object)
             self.ref?.childByAutoId().setValue(object)
-            self.calendar.reloadData()
+           
             
             //            print(newEvent)
             
             self.arrayOfEvents.append(newEvent)
             //append this new event data into data pool
             
+            print("newEvent is \(newEvent)")
+            
             self.calendar.reloadData()
+            
+            self.arrayForTableView.append(newEvent[1])
+            self.eventTableView.reloadData()
+
+           
+
         }
         alert.addAction(action)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
@@ -167,7 +178,7 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
         }
         ))
         present(alert, animated: true)
-        
+
     }
     
     
@@ -297,7 +308,7 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
                 
                 
                 
-                
+     /*
                 db.getDocuments() { (querySnapshot, err) in
                         if let err = err {
                             print("Error getting documents: \(err)")
@@ -310,12 +321,17 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
                         }
                 }
                 
+ */
                 
                 
                 print("Document uid: \(document.data()!["firstName"] ?? "")")
             } else {
                 print("Document does not exist")
             }
+            
+            
+            self.userFirstName = document?.data()!["firstName"] as! String
+            print("my name us \(self.userFirstName)")
         }
 //#############
         

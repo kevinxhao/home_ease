@@ -23,7 +23,7 @@ class UtilityViewController: UIViewController, UICollectionViewDelegate, UIColle
         balance.remove(at: balance.startIndex)
         if let bal = Double(balance) {
             vc.amount = bal
-            vc.type = 1
+            vc.type = 2
             navigationController?.setNavigationBarHidden(true, animated: true)
             navigationController?.pushViewController(vc, animated: true)
         }
@@ -38,6 +38,9 @@ class UtilityViewController: UIViewController, UICollectionViewDelegate, UIColle
         cell.mainView.layer.cornerRadius = 8
         if (curr > 0) {
             cell.amountLabel.textColor = .red
+        }
+        else {
+            cell.amountLabel.textColor = .black
         }
         cell.amountLabel.text = "$" + String(format:"%.02f", round(curr/Double(users.count)*100)/100)
         return cell
@@ -63,9 +66,9 @@ class UtilityViewController: UIViewController, UICollectionViewDelegate, UIColle
                 docRefGroups.getDocument { (document2, error2) in
                     if let document2 = document2, document2.exists {
                         let finances = document2.data()?["finances"] as! [Double]
-                        self.curr = finances[1]
+                        self.curr = finances[2]
                         self.users = document2.data()?["roommateNames"] as! [String]
-                        let strAmount = String(format:"%.02f", round(finances[1]*100)/100)
+                        let strAmount = String(format:"%.02f", round(finances[2]*100)/100)
                         self.currentBalance.text = "$" + strAmount
                         self.collectionView.reloadData()
                     }

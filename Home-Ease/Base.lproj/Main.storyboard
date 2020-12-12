@@ -347,7 +347,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qaN-Ke-bve" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-860" y="125.61576354679804"/>
+            <point key="canvasLocation" x="17" y="126"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="XqF-WI-nPh">
@@ -406,67 +406,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Vy-p2-bje" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3805.5999999999999" y="-644.33497536945811"/>
-        </scene>
-        <!--Tasks-->
-        <scene sceneID="rTy-w1-7pg">
-            <objects>
-                <viewController title="Tasks" id="6Kw-zd-uM7" customClass="TasksViewController" customModule="Home_Ease" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Lzr-wk-tnA">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Qdj-IQ-gBX">
-                                <rect key="frame" x="16" y="88" width="343" height="641"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5Z3-Gv-xri">
-                                    <size key="itemSize" width="310" height="315"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TaskCollectionViewCell" id="dar-aX-Q28" customClass="TaskCollectionViewCell" customModule="Home_Ease" customModuleProvider="target">
-                                        <rect key="frame" x="16.666666666666668" y="0.0" width="310" height="315"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="H40-XM-iA0">
-                                            <rect key="frame" x="0.0" y="0.0" width="310" height="315"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="This Week" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CsC-Jc-SHF">
-                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="60"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </collectionViewCellContentView>
-                                        <size key="customSize" width="310" height="315"/>
-                                        <connections>
-                                            <outlet property="weekLabel" destination="CsC-Jc-SHF" id="NQr-kW-h1J"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                </cells>
-                            </collectionView>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="Qdj-IQ-gBX" firstAttribute="leading" secondItem="t1W-u9-Vq5" secondAttribute="leading" constant="16" id="Oxv-MR-OQp"/>
-                            <constraint firstItem="Qdj-IQ-gBX" firstAttribute="top" secondItem="t1W-u9-Vq5" secondAttribute="top" id="TbK-IR-7TA"/>
-                            <constraint firstItem="t1W-u9-Vq5" firstAttribute="trailing" secondItem="Qdj-IQ-gBX" secondAttribute="trailing" constant="16" id="wOu-gZ-QpN"/>
-                            <constraint firstItem="t1W-u9-Vq5" firstAttribute="bottom" secondItem="Qdj-IQ-gBX" secondAttribute="bottom" id="xiJ-zr-buT"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="t1W-u9-Vq5"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="XVJ-GQ-zHG"/>
-                    <connections>
-                        <outlet property="taskCollectionView" destination="Qdj-IQ-gBX" id="FNs-Am-twk"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OVO-4k-dG5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="36" y="126.35467980295567"/>
         </scene>
         <!--Item-->
         <scene sceneID="QSV-Qx-nlq">
@@ -965,6 +904,9 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="textField:" destination="d0C-Sx-MWD" eventType="editingChanged" id="FBx-n9-pas"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tN9-Ku-JeO">
                                         <rect key="frame" x="167" y="383" width="156.99999999999909" height="36.999999999999886"/>
@@ -989,6 +931,13 @@
                                             <action selector="saveDate:" destination="d0C-Sx-MWD" eventType="touchUpInside" id="SUR-nI-z0e"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Error Message" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W44-15-PaY">
+                                        <rect key="frame" x="17.176453156659591" y="112" width="289" height="21.000000000000199"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
@@ -999,6 +948,8 @@
                     <connections>
                         <outlet property="date" destination="vdy-5R-ofI" id="bDN-mq-t60"/>
                         <outlet property="datePicker" destination="dpD-e7-mOD" id="4EU-4A-nzO"/>
+                        <outlet property="errorLabel" destination="W44-15-PaY" id="kF7-8f-GOw"/>
+                        <outlet property="inputAmount" destination="8LM-9P-dzk" id="Uww-2o-ECG"/>
                         <outlet property="save" destination="tN9-Ku-JeO" id="Dx2-ct-yUZ"/>
                     </connections>
                 </viewController>
@@ -1069,7 +1020,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="6Kw-zd-uM7" kind="relationship" relationship="rootViewController" id="YsK-Wl-mIx"/>
+                        <segue destination="9VF-xu-bhN" kind="relationship" relationship="rootViewController" id="GUC-yc-GLL"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rHN-lD-hZA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1231,24 +1182,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pqG-1M-rWo" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5044" y="125.61576354679804"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="hGJ-hK-dx8">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qm5-6J-iY8" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fla-pH-7qJ">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="9VF-xu-bhN" kind="relationship" relationship="rootViewController" id="5cg-sf-AqC"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9WM-Df-T9Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1597.5999999999999" y="125.61576354679804"/>
         </scene>
         <!--Sign In View Controller-->
         <scene sceneID="L5K-84-WzK">

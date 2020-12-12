@@ -11,18 +11,26 @@ import Firebase
 
 class RentViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
   
+    @IBOutlet weak var currentBalance: UILabel!
     let users = ["Roommate 1", "Roommate 2", "Roommate 3"]
     
     @IBOutlet weak var collectionView: UICollectionView!
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return users.count
+    }
+    
+    @IBAction func compose(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(identifier: "popup") as! PopUpViewController
+        var balance = currentBalance.text ?? ""
+        balance.remove(at: balance.startIndex)
+        if let bal = Double(balance) {
+            vc.amounts[0] = bal
+            vc.type = "Rent"
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "rentCell", for: indexPath) as! DetailedFinancesCollectionViewCell
-//        cell.imageView.layer.cornerRadius = 0.5*cell.imageView.bounds.size.width
-//        cell.imageView.clipsToBounds = true
-//        cell.imageView.image = UIImage.init(named: "Profile")
         cell.nameLabel.text = users[indexPath.row]
         cell.mainView.layer.cornerRadius = 8
         return cell
@@ -39,28 +47,5 @@ class RentViewController: UIViewController, UICollectionViewDelegate, UICollecti
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpCollectionView()
-        let db = Firestore.firestore().collection("groups")
-        db.document("3BFCtbQVQcE567BkYgoi").getDocument(source: .cache) { document , error in
-            if let document = document {
-                let property = document.get("groupName")
-            } else {
-                print("Document does not exist in cache")
-            }
-        }
-        
-
-        // Do any additional setup after loading the view.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

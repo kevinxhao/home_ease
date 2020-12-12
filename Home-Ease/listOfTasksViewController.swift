@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 
 
@@ -31,14 +32,17 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
     @IBOutlet weak var pendingTableView: UITableView!
     
     @IBOutlet weak var completedTableView: UITableView!
+    
+    var pendingCount = 0;
+    var completedCount = 0;
         
-    var completedTasksRoommates: [String] = UserDefaults.standard.object(forKey: "tasksRoommatesCompleted") as? [String] ?? []
-    
-    var completedTasksNames: [String] = UserDefaults.standard.object(forKey: "tasksNamesCompleted") as? [String] ?? []
-    
-    var pendingTasksRoommates: [String] = UserDefaults.standard.object(forKey: "tasksRoommatesPending") as? [String] ?? []
-    
-     var pendingTasksNames: [String] = UserDefaults.standard.object(forKey: "tasksNamesPending") as? [String] ?? []
+//    var completedTasksRoommates: [String] = UserDefaults.standard.object(forKey: "tasksRoommatesCompleted") as? [String] ?? []
+//
+//    var completedTasksNames: [String] = UserDefaults.standard.object(forKey: "tasksNamesCompleted") as? [String] ?? []
+//
+//    var pendingTasksRoommates: [String] = UserDefaults.standard.object(forKey: "tasksRoommatesPending") as? [String] ?? []
+//
+//     var pendingTasksNames: [String] = UserDefaults.standard.object(forKey: "tasksNamesPending") as? [String] ?? []
        
     struct Task {
         var roommateName: String!
@@ -46,72 +50,69 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       /* if showOnlyMine{
-            let currentUser = "Jackson"
-            for i in 0..<completedTasksNames.count{
-                if(completedTasksRoommates[i] == currentUser){
-                    myCompletedTasksNames.append(completedTasksNames[i])
-                }
-            }
-            for i in 0..<pendingTasksNames.count{
-                if(pendingTasksRoommates[i] == currentUser){
-                    myPendingTasksNames.append(pendingTasksNames[i])
-                }
-            }
-            if tableView == self.completedTableView{
-                return myCompletedTasksNames.count;
-            }
-            else if tableView == self.pendingTableView{
-                return myPendingTasksNames.count;
-            }
-        }
-        else{*/
         //I consulted this when I was unsure about how to set up multiple table cells within the same view controller: https://stackoverflow.com/questions/37447124/how-do-i-create-two-table-views-in-one-view-controller-with-two-custom-uitablevi
-            if tableView == self.completedTableView{
-                return completedTasksRoommates.count
+        
+        var count: Int = 2
+        let currentUser = Auth.auth().currentUser?.email ?? ""
+        let docRef = Firestore.firestore().collection("users").document(currentUser)
+            docRef.getDocument { (document, error) in
+                if let document = document, document.exists {
+                    let groupName = (document.data()!["group"] ?? "")
+                    let docRef2 = Firestore.firestore().collection("groups").document(groupName as! String)
+                    docRef2.getDocument { (document2, error) in
+                        if let document2 = document2, document2.exists {
+                            let pendingTasks: [String] = (document2.data()!["namesOfPendingTasks"] ?? []) as! [String]
+                            let completedTasks: [String] = (document2.data()!["namesOfCompletedTasks"] ?? []) as! [String]
+                            if tableView == self.completedTableView{
+                                count = completedTasks.count
+                                print("count changed to: \(count)")
+                            }
+                            else if tableView == self.pendingTableView{
+                                count = pendingTasks.count
+                                print("count changed to: \(count)")
+                            }
+                        }
+                    }
+                } else {
+                    print("Document does not exist")
+                }
             }
-            else if tableView == self.pendingTableView{
-                return pendingTasksRoommates.count
-            }
-        //}
-        return 0;
+        print("now returning")
+        while(count == 0){
+        }
+        return count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let myCell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        completedTasksNames = UserDefaults.standard.object(forKey:"tasksNamesCompleted") as? [String] ?? []
-        completedTasksRoommates = UserDefaults.standard.object(forKey:"tasksRoommatesCompleted") as? [String] ?? []
-        pendingTasksNames = UserDefaults.standard.object(forKey:"tasksNamesPending") as? [String] ?? []
-        pendingTasksRoommates = UserDefaults.standard.object(forKey:"tasksRoommatesPending") as? [String] ?? []
-        myCompletedTasksNames = []
-        myPendingTasksNames = []
-        let currentUser = "Jackson"
-        for i in 0..<completedTasksRoommates.count{
-            if(completedTasksRoommates[i] == currentUser){
-                myCompletedTasksNames.append(completedTasksNames[i])
+//        completedTasksNames = UserDefaults.standard.object(forKey:"tasksNamesCompleted") as? [String] ?? []
+//        completedTasksRoommates = UserDefaults.standard.object(forKey:"tasksRoommatesCompleted") as? [String] ?? []
+//        pendingTasksNames = UserDefaults.standard.object(forKey:"tasksNamesPending") as? [String] ?? []
+//        pendingTasksRoommates = UserDefaults.standard.object(forKey:"tasksRoommatesPending") as? [String] ?? []
+//        myCompletedTasksNames = []
+//        myPendingTasksNames = []
+        let currentUser = Auth.auth().currentUser?.email ?? ""
+        let docRef = Firestore.firestore().collection("users").document(currentUser)
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                let groupName = (document.data()!["group"] ?? "")
+                let docRef2 = Firestore.firestore().collection("groups").document(groupName as! String)
+                docRef2.getDocument { (document2, error) in
+                    if let document2 = document2, document2.exists {
+                        let pendingTasks: [String] = (document2.data()!["namesOfPendingTasks"] ?? []) as! [String]
+                        let completedTasks: [String] = (document2.data()!["namesOfCompletedTasks"] ?? []) as! [String]
+                        if tableView == self.completedTableView{
+                            myCell.textLabel!.text = "\(completedTasks[indexPath.row])"
+                        }
+                        else if tableView == self.pendingTableView{
+                            myCell.textLabel!.text = "\(pendingTasks[indexPath.row])"
+                        }
+                    }
+                }
+            } else {
+                print("Document does not exist")
             }
         }
-        for i in 0..<pendingTasksRoommates.count{
-            if(pendingTasksRoommates[i] == currentUser){
-                myPendingTasksNames.append(pendingTasksNames[i])
-            }
-        }
-     /*   if showOnlyMine{
-            if tableView == self.completedTableView{
-                myCell.textLabel!.text = "\(myCompletedTasksNames[indexPath.row])"
-            }
-            else if tableView == self.pendingTableView{
-                myCell.textLabel!.text = "\(myPendingTasksNames[indexPath.row])"
-            }
-        }
-        else{*/
-            if tableView == self.completedTableView{
-                myCell.textLabel!.text = "\(completedTasksNames[indexPath.row])"
-            }
-            else if tableView == self.pendingTableView{
-                myCell.textLabel!.text = "\(pendingTasksNames[indexPath.row])"
-            }
-        //}
         return myCell
     }
     
@@ -164,16 +165,16 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     @IBAction func addTaskAndCloseSubview(_ sender: Any) {
-        pendingTasksRoommates = UserDefaults.standard.object(forKey: "tasksRoommatesPending") as? [String] ?? []
-        pendingTasksNames = UserDefaults.standard.object(forKey: "tasksNamesPending") as? [String] ?? []
-        let newRoommateName = roommateField.text
-        let newTaskName = taskField.text
-        pendingTasksRoommates.append(newRoommateName!)
-        pendingTasksNames.append(newTaskName!)
-        print("pending Tasks roommates:  \(pendingTasksRoommates)")
-        print("pending Tasks Names:  \(pendingTasksNames)")
-        UserDefaults.standard.set(pendingTasksRoommates, forKey: "tasksRoommatesPending")
-        UserDefaults.standard.set(pendingTasksNames, forKey: "tasksNamesPending")
+//        pendingTasksRoommates = UserDefaults.standard.object(forKey: "tasksRoommatesPending") as? [String] ?? []
+//        pendingTasksNames = UserDefaults.standard.object(forKey: "tasksNamesPending") as? [String] ?? []
+//        let newRoommateName = roommateField.text
+//        let newTaskName = taskField.text
+//        pendingTasksRoommates.append(newRoommateName!)
+//        pendingTasksNames.append(newTaskName!)
+//        print("pending Tasks roommates:  \(pendingTasksRoommates)")
+//        print("pending Tasks Names:  \(pendingTasksNames)")
+//        UserDefaults.standard.set(pendingTasksRoommates, forKey: "tasksRoommatesPending")
+//        UserDefaults.standard.set(pendingTasksNames, forKey: "tasksNamesPending")
         addTaskView.isHidden = true
         taskField.text = ""
         roommateField.text = ""
@@ -204,10 +205,10 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
         super.viewWillAppear(true);
         scopeOfTasksButton.title = "Show Only My Tasks"
        // markAllAsCompletedBtn.isHidden = true
-        completedTasksNames = UserDefaults.standard.object(forKey:"tasksNamesCompleted") as? [String] ?? []
-        completedTasksRoommates = UserDefaults.standard.object(forKey:"tasksRoommatesCompleted") as? [String] ?? []
-        pendingTasksNames = UserDefaults.standard.object(forKey:"tasksNamesPending") as? [String] ?? []
-        pendingTasksRoommates = UserDefaults.standard.object(forKey:"tasksRoommatesPending") as? [String] ?? []
+//        completedTasksNames = UserDefaults.standard.object(forKey:"tasksNamesCompleted") as? [String] ?? []
+//        completedTasksRoommates = UserDefaults.standard.object(forKey:"tasksRoommatesCompleted") as? [String] ?? []
+//        pendingTasksNames = UserDefaults.standard.object(forKey:"tasksNamesPending") as? [String] ?? []
+//        pendingTasksRoommates = UserDefaults.standard.object(forKey:"tasksRoommatesPending") as? [String] ?? []
         
         completedTableView.reloadData();
         pendingTableView.reloadData();

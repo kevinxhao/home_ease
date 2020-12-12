@@ -271,10 +271,53 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
 //        }
         
         
-        let groupName = "jackGroup"
+        let groupName = "group8"
         ref = Database.database().reference().child(groupName)
         
-        
+        let email = Auth.auth().currentUser?.email
+        let docRef = Firestore.firestore().collection("users").document(email ?? "")
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                //let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                /*for i in 0..<dataDescription.count{
+                    print("index: \(i)")
+                    print("value: \(dataDescription[i])")
+                }*/
+//                document.data()["group"]  //later
+//                document.data()["group"]
+
+//##############
+                let db = Firestore.firestore().collection("users")
+                
+//                db.document(email!).setData(["firstName" : "Deborah"])
+                
+//                db.document(email!).setData(["group" : "GroupTest"])
+                
+//                db.document(email!).updateData(["firstName" : "Rick"])
+                
+                
+                
+                
+                db.getDocuments() { (querySnapshot, err) in
+                        if let err = err {
+                            print("Error getting documents: \(err)")
+                        } else {
+                            for document in querySnapshot!.documents {
+                                print("\(document.documentID)")
+//                                 => \(document.data())"
+                                
+                            }
+                        }
+                }
+                
+                
+                
+                print("Document uid: \(document.data()!["firstName"] ?? "")")
+            } else {
+                print("Document does not exist")
+            }
+        }
+//#############
         
         
         let calendar = FSCalendar(frame: CGRect(x: 25, y: 70, width: 320, height: 300))

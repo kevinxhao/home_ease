@@ -69,17 +69,14 @@ class CreateNewUserViewController: UIViewController {
     }
     
     func showError(_ message:String){
-        errorLabel.isHidden = false
         errorLabel.text = message
-        errorLabel.alpha = 1
+        errorLabel.isHidden = false
     }
     
     func transitionToHome(){
         //TRANSITION TO GROUP INSTEAD OF HOME PAGE
         //let vc = storyboard?.instantiateViewController(identifier: "InitialTabBar") as! UITabBarController
         let vc = storyboard?.instantiateViewController(identifier: "CreateNewGroupViewController") as! CreateNewGroupViewController
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
         navigationController?.pushViewController(vc, animated: true)
     }
 }
-

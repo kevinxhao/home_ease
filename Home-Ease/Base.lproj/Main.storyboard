@@ -1415,6 +1415,9 @@
                                 <rect key="frame" x="108" y="333" width="153" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Join an Existing Group"/>
+                                <connections>
+                                    <action selector="joinExistingGroup:" destination="ADQ-sa-9J1" eventType="touchUpInside" id="zWE-vJ-u41"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="or" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wyy-w7-YNk">
                                 <rect key="frame" x="176" y="294" width="16" height="21"/>
@@ -1423,12 +1426,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Error Message" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zW8-CW-T6t">
+                                <rect key="frame" x="40" y="390" width="289" height="21.000000000000227"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="mme-An-fSz"/>
                     </view>
                     <navigationItem key="navigationItem" id="fB4-N8-Pib"/>
                     <connections>
+                        <outlet property="errorLabel" destination="zW8-CW-T6t" id="3Kc-1o-Vzc"/>
                         <outlet property="groupName" destination="c9X-ri-MRo" id="CRr-QU-qGF"/>
                         <outlet property="groupPassword" destination="nc2-on-3E8" id="eG0-UE-cya"/>
                     </connections>

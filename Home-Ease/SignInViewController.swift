@@ -55,8 +55,8 @@ class SignInViewController: UIViewController {
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
             if let error = error {
                 //sign in fail
-                self.errorLogInlabel.isHidden = false
                 self.errorLogInlabel.text = error.localizedDescription
+                self.errorLogInlabel.isHidden = false
             }
             else{
                 //TRANSITION TO GROUP INSTEAD OF HOME PAGE

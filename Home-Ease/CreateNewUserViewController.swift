@@ -47,12 +47,13 @@ class CreateNewUserViewController: UIViewController {
         else{
            //create users
             let firstName = firstNameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+            
+            // let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             
             Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
                 //check for errors
-                
                 if err != nil {
                     self.showError("Error Creating User")
                 }
@@ -60,7 +61,10 @@ class CreateNewUserViewController: UIViewController {
                 else{
                     //create the database and add the document into it
                     let db = Firestore.firestore()
-                    db.collection("users").addDocument(data: ["firstName": firstName,"uid": result!.user.uid ]) { (error) in
+                    //db.collection("users").addDocument(data: ["firstName": firstName,"uid": result!.user.uid ]) { (error) in
+                    print("document id will be \(email)")
+                    print("firstname will be \(firstName)")
+                    db.collection("users").document(email).setData(["firstName": firstName,"uid": result!.user.uid ]) { (error) in
                         if error != nil {
                             self.showError("User data could not be saved")
                         }
@@ -77,8 +81,8 @@ class CreateNewUserViewController: UIViewController {
     }
     func transitionToHome(){
         //TRANSITION TO GROUP INSTEAD OF HOME PAGE
-       // let vc = storyboard?.instantiateViewController(identifier: "InitialTabBar") as! UITabBarController
-        let vc = storyboard?.instantiateViewController(identifier: "CreateNewGroupViewController") as! UIViewController
+        let vc = storyboard?.instantiateViewController(identifier: "InitialTabBar") as! UITabBarController
+        //let vc = storyboard?.instantiateViewController(identifier: "CreateNewGroupViewController") as! UIViewController
         navigationController?.pushViewController(vc, animated: true)
     }
 }

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+
 
 class TasksViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -39,6 +41,24 @@ class TasksViewController: UIViewController, UICollectionViewDelegate, UICollect
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let listTasksVC = storyboard?.instantiateViewController(withIdentifier: "listTask") as! listOfTasksViewController
         navigationController?.pushViewController(listTasksVC, animated: true)
+        let username = Auth.auth().currentUser!.email!
+        print("username is : \(username)")
+        print("query: ")
+        let docRef = Firestore.firestore().collection("users").document(username)
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                //let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                /*for i in 0..<dataDescription.count{
+                    print("index: \(i)")
+                    print("value: \(dataDescription[i])")
+                }*/
+                
+                print("Document uid: \(document.data()!["uid"] ?? "")")
+            } else {
+                print("Document does not exist")
+            }
+        }
+        
     }
     
     func setUpCollectionView(){

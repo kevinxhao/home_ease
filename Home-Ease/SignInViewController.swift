@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseUI
+import Firebase
 
 class SignInViewController: UIViewController {
 
@@ -43,10 +44,19 @@ class SignInViewController: UIViewController {
         return nil
     }
     @IBAction func logInTapped(_ sender: Any) {
-        //validate field
         
+        //validate field
+        let email = emailLogInTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines).lowercased();
+        let docRef = Firestore.firestore().collection("users").document(email )
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                print("Document data: \(dataDescription)")
+            } else {
+                print("Document does not exist")
+            }
+        }
         //create cleaned versions
-        let email = emailLogInTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let password = passwordLogInTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         //sign in the user
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
@@ -59,6 +69,7 @@ class SignInViewController: UIViewController {
                 //TRANSITION TO GROUP INSTEAD OF HOME PAGE
                 let vc = self.storyboard?.instantiateViewController(identifier: "InitialTabBar") as! UITabBarController
                 self.navigationController?.pushViewController(vc, animated: true)
+                print(Auth.auth().currentUser!.email!)
             }
         }
     }

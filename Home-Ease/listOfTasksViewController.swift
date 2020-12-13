@@ -14,7 +14,7 @@ import Firebase
 class listOfTasksViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var showOnlyMine: Bool = false;
-    
+        
     var myCompletedTasksNames: [String] = []
     var myPendingTasksNames: [String] = []
     
@@ -52,6 +52,8 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
                             self.completedCount = completedTasks.count
                             print("completed count is now: \(self.completedCount)")
                             print(self.completedCount)
+                            self.completedTableView.reloadData()
+                            self.pendingTableView.reloadData()
                         }
                     }
                 } else {
@@ -88,7 +90,6 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let myCell = UITableViewCell(style: .default, reuseIdentifier: nil)
         DispatchQueue.global(qos: .background).async{
-            self.updateCounts()
             let currentUser = Auth.auth().currentUser?.email ?? ""
             let docRef = Firestore.firestore().collection("users").document(currentUser)
             docRef.getDocument { (document, error) in
@@ -147,48 +148,50 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
     
     @IBAction func addTaskAndCloseSubview(_ sender: Any) {
         addTaskView.isHidden = true
-        let currentUser = Auth.auth().currentUser?.email ?? ""
-        let docRef = Firestore.firestore().collection("users").document(currentUser)
-        docRef.getDocument { (document, error) in
-            if let document = document, document.exists {
-                let groupName = (document.data()!["group"] ?? "")
-                let docRef2 = Firestore.firestore().collection("groups").document(groupName as! String)
-                docRef2.getDocument { (document2, error) in
-                    if let document2 = document2, document2.exists {
-                        //make sure that user exists. if they do not, return
-                        let roommatesInGroup: [String] = (document2.data()!["roommateNames"] ?? []) as! [String]
-                        for i in 0..<roommatesInGroup.count{
-                            if(roommatesInGroup[i] == self.roommateField.text!){
-                                var pendingTasks: [String] = (document2.data()!["namesOfPendingTasks"] ?? []) as! [String]
-                                var pendingUsers: [String] = (document2.data()!["usersOfPendingTasks"] ?? []) as! [String]
-                                
-                                if((pendingTasks.count == 1 && pendingUsers[0] == "")){
-                                    pendingTasks[0] = self.taskField.text!
+        if(self.taskField.text ?? "" != ""){
+            let currentUser = Auth.auth().currentUser?.email ?? ""
+            let docRef = Firestore.firestore().collection("users").document(currentUser)
+            docRef.getDocument { (document, error) in
+                if let document = document, document.exists {
+                    let groupName = (document.data()!["group"] ?? "")
+                    let docRef2 = Firestore.firestore().collection("groups").document(groupName as! String)
+                    docRef2.getDocument { (document2, error) in
+                        if let document2 = document2, document2.exists {
+                            //make sure that user exists. if they do not, return
+                            let roommatesInGroup: [String] = (document2.data()!["roommateNames"] ?? []) as! [String]
+                            for i in 0..<roommatesInGroup.count{
+                                if(roommatesInGroup[i] == self.roommateField.text!){
+                                    var pendingTasks: [String] = (document2.data()!["namesOfPendingTasks"] ?? []) as! [String]
+                                    var pendingUsers: [String] = (document2.data()!["usersOfPendingTasks"] ?? []) as! [String]
+                                    
+                                    if((pendingTasks.count == 1 && pendingUsers[0] == "")){
+                                        pendingTasks[0] = self.taskField.text!
+                                    }
+                                    else{
+                                        pendingTasks.append(self.taskField.text!)
+                                    }
+                                    if((pendingUsers.count == 1 && pendingUsers[0] == "")){
+                                        pendingUsers[0] = self.roommateField.text!
+                                    }
+                                    else{
+                                        pendingUsers.append(self.roommateField.text!)
+                                    }
+                                    self.pendingCount = pendingTasks.count
+                                    docRef2.updateData(["namesOfPendingTasks" : pendingTasks])
+                                    docRef2.updateData(["usersOfPendingTasks" : pendingUsers])
+                                    print("pending count is now: \(self.pendingCount)")
+                                    print(self.completedCount)
+                                    self.taskField.text = ""
+                                    self.roommateField.text = ""
+                                    self.pendingTableView.reloadData()
                                 }
-                                else{
-                                    pendingTasks.append(self.taskField.text!)
-                                }
-                                if((pendingUsers.count == 1 && pendingUsers[0] == "")){
-                                    pendingUsers[0] = self.roommateField.text!
-                                }
-                                else{
-                                    pendingUsers.append(self.roommateField.text!)
-                                }
-                                self.pendingCount = pendingTasks.count
-                                docRef2.updateData(["namesOfPendingTasks" : pendingTasks])
-                                docRef2.updateData(["usersOfPendingTasks" : pendingUsers])
-                                print("pending count is now: \(self.pendingCount)")
-                                print(self.completedCount)
-                                self.taskField.text = ""
-                                self.roommateField.text = ""
-                                self.pendingTableView.reloadData()
                             }
+                            //todo: maybe put error statement here, saying that roommate is not in group
                         }
-                        //todo: maybe put error statement here, saying that roommate is not in group
                     }
+                } else {
+                    print("Document does not exist")
                 }
-            } else {
-                print("Document does not exist")
             }
         }
     }

@@ -97,6 +97,7 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell")! as UITableViewCell
         cell.textLabel?.text = arrayForTableView[indexPath.row]
+        cell.backgroundColor = UIColor.systemGray6
         return cell
     }
     
@@ -143,15 +144,19 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
         super.viewDidLoad()
         
         
-        let calendar = FSCalendar(frame: CGRect(x: 25, y: 80, width: 320, height: 300))
+        let calendar = FSCalendar(frame: CGRect(x: 17, y: 100, width: 343, height: 290))
         calendar.dataSource = self
         calendar.delegate = self
         view.addSubview(calendar)
         self.calendar = calendar
         
+        calendar.backgroundColor = UIColor.systemGray6
+        
         eventTableView.register(UITableViewCell.self, forCellReuseIdentifier: "eventCell")
         eventTableView.dataSource = self
         eventTableView.reloadData()
+        
+        eventTableView.backgroundColor = UIColor.systemGray5
         
         let today = dateFormatter2.string(from: calendar.today!)
         //        print(today)

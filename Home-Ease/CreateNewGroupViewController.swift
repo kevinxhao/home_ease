@@ -59,6 +59,7 @@ class CreateNewGroupViewController: UIViewController {
                     let completion: [Bool] = []
                     let taskRoommates: [String] = []
                     let namesOfTasks: [String] = []
+                    let dates:[String] = ["01/01/2021","01/01/2021","01/01/2021"]
                     let email = Auth.auth().currentUser?.email
                     let docRef = Firestore.firestore().collection("users").document(email ?? "")
                     docRef.getDocument { (document, error) in
@@ -66,7 +67,7 @@ class CreateNewGroupViewController: UIViewController {
                             print("Document uid: \(document.data()!["firstName"] ?? "")")
                             database.collection("users").document(currentUser ?? "").updateData(["group":newGroupName])
                             arr.append(document.data()!["firstName"] as! String)
-                            database.collection("groups").document(newGroupName).setData(["password": newPassword, "count": 1, "roommateNames": arr, "finances": finances, "taskCompletion": completion, "taskRoommates": taskRoommates, "namesOfTasks": namesOfTasks])
+                            database.collection("groups").document(newGroupName).setData(["password": newPassword, "count": 1, "roommateNames": arr, "finances": finances, "dueDates":dates, "taskCompletion": completion, "taskRoommates": taskRoommates, "namesOfTasks": namesOfTasks])
                             { (error) in
                                 if error != nil {
                                     self.errorLabel.isHidden = false

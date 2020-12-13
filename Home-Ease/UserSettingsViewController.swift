@@ -7,13 +7,37 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseUI
+
 
 class UserSettingsViewController: UIViewController {
 
+    @IBOutlet weak var currentUsername: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        displayUsername()
         // Do any additional setup after loading the view.
+    }
+    
+    func displayUsername(){
+        let user = Auth.auth().currentUser
+        if let user = user {
+          // The user's ID, unique to the Firebase project.
+          // Do NOT use this value to authenticate with your backend server,
+          // if you have one. Use getTokenWithCompletion:completion: instead.
+          
+          let email = user.email
+        
+          var multiFactorString = "MultiFactor: "
+          for info in user.multiFactor.enrolledFactors {
+            multiFactorString += info.displayName ?? "[DispayName]"
+            multiFactorString += " "
+          }
+        }
+        currentUsername.text = email
     }
     
 

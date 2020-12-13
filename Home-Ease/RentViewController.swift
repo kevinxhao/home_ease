@@ -40,6 +40,9 @@ class RentViewController: UIViewController, UICollectionViewDelegate, UICollecti
         if (curr > 0) {
             cell.amountLabel.textColor = .red
         }
+        else {
+            cell.amountLabel.textColor = .black
+        }
         cell.amountLabel.text = "$" + String(format:"%.02f", round(curr/Double(users.count)*100)/100)
         return cell
     }

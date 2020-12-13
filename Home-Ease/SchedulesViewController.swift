@@ -113,34 +113,44 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         if editingStyle == .delete{
-            for index in 0..<arrayOfEvents.count{
-                //iterate through all the events, and look for entry that matches the event description and the date of the event to be deleted
-                //and remove that event from data pool
-                if (arrayOfEvents[index][0] == dateSelected &&
-                    arrayOfEvents[index][1] == cell?.textLabel?.text){
-                    arrayOfEvents.remove(at: index)
-                    break
-                }
-            }
-            calendar.reloadData()
             
-            arrayForTableView.remove(at: indexPath.row)
-            eventTableView.deleteRows(at: [indexPath], with: .none)
-            
-            //remove data from firebase:
-            ref?.observeSingleEvent(of: .value, with: { (snapshot) in
-                let dictionaryForDelete = snapshot.value! as! Dictionary<String, [String]>
+            let deleteAlert = UIAlertController(title: "Delete Event?", message: nil, preferredStyle: .alert)
+            let deleteAction = UIAlertAction(title: "Delete", style: .default) { (_) in
                 
-                if snapshot.childrenCount > 0 {
-                    for (key,value) in dictionaryForDelete {
-                        if (value[0] == self.dateSelected  && value[1] == cell?.textLabel?.text){
-                            self.ref?.child(key).removeValue()
-                        }
+                for index in 0..<self.arrayOfEvents.count{
+                    //iterate through all the events, and look for entry that matches the event description and the date of the event to be deleted
+                    //and remove that event from data pool
+                    if (self.arrayOfEvents[index][0] == self.dateSelected &&
+                        self.arrayOfEvents[index][1] == cell?.textLabel?.text){
+                        self.arrayOfEvents.remove(at: index)
+                        break
                     }
                 }
-            }) { (error) in
-                print(error.localizedDescription)
+                self.calendar.reloadData()
+                self.arrayForTableView.remove(at: indexPath.row)
+                self.eventTableView.deleteRows(at: [indexPath], with: .none)
+                
+                //remove data from firebase:
+                self.ref?.observeSingleEvent(of: .value, with: { (snapshot) in
+                    let dictionaryForDelete = snapshot.value! as! Dictionary<String, [String]>
+                    if snapshot.childrenCount > 0 {
+                        for (key,value) in dictionaryForDelete {
+                            if (value[0] == self.dateSelected  && value[1] == cell?.textLabel?.text){
+                                self.ref?.child(key).removeValue()
+                            }
+                        }
+                    }
+                }) { (error) in
+                    print(error.localizedDescription)
+                }
             }
+            deleteAlert.addAction(deleteAction)
+            deleteAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
+                return
+            }
+                )
+            )
+            present(deleteAlert, animated: true)
         }
     }
     
@@ -260,3 +270,7 @@ extension SchedulesViewController: FSCalendarDataSource, FSCalendarDelegate{
         }
     }
 }
+
+
+
+

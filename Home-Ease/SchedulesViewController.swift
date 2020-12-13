@@ -60,6 +60,15 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
                 //if user doesnt enter any event in the text field
                 return
             }
+            var whitespaceCount = 0
+            for char in event{
+                if(char.isWhitespace){
+                    whitespaceCount = whitespaceCount + 1
+                }
+            }
+            if event.count == whitespaceCount{
+                return
+            }
             
             newEvent[0] = self.dateSelected ?? "2021-01-01"
             newEvent[1] = self.userFirstName + ": " + event
@@ -117,7 +126,7 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
             
             arrayForTableView.remove(at: indexPath.row)
             eventTableView.deleteRows(at: [indexPath], with: .none)
-
+            
             //remove data from firebase:
             ref?.observeSingleEvent(of: .value, with: { (snapshot) in
                 let dictionaryForDelete = snapshot.value! as! Dictionary<String, [String]>
@@ -126,7 +135,7 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
                     for (key,value) in dictionaryForDelete {
                         if (value[0] == self.dateSelected  && value[1] == cell?.textLabel?.text){
                             self.ref?.child(key).removeValue()
-                                                    }
+                        }
                     }
                 }
             }) { (error) in
@@ -137,7 +146,7 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
     
     
     
-//    var tempArray: [String] = []
+    //    var tempArray: [String] = []
     
     
     override func viewDidLoad() {
@@ -170,27 +179,27 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
                 self.eventTableView.reloadData()
             }
         }
-
+        
         
         let email = Auth.auth().currentUser?.email
         let docRef = Firestore.firestore().collection("users").document(email ?? "")
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
-//                print("Document uid: \(document.data()!["firstName"] ?? "")")
+                //                print("Document uid: \(document.data()!["firstName"] ?? "")")
             } else {
-//                print("Document does not exist")
+                //                print("Document does not exist")
             }
-   
+            
             self.userFirstName = document?.data()!["firstName"] as! String
             self.userGroup = document?.data()!["group"] as! String
-//            print("my name is \(self.userFirstName)")
-//            print("my group is \(self.userGroup)")
+            //            print("my name is \(self.userFirstName)")
+            //            print("my group is \(self.userGroup)")
             
             self.ref = Database.database().reference().child(self.userGroup)
-
+            
             self.ref?.observe(.value, with: {
                 snapshot in
-              
+                
                 if snapshot.childrenCount > 0 {
                     
                     let someData = snapshot.value! as! Dictionary<String, [String]>
@@ -234,7 +243,7 @@ extension SchedulesViewController: FSCalendarDataSource, FSCalendarDelegate{
         return 0
     }
     
-
+    
     //call this function when user taps on the date
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         let dateString = dateFormatter2.string(from: date)

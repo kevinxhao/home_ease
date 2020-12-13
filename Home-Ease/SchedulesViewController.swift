@@ -176,15 +176,15 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
         let docRef = Firestore.firestore().collection("users").document(email ?? "")
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
-                print("Document uid: \(document.data()!["firstName"] ?? "")")
+//                print("Document uid: \(document.data()!["firstName"] ?? "")")
             } else {
-                print("Document does not exist")
+//                print("Document does not exist")
             }
    
             self.userFirstName = document?.data()!["firstName"] as! String
             self.userGroup = document?.data()!["group"] as! String
-            print("my name is \(self.userFirstName)")
-            print("my group is \(self.userGroup)")
+//            print("my name is \(self.userFirstName)")
+//            print("my group is \(self.userGroup)")
             
             self.ref = Database.database().reference().child(self.userGroup)
 

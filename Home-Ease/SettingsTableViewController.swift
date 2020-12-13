@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseAuth
+import Firebase
 
 class SettingsTableViewController: UITableViewController{
     
@@ -15,6 +17,20 @@ class SettingsTableViewController: UITableViewController{
 
     }
 
+    @IBAction func signOutButtonTapped(_ sender: Any) {
+      let firebaseAuth = Auth.auth()
+        do {
+        try firebaseAuth.signOut()
+        } catch let signOutError as NSError {
+        print ("Error signing out: %@", signOutError)
+        }
+       
+        let vc = storyboard?.instantiateViewController(identifier: "WelcomeVC") as! WelcomePageViewController
+        navigationController?.pushViewController(vc, animated: true)
+        self.tabBarController?.tabBar.isHidden = true
+        //self.navigationController?.setNavigationBarHidden(true, animated: true)
 
+    }
+    
 
 }

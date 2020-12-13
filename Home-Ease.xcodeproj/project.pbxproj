@@ -11,6 +11,7 @@
 		703063CB2572D26C00028888 /* TaskCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703063CA2572D26C00028888 /* TaskCollectionViewCell.swift */; };
 		703063CD2573113E00028888 /* listOfTasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703063CC2573113E00028888 /* listOfTasksViewController.swift */; };
 		703F10512582FB1100C1E433 /* CreateNewGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703F10502582FB1100C1E433 /* CreateNewGroupViewController.swift */; };
+		732FAD4D2586A92300567297 /* WelcomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732FAD4C2586A92300567297 /* WelcomePageViewController.swift */; };
 		7362A6262586929D00466A98 /* UserSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7362A6252586929D00466A98 /* UserSettingsViewController.swift */; };
 		7362A6282586984300466A98 /* NewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7362A6272586984300466A98 /* NewPasswordViewController.swift */; };
 		73A410FF2574541E0078436F /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A410FE2574541E0078436F /* SettingsTableViewController.swift */; };
@@ -64,6 +65,7 @@
 		703063CA2572D26C00028888 /* TaskCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCollectionViewCell.swift; sourceTree = "<group>"; };
 		703063CC2573113E00028888 /* listOfTasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = listOfTasksViewController.swift; sourceTree = "<group>"; };
 		703F10502582FB1100C1E433 /* CreateNewGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewGroupViewController.swift; sourceTree = "<group>"; };
+		732FAD4C2586A92300567297 /* WelcomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePageViewController.swift; sourceTree = "<group>"; };
 		7362A6252586929D00466A98 /* UserSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsViewController.swift; sourceTree = "<group>"; };
 		7362A6272586984300466A98 /* NewPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordViewController.swift; sourceTree = "<group>"; };
 		73A410FE2574541E0078436F /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				7362A6252586929D00466A98 /* UserSettingsViewController.swift */,
 				7362A6272586984300466A98 /* NewPasswordViewController.swift */,
 				73B8414C2581C16A003112AE /* SignInViewController.swift */,
+				732FAD4C2586A92300567297 /* WelcomePageViewController.swift */,
 				73B8414E2581C579003112AE /* CreateNewUserViewController.swift */,
 				703F10502582FB1100C1E433 /* CreateNewGroupViewController.swift */,
 				A134FFEE256099D4005D811C /* AppDelegate.swift */,
@@ -535,6 +538,7 @@
 				703063CD2573113E00028888 /* listOfTasksViewController.swift in Sources */,
 				73A410FF2574541E0078436F /* SettingsTableViewController.swift in Sources */,
 				A16C3C69256F24EA008C38D7 /* UtilityViewController.swift in Sources */,
+				732FAD4D2586A92300567297 /* WelcomePageViewController.swift in Sources */,
 				73CBDDA52574424200F36E2F /* HomeCollectionViewCell.swift in Sources */,
 				73B8414D2581C16A003112AE /* SignInViewController.swift in Sources */,
 				A15CC0272571D40500F3754D /* FinancesCollectionViewCell.swift in Sources */,

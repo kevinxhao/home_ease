@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		45494D85C1CD0EE63FED6357 /* Pods_Home_Ease_Home_EaseUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8B831754FCFBE7E54D3B67A /* Pods_Home_Ease_Home_EaseUITests.framework */; };
-		703063CB2572D26C00028888 /* TaskCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703063CA2572D26C00028888 /* TaskCollectionViewCell.swift */; };
 		703063CD2573113E00028888 /* listOfTasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703063CC2573113E00028888 /* listOfTasksViewController.swift */; };
 		703F10512582FB1100C1E433 /* CreateNewGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703F10502582FB1100C1E433 /* CreateNewGroupViewController.swift */; };
 		732FAD4D2586A92300567297 /* WelcomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732FAD4C2586A92300567297 /* WelcomePageViewController.swift */; };
@@ -62,7 +61,6 @@
 /* Begin PBXFileReference section */
 		1570B7602AC05FD39D43A415 /* Pods-Home-Ease-Home-EaseUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Home-Ease-Home-EaseUITests.release.xcconfig"; path = "Target Support Files/Pods-Home-Ease-Home-EaseUITests/Pods-Home-Ease-Home-EaseUITests.release.xcconfig"; sourceTree = "<group>"; };
 		36BF864855FA071D186DA24D /* Pods-Home-Ease.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Home-Ease.release.xcconfig"; path = "Target Support Files/Pods-Home-Ease/Pods-Home-Ease.release.xcconfig"; sourceTree = "<group>"; };
-		703063CA2572D26C00028888 /* TaskCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCollectionViewCell.swift; sourceTree = "<group>"; };
 		703063CC2573113E00028888 /* listOfTasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = listOfTasksViewController.swift; sourceTree = "<group>"; };
 		703F10502582FB1100C1E433 /* CreateNewGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewGroupViewController.swift; sourceTree = "<group>"; };
 		732FAD4C2586A92300567297 /* WelcomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePageViewController.swift; sourceTree = "<group>"; };
@@ -202,7 +200,6 @@
 				A134FFF4256099D4005D811C /* Main.storyboard */,
 				73A410FE2574541E0078436F /* SettingsTableViewController.swift */,
 				703063CC2573113E00028888 /* listOfTasksViewController.swift */,
-				703063CA2572D26C00028888 /* TaskCollectionViewCell.swift */,
 				A15CC0262571D40500F3754D /* FinancesCollectionViewCell.swift */,
 				A16C3C6E256F29F9008C38D7 /* FinancesViewController.swift */,
 				73CBDDAE257453BD00F36E2F /* HomeViewController.swift */,
@@ -547,7 +544,6 @@
 				A16C3C6B256F24F9008C38D7 /* ElectricityViewController.swift in Sources */,
 				A19E4B292582D6A500F831A7 /* PopUpViewController.swift in Sources */,
 				73CBDDAF257453BD00F36E2F /* HomeViewController.swift in Sources */,
-				703063CB2572D26C00028888 /* TaskCollectionViewCell.swift in Sources */,
 				A134FFF1256099D4005D811C /* SceneDelegate.swift in Sources */,
 				73CBDDB3257475E100F36E2F /* RoommateViewController.swift in Sources */,
 				703F10512582FB1100C1E433 /* CreateNewGroupViewController.swift in Sources */,

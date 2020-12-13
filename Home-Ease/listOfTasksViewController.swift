@@ -225,8 +225,8 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
                                 docRef2.updateData(["usersOfCompletedTasks" : completedUsers])
                                 self.updateCounts()
                                 DispatchQueue.main.async{
-                                    //self.pendingTableView.reloadData()
-                                   // self.completedTableView.reloadData()
+                                    self.pendingTableView.reloadData()
+                                    self.completedTableView.reloadData()
                                     //the above cause the code to crash
                                 }
                             }

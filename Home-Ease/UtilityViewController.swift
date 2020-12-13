@@ -11,11 +11,13 @@ import Firebase
 
 class UtilityViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    @IBOutlet weak var currentBalance: UILabel!
-    var users = ["Roommate 1", "Roommate 2", "Roommate 3"]
+    var users:[String] = []
+    var dates = ["01/01/2021","01/01/2021","01/01/2021"]
     var curr = 0.0
     
+    @IBOutlet weak var currentBalance: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var date: UILabel!
     
     @IBAction func compose(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(identifier: "popup") as! PopUpViewController
@@ -70,6 +72,8 @@ class UtilityViewController: UIViewController, UICollectionViewDelegate, UIColle
                         self.users = document2.data()?["roommateNames"] as! [String]
                         let strAmount = String(format:"%.02f", round(finances[2]*100)/100)
                         self.currentBalance.text = "$" + strAmount
+                        self.dates = document2.data()?["dueDates"] as! [String]
+                        self.date.text = self.dates[2]
                         self.collectionView.reloadData()
                     }
                 }

@@ -16,10 +16,9 @@ class PopUpViewController: UIViewController {
     @IBOutlet weak var inputAmount: UITextField!
     @IBOutlet weak var save: UIButton!
     @IBOutlet weak var datePicker: UIDatePicker!
-    @IBOutlet weak var date: UILabel!
     var input = 0.00
     var amount:Double = 0.00
-    var dates:[String] = []
+    var date:String = ""
     var type = 0
     
     @IBAction func cancel(_ sender: Any) {
@@ -27,6 +26,10 @@ class PopUpViewController: UIViewController {
     }
     @IBAction func saveDate(_ sender: Any) {
         if errorLabel.isHidden == true {
+            let date = datePicker.date
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MM/dd/yyyy"
+            self.date = dateFormatter.string(from: date)
             let dbGroups = Firestore.firestore().collection("groups")
             let dbUsers = Firestore.firestore().collection("users")
             let currentUser = Auth.auth().currentUser?.email
@@ -39,7 +42,10 @@ class PopUpViewController: UIViewController {
                         if let document2 = document2, document2.exists {
                             var finances = document2.data()?["finances"] as! [Double]
                             finances[self.type] = self.input
+                            var dueDates = document2.data()?["dueDates"] as! [String]
+                            dueDates[self.type] = self.date
                             dbGroups.document(groupName).updateData(["finances": finances])
+                            dbGroups.document(groupName).updateData(["dueDates": dueDates])
                             self.navigationController?.popViewController(animated: true)
                         }
                     }

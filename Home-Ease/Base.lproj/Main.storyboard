@@ -121,6 +121,7 @@
                     <connections>
                         <outlet property="collectionView" destination="9OA-Xa-uWP" id="KOX-Sx-kzM"/>
                         <outlet property="currentBalance" destination="eQn-Wt-71B" id="B2y-9w-6ez"/>
+                        <outlet property="date" destination="hho-rg-v6r" id="Tc8-lc-1YJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -863,6 +864,7 @@
                     <connections>
                         <outlet property="collectionView" destination="8kA-fP-4BM" id="2bM-S7-UAZ"/>
                         <outlet property="currentBalance" destination="eY9-Zd-4gw" id="N1d-ZF-ARz"/>
+                        <outlet property="date" destination="jVm-jY-w6L" id="jqW-79-11L"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hdd-ZE-tBV" sceneMemberID="firstResponder"/>
@@ -951,7 +953,6 @@
                         <viewLayoutGuide key="safeArea" id="wfe-FA-rZQ"/>
                     </view>
                     <connections>
-                        <outlet property="date" destination="vdy-5R-ofI" id="bDN-mq-t60"/>
                         <outlet property="datePicker" destination="dpD-e7-mOD" id="4EU-4A-nzO"/>
                         <outlet property="errorLabel" destination="W44-15-PaY" id="kF7-8f-GOw"/>
                         <outlet property="inputAmount" destination="8LM-9P-dzk" id="Uww-2o-ECG"/>
@@ -1183,6 +1184,7 @@
                     <connections>
                         <outlet property="collectionView" destination="3XB-CK-5Of" id="9wK-08-2Rr"/>
                         <outlet property="currentBalance" destination="V8z-Te-Nf3" id="TVp-cG-yDr"/>
+                        <outlet property="date" destination="Cy5-FX-NDD" id="H52-ui-YwT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pqG-1M-rWo" sceneMemberID="firstResponder"/>
@@ -1214,7 +1216,7 @@
                                 <rect key="frame" x="94" y="260" width="186" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ONN-IR-PsX">
                                 <rect key="frame" x="166" y="330" width="42" height="30"/>
@@ -1272,7 +1274,7 @@
                                 <rect key="frame" x="91" y="230" width="186" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Create New User" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lwh-CZ-f7g">
                                 <rect key="frame" x="119" y="93" width="131" height="21"/>
@@ -1340,7 +1342,7 @@
                                 <rect key="frame" x="94" y="193" width="186" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WKH-or-lpp">
                                 <rect key="frame" x="161" y="248" width="46" height="30"/>

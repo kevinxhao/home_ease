@@ -11,12 +11,13 @@ import Firebase
 
 class RentViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
   
-    var users = ["Roommate 1", "Roommate 2", "Roommate 3"]
+    var users:[String] = []
+    var dates = ["01/01/2021","01/01/2021","01/01/2021"]
     var curr = 0.0
     
     @IBOutlet weak var currentBalance: UILabel!
-
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var date: UILabel!
     
     @IBAction func compose(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(identifier: "popup") as! PopUpViewController
@@ -70,8 +71,10 @@ class RentViewController: UIViewController, UICollectionViewDelegate, UICollecti
                         let finances = document2.data()?["finances"] as! [Double]
                         self.curr = finances[0]
                         self.users = document2.data()?["roommateNames"] as! [String]
+                        self.dates = document2.data()?["dueDates"] as! [String]
                         let strAmount = String(format:"%.02f", round(finances[0]*100)/100)
                         self.currentBalance.text = "$" + strAmount
+                        self.date.text = self.dates[0]
                         self.collectionView.reloadData()
                     }
                 }

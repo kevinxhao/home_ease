@@ -76,7 +76,6 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //I consulted this when I was unsure about how to set up multiple table cells within the same view controller: https://stackoverflow.com/questions/37447124/how-do-i-create-two-table-views-in-one-view-controller-with-two-custom-uitablevi
-        
         if tableView == self.completedTableView{
             return self.completedCount
         }
@@ -88,12 +87,6 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let myCell = UITableViewCell(style: .default, reuseIdentifier: nil)
-//        completedTasksNames = UserDefaults.standard.object(forKey:"tasksNamesCompleted") as? [String] ?? []
-//        completedTasksRoommates = UserDefaults.standard.object(forKey:"tasksRoommatesCompleted") as? [String] ?? []
-//        pendingTasksNames = UserDefaults.standard.object(forKey:"tasksNamesPending") as? [String] ?? []
-//        pendingTasksRoommates = UserDefaults.standard.object(forKey:"tasksRoommatesPending") as? [String] ?? []
-//        myCompletedTasksNames = []
-//        myPendingTasksNames = []
         DispatchQueue.global(qos: .background).async{
             self.updateCounts()
             let currentUser = Auth.auth().currentUser?.email ?? ""
@@ -126,21 +119,23 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
     
     
     
+    @IBOutlet weak var scopeOfTaksButton: UIButton!
     
-    @IBOutlet weak var scopeOfTasksButton: UIBarButtonItem!
     
     @IBOutlet weak var weekLabel: UILabel!
+
     
-    @IBAction func changeTasksShown(_ sender: Any) {
-        if scopeOfTasksButton.title == "Show Only My Tasks"{
-            scopeOfTasksButton.title = "Show All Tasks"
-    //        markAllAsCompletedBtn.isHidden = false;
-        }
-        else if scopeOfTasksButton.title == "Show All Tasks"{
-            scopeOfTasksButton.title = "Show Only My Tasks"
-           // markAllAsCompletedBtn.isHidden = true
-        }
+    @IBAction func scopeOfTasksChange(_ sender: Any) {
+        if scopeOfTaksButton.titleLabel?.text == "Show Only My Tasks"{
+            scopeOfTaksButton.titleLabel?.text = "Show All Tasks"
+        //        markAllAsCompletedBtn.isHidden = false;
+            }
+        else if scopeOfTaksButton.titleLabel?.text == "Show All Tasks"{
+            scopeOfTaksButton.titleLabel?.text = "Show Only My Tasks"
+               // markAllAsCompletedBtn.isHidden = true
+            }
     }
+    
     
     @IBOutlet weak var taskField: UITextField!
     
@@ -223,10 +218,12 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
                                 docRef2.updateData(["usersOfPendingTasks" : pendingUsers])
                                 docRef2.updateData(["namesOfCompletedTasks" : completedTasks])
                                 docRef2.updateData(["usersOfCompletedTasks" : completedUsers])
-                                self.updateCounts()
+                                self.pendingCount -= 1
+                                self.completedCount += 1
+                                self.pendingTableView.reloadData()
+                                self.completedTableView.reloadData()
                                 DispatchQueue.main.async{
-                                    self.pendingTableView.reloadData()
-                                    self.completedTableView.reloadData()
+                                    
                                     //the above cause the code to crash
                                 }
                             }
@@ -256,7 +253,8 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
                                 completedUsers.remove(at: indexOfCell)
                                 docRef2.updateData(["namesOfCompletedTasks" : completedTasks])
                                 docRef2.updateData(["usersOfCompletedTasks" : completedUsers])
-                                self.updateCounts()
+                                self.completedCount -= 1
+                                self.completedTableView.reloadData()
                                 DispatchQueue.main.async{
                                    // self.completedTableView.reloadData()
                                     //the above cause the program to crash
@@ -272,30 +270,39 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        scopeOfTasksButton.title = "Show Only My Tasks"
-        addTaskView.isHidden = true
-        pendingTableView.dataSource = self;
-        updateCounts();
-        pendingTableView.reloadData();
-        pendingTableView.delegate = self;
-        completedTableView.dataSource = self;
-        completedTableView.reloadData();
-        completedTableView.delegate = self;
-        
+        self.addTaskView.isHidden = true
+        DispatchQueue.global(qos: .background).async{
+            self.updateCounts();
+            DispatchQueue.main.async{
+                super.viewDidLoad()
+                self.pendingTableView.dataSource = self;
+                self.pendingTableView.delegate = self;
+                self.completedTableView.dataSource = self;
+                self.completedTableView.delegate = self;
+                self.pendingTableView.reloadData();
+                self.completedTableView.reloadData();
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        if tableView == pendingTableView{
+            return "Mark as Completed"
+        }
+        else{
+            return "Delete Task"
+        }
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true);
-        scopeOfTasksButton.title = "Show Only My Tasks"
         updateCounts();
         completedTableView.reloadData();
         pendingTableView.reloadData();
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        scopeOfTasksButton.title = "Show Only My Tasks"
         completedTableView.reloadData();
         pendingTableView.reloadData();
     }

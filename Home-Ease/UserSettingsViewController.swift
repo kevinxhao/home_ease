@@ -37,7 +37,7 @@ class UserSettingsViewController: UIViewController {
             multiFactorString += " "
           }
         }
-        currentUsername.text = email
+       // currentUsername.text = email
     }
     
 

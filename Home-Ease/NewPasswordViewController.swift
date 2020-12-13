@@ -31,7 +31,7 @@ class NewPasswordViewController: UIViewController {
             alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: nil))
             
             self.present(alert, animated: true, completion: nil)
-            self.loading.isHidding = true
+           // self.loading.isHidding = true
         }
         if (newPassword == repeatPassword)
         {

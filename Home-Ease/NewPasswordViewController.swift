@@ -24,18 +24,23 @@ class NewPasswordViewController: UIViewController {
     
     @IBAction func newPasswordConfirmed(_ sender: Any) {
         
-        if (newPassword != repeatPassword)
+        if (newPassword.text != repeatPassword.text)
         {
-            let alert = UIAlertController(title: "error", message: "Password did not match ", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Error", message: "Password did not match ", preferredStyle: .alert)
             
             alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: nil))
             
-            self.present(alert, animated: true, completion: nil)
-           // self.loading.isHidding = true
+              self.present(alert, animated: true, completion: nil)
         }
-        if (newPassword == repeatPassword)
+        else
         {
+            let alert = UIAlertController(title: "Success", message: "Password Updated", preferredStyle: .alert)
+                       alert.addAction(UIAlertAction(title: "Done", style: .default, handler: nil))
+                         self.present(alert, animated: true, completion: nil)
             
+            Auth.auth().currentUser?.updatePassword(to: newPassword.text ?? "") { (error) in
+              // ...
+            }
         }
         
     }

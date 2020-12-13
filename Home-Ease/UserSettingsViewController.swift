@@ -29,7 +29,7 @@ class UserSettingsViewController: UIViewController {
           // Do NOT use this value to authenticate with your backend server,
           // if you have one. Use getTokenWithCompletion:completion: instead.
           
-          let email = user.email
+         // let email = user.email
         
           var multiFactorString = "MultiFactor: "
           for info in user.multiFactor.enrolledFactors {
@@ -37,7 +37,7 @@ class UserSettingsViewController: UIViewController {
             multiFactorString += " "
           }
         }
-       // currentUsername.text = email
+        currentUsername.text = user?.email
     }
     
 

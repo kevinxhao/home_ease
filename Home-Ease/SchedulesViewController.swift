@@ -155,6 +155,8 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
         eventTableView.register(UITableViewCell.self, forCellReuseIdentifier: "eventCell")
         eventTableView.dataSource = self
         eventTableView.reloadData()
+        eventTableView.layer.cornerRadius = 10.0
+        calendar.layer.cornerRadius = 10.0
         
         eventTableView.backgroundColor = UIColor.systemGray5
         

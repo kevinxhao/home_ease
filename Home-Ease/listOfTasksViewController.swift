@@ -94,26 +94,31 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
 //        pendingTasksRoommates = UserDefaults.standard.object(forKey:"tasksRoommatesPending") as? [String] ?? []
 //        myCompletedTasksNames = []
 //        myPendingTasksNames = []
-        let currentUser = Auth.auth().currentUser?.email ?? ""
-        let docRef = Firestore.firestore().collection("users").document(currentUser)
-        docRef.getDocument { (document, error) in
-            if let document = document, document.exists {
-                let groupName = (document.data()!["group"] ?? "")
-                let docRef2 = Firestore.firestore().collection("groups").document(groupName as! String)
-                docRef2.getDocument { (document2, error) in
-                    if let document2 = document2, document2.exists {
-                        let pendingTasks: [String] = (document2.data()!["namesOfPendingTasks"] ?? []) as! [String]
-                        let completedTasks: [String] = (document2.data()!["namesOfCompletedTasks"] ?? []) as! [String]
-                        if tableView == self.completedTableView{
-                            myCell.textLabel!.text = "\(completedTasks[indexPath.row])"
-                        }
-                        else if tableView == self.pendingTableView{
-                            myCell.textLabel!.text = "\(pendingTasks[indexPath.row])"
+        DispatchQueue.global(qos: .background).async{
+            self.updateCounts()
+            let currentUser = Auth.auth().currentUser?.email ?? ""
+            let docRef = Firestore.firestore().collection("users").document(currentUser)
+            docRef.getDocument { (document, error) in
+                if let document = document, document.exists {
+                    let groupName = (document.data()!["group"] ?? "")
+                    let docRef2 = Firestore.firestore().collection("groups").document(groupName as! String)
+                    docRef2.getDocument { (document2, error) in
+                        if let document2 = document2, document2.exists {
+                            let pendingTasks: [String] = (document2.data()!["namesOfPendingTasks"] ?? []) as! [String]
+                            let completedTasks: [String] = (document2.data()!["namesOfCompletedTasks"] ?? []) as! [String]
+                            DispatchQueue.main.async{
+                                if tableView == self.completedTableView{
+                                    myCell.textLabel!.text = "\(completedTasks[indexPath.row])"
+                                }
+                                else if tableView == self.pendingTableView{
+                                    myCell.textLabel!.text = "\(pendingTasks[indexPath.row])"
+                                }
+                            }
                         }
                     }
+                } else {
+                    print("Document does not exist")
                 }
-            } else {
-                print("Document does not exist")
             }
         }
         return myCell
@@ -136,28 +141,6 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
            // markAllAsCompletedBtn.isHidden = true
         }
     }
-    /*
-    @IBAction func markAllAsCompleted(_ sender: Any) {
-        completedTasksNames = UserDefaults.standard.object(forKey:"tasksNamesCompleted") as? [String] ?? []
-        completedTasksRoommates = UserDefaults.standard.object(forKey:"tasksRoommatesCompleted") as? [String] ?? []
-        pendingTasksNames = UserDefaults.standard.object(forKey:"tasksNamesPending") as? [String] ?? []
-        pendingTasksRoommates = UserDefaults.standard.object(forKey:"tasksRoommatesPending") as? [String] ?? []
-        
-        for i in 0..<pendingTasksRoommates.count-1{
-            if(pendingTasksRoommates[i] == "Jackson"){
-                completedTasksRoommates.append(pendingTasksRoommates[i])
-                completedTasksNames.append(pendingTasksNames[i])
-                pendingTasksRoommates.remove(at: i)
-                pendingTasksNames.remove(at: i)
-            }
-        }
-        UserDefaults.standard.set(pendingTasksRoommates, forKey: "tasksRoommatesPending")
-        UserDefaults.standard.set(pendingTasksNames, forKey: "tasksNamesPending")
-        UserDefaults.standard.set(completedTasksRoommates, forKey: "tasksRoommatesCompleted")
-        UserDefaults.standard.set(completedTasksNames, forKey: "tasksNamesCompleted")
-        pendingTableView.reloadData()
-        completedTableView.reloadData()
-    }*/
     
     @IBOutlet weak var taskField: UITextField!
     
@@ -168,32 +151,130 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     @IBAction func addTaskAndCloseSubview(_ sender: Any) {
-//        pendingTasksRoommates = UserDefaults.standard.object(forKey: "tasksRoommatesPending") as? [String] ?? []
-//        pendingTasksNames = UserDefaults.standard.object(forKey: "tasksNamesPending") as? [String] ?? []
-//        let newRoommateName = roommateField.text
-//        let newTaskName = taskField.text
-//        pendingTasksRoommates.append(newRoommateName!)
-//        pendingTasksNames.append(newTaskName!)
-//        print("pending Tasks roommates:  \(pendingTasksRoommates)")
-//        print("pending Tasks Names:  \(pendingTasksNames)")
-//        UserDefaults.standard.set(pendingTasksRoommates, forKey: "tasksRoommatesPending")
-//        UserDefaults.standard.set(pendingTasksNames, forKey: "tasksNamesPending")
         addTaskView.isHidden = true
-        taskField.text = ""
-        roommateField.text = ""
-        pendingTableView.reloadData()
+        let currentUser = Auth.auth().currentUser?.email ?? ""
+        let docRef = Firestore.firestore().collection("users").document(currentUser)
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                let groupName = (document.data()!["group"] ?? "")
+                let docRef2 = Firestore.firestore().collection("groups").document(groupName as! String)
+                docRef2.getDocument { (document2, error) in
+                    if let document2 = document2, document2.exists {
+                        //make sure that user exists. if they do not, return
+                        let roommatesInGroup: [String] = (document2.data()!["roommateNames"] ?? []) as! [String]
+                        for i in 0..<roommatesInGroup.count{
+                            if(roommatesInGroup[i] == self.roommateField.text!){
+                                var pendingTasks: [String] = (document2.data()!["namesOfPendingTasks"] ?? []) as! [String]
+                                var pendingUsers: [String] = (document2.data()!["usersOfPendingTasks"] ?? []) as! [String]
+                                
+                                if((pendingTasks.count == 1 && pendingUsers[0] == "")){
+                                    pendingTasks[0] = self.taskField.text!
+                                }
+                                else{
+                                    pendingTasks.append(self.taskField.text!)
+                                }
+                                if((pendingUsers.count == 1 && pendingUsers[0] == "")){
+                                    pendingUsers[0] = self.roommateField.text!
+                                }
+                                else{
+                                    pendingUsers.append(self.roommateField.text!)
+                                }
+                                self.pendingCount = pendingTasks.count
+                                docRef2.updateData(["namesOfPendingTasks" : pendingTasks])
+                                docRef2.updateData(["usersOfPendingTasks" : pendingUsers])
+                                print("pending count is now: \(self.pendingCount)")
+                                print(self.completedCount)
+                                self.taskField.text = ""
+                                self.roommateField.text = ""
+                                self.pendingTableView.reloadData()
+                            }
+                        }
+                        //todo: maybe put error statement here, saying that roommate is not in group
+                    }
+                }
+            } else {
+                print("Document does not exist")
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if tableView == self.pendingTableView && editingStyle == .delete{
+            DispatchQueue.global(qos: .background).async{
+                //move table view cell from pending to collection. the easier way to do this would be exclusively through firebase
+                let indexOfCell = indexPath.row;
+                let currentUser = Auth.auth().currentUser?.email ?? ""
+                let docRef = Firestore.firestore().collection("users").document(currentUser)
+                docRef.getDocument { (document, error) in
+                    if let document = document, document.exists {
+                        let groupName = (document.data()!["group"] ?? "")
+                        let docRef2 = Firestore.firestore().collection("groups").document(groupName as! String)
+                        docRef2.getDocument { (document2, error) in
+                            if let document2 = document2, document2.exists {
+                                var pendingTasks: [String] = (document2.data()!["namesOfPendingTasks"] ?? []) as! [String]
+                                var pendingUsers: [String] = (document2.data()!["usersOfPendingTasks"] ?? []) as! [String]
+                                var completedTasks: [String] = (document2.data()!["namesOfCompletedTasks"] ?? []) as! [String]
+                                var completedUsers: [String] = (document2.data()!["usersOfCompletedTasks"] ?? []) as! [String]
+                                completedTasks.append(pendingTasks[indexOfCell])
+                                completedUsers.append(pendingUsers[indexOfCell])
+                                pendingTasks.remove(at: indexOfCell)
+                                pendingUsers.remove(at: indexOfCell)
+                                docRef2.updateData(["namesOfPendingTasks" : pendingTasks])
+                                docRef2.updateData(["usersOfPendingTasks" : pendingUsers])
+                                docRef2.updateData(["namesOfCompletedTasks" : completedTasks])
+                                docRef2.updateData(["usersOfCompletedTasks" : completedUsers])
+                                self.updateCounts()
+                                DispatchQueue.main.async{
+                                    //self.pendingTableView.reloadData()
+                                   // self.completedTableView.reloadData()
+                                    //the above cause the code to crash
+                                }
+                            }
+                        }
+                    } else {
+                        print("Document does not exist")
+                    }
+                }
+            }
+        }
+        else if editingStyle == .delete{
+            //deleting from completed table view, so we want to delete permanently
+            DispatchQueue.global(qos: .background).async{
+                //move table view cell from pending to collection. the easier way to do this would be exclusively through firebase
+                let indexOfCell = indexPath.row;
+                let currentUser = Auth.auth().currentUser?.email ?? ""
+                let docRef = Firestore.firestore().collection("users").document(currentUser)
+                docRef.getDocument { (document, error) in
+                    if let document = document, document.exists {
+                        let groupName = (document.data()!["group"] ?? "")
+                        let docRef2 = Firestore.firestore().collection("groups").document(groupName as! String)
+                        docRef2.getDocument { (document2, error) in
+                            if let document2 = document2, document2.exists {
+                                var completedTasks: [String] = (document2.data()!["namesOfCompletedTasks"] ?? []) as! [String]
+                                var completedUsers: [String] = (document2.data()!["usersOfCompletedTasks"] ?? []) as! [String]
+                                completedTasks.remove(at: indexOfCell)
+                                completedUsers.remove(at: indexOfCell)
+                                docRef2.updateData(["namesOfCompletedTasks" : completedTasks])
+                                docRef2.updateData(["usersOfCompletedTasks" : completedUsers])
+                                self.updateCounts()
+                                DispatchQueue.main.async{
+                                   // self.completedTableView.reloadData()
+                                    //the above cause the program to crash
+                                }
+                            }
+                        }
+                    } else {
+                        print("Document does not exist")
+                    }
+                }
+            }
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        /*UserDefaults.standard.set([], forKey: "tasksRoommatesPending")
-        UserDefaults.standard.set([], forKey: "tasksNamesPending")
-        UserDefaults.standard.set([], forKey: "tasksRoommatesCompleted")
-        UserDefaults.standard.set([], forKey: "tasksNamesCompleted")*/
         scopeOfTasksButton.title = "Show Only My Tasks"
         addTaskView.isHidden = true
-   //     markAllAsCompletedBtn.isHidden = true
         pendingTableView.dataSource = self;
         updateCounts();
         pendingTableView.reloadData();
@@ -208,18 +289,12 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true);
         scopeOfTasksButton.title = "Show Only My Tasks"
-       // markAllAsCompletedBtn.isHidden = true
-//        completedTasksNames = UserDefaults.standard.object(forKey:"tasksNamesCompleted") as? [String] ?? []
-//        completedTasksRoommates = UserDefaults.standard.object(forKey:"tasksRoommatesCompleted") as? [String] ?? []
-//        pendingTasksNames = UserDefaults.standard.object(forKey:"tasksNamesPending") as? [String] ?? []
-//        pendingTasksRoommates = UserDefaults.standard.object(forKey:"tasksRoommatesPending") as? [String] ?? []
         updateCounts();
         completedTableView.reloadData();
         pendingTableView.reloadData();
     }
 
     override func viewDidAppear(_ animated: Bool) {
-     //   markAllAsCompletedBtn.isHidden = true
         scopeOfTasksButton.title = "Show Only My Tasks"
         completedTableView.reloadData();
         pendingTableView.reloadData();

@@ -28,7 +28,7 @@ class SettingsTableViewController: UITableViewController{
         let vc = storyboard?.instantiateViewController(identifier: "WelcomeVC") as! WelcomePageViewController
         navigationController?.pushViewController(vc, animated: true)
         self.tabBarController?.tabBar.isHidden = true
-        //self.navigationController?.setNavigationBarHidden(true, animated: true)
+        
 
     }
     

@@ -466,7 +466,7 @@
                                                             <rect key="frame" x="84" y="99" width="173" height="52"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                            <nil key="textColor"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -501,10 +501,10 @@
             </objects>
             <point key="canvasLocation" x="848.79999999999995" y="1566.5024630541873"/>
         </scene>
-        <!--Roomate Scene-->
+        <!--Roomates-->
         <scene sceneID="buD-td-PJM">
             <objects>
-                <viewController storyboardIdentifier="roommateView" title="Roomate Scene" id="8io-3t-8To" customClass="RoommateViewController" customModule="Home_Ease" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="roommateView" title="Roomates" id="8io-3t-8To" customClass="RoommateViewController" customModule="Home_Ease" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SJT-Hb-Ivv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

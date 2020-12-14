@@ -88,7 +88,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate,UICollectio
            navigationController?.pushViewController(listTasksVC, animated: true)
            }
            if indexPath.row == 1{
-               let vc = storyboard?.instantiateViewController(identifier: "rent") as! RentViewController
+               let vc = storyboard?.instantiateViewController(identifier: "finances") as! FinancesViewController
                navigationController?.pushViewController(vc, animated: true)
            }
            if indexPath.row == 2{

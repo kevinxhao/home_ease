@@ -17,6 +17,7 @@
 		73B8414D2581C16A003112AE /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B8414C2581C16A003112AE /* SignInViewController.swift */; };
 		73B8414F2581C579003112AE /* CreateNewUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B8414E2581C579003112AE /* CreateNewUserViewController.swift */; };
 		73BD1FBD2580515600B8A319 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 73BD1FBC2580515600B8A319 /* GoogleService-Info.plist */; };
+		73C984502587054700CC4D22 /* RoommateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C9844F2587054600CC4D22 /* RoommateCollectionViewCell.swift */; };
 		73CBDDA52574424200F36E2F /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBDDA42574424200F36E2F /* HomeCollectionViewCell.swift */; };
 		73CBDDAF257453BD00F36E2F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBDDAE257453BD00F36E2F /* HomeViewController.swift */; };
 		73CBDDB3257475E100F36E2F /* RoommateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBDDB2257475E100F36E2F /* RoommateViewController.swift */; };
@@ -70,6 +71,7 @@
 		73B8414C2581C16A003112AE /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		73B8414E2581C579003112AE /* CreateNewUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewUserViewController.swift; sourceTree = "<group>"; };
 		73BD1FBC2580515600B8A319 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		73C9844F2587054600CC4D22 /* RoommateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoommateCollectionViewCell.swift; sourceTree = "<group>"; };
 		73CBDDA42574424200F36E2F /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		73CBDDAE257453BD00F36E2F /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		73CBDDB2257475E100F36E2F /* RoommateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoommateViewController.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				A16C3C6E256F29F9008C38D7 /* FinancesViewController.swift */,
 				73CBDDAE257453BD00F36E2F /* HomeViewController.swift */,
 				73CBDDA42574424200F36E2F /* HomeCollectionViewCell.swift */,
+				73C9844F2587054600CC4D22 /* RoommateCollectionViewCell.swift */,
 				73CBDDB2257475E100F36E2F /* RoommateViewController.swift */,
 				A16C3C6C256F252D008C38D7 /* RentViewController.swift */,
 				A19E4B282582D6A500F831A7 /* PopUpViewController.swift */,
@@ -545,6 +548,7 @@
 				A19E4B292582D6A500F831A7 /* PopUpViewController.swift in Sources */,
 				73CBDDAF257453BD00F36E2F /* HomeViewController.swift in Sources */,
 				A134FFF1256099D4005D811C /* SceneDelegate.swift in Sources */,
+				73C984502587054700CC4D22 /* RoommateCollectionViewCell.swift in Sources */,
 				73CBDDB3257475E100F36E2F /* RoommateViewController.swift in Sources */,
 				703F10512582FB1100C1E433 /* CreateNewGroupViewController.swift in Sources */,
 				7362A6282586984300466A98 /* NewPasswordViewController.swift in Sources */,

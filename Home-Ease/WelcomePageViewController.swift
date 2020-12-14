@@ -12,7 +12,8 @@ class WelcomePageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.navigationItem.hidesBackButton = true
+        self.navigationController?.navigationBar.barTintColor = UIColor.init(red: 21/255, green: 50/255, blue: 104/255, alpha: 1)
         // Do any additional setup after loading the view.
     }
     

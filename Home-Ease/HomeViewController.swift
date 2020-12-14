@@ -13,7 +13,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate,UICollectio
     var tasks: [String] = []
     //var taskUsers: [String] = []
     var count: Int = 1
-    var finances: [Int] = []
+    var finances: [Double] = []
     var groupName: String = ""
     var userTotal: Float = 0
     var nextTask = ""
@@ -29,29 +29,20 @@ class HomeViewController: UIViewController, UICollectionViewDelegate,UICollectio
         return CGSize(width: 340, height: 180)
     }
     func getUserInfo(){
-        print("entering get user info method")
         let currentUser = Auth.auth().currentUser?.email ?? ""
         let userInfo = Firestore.firestore().collection("users").document(currentUser)
-        print("got user info!")
         userInfo.getDocument { (document, error) in
             if let document = document, document.exists{
-                print("document exists!")
                 let group = document.data()!["group"] as! String
-                
-                print("group is \(group) line finished")
                 let groupInfo = Firestore.firestore().collection("groups").document(group)
-                print("got gorup info")
                 groupInfo.getDocument { (groupDocument, groupError) in
                     if let groupDocument = groupDocument, groupDocument.exists{
-                        print("group document exists!")
                         self.tasks = (groupDocument.data()!["namesOfPendingTasks"] ?? []) as! [String]
                         //self.taskUsers = (groupDocument.data()!["usersOfPendingTasks"] ?? []) as! [String]
                         self.count = groupDocument.data()?["count"] as! Int
-                        self.finances = (groupDocument.data()!["finances"] ?? []) as! [Int]
+                        self.finances = (groupDocument.data()!["finances"] ?? []) as! [Double]
                         self.groupName = (document.data()!["group"] ?? []) as! String
-                        print("can't wait to reload this data!")
                         self.collectionView.reloadData()
-                        print("finished get user info method")
                     }
                 }
             }
@@ -67,7 +58,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate,UICollectio
         
         let sum = finances.reduce(0, +)
         
-        let userTotal = sum / self.count
+        let userTotal = sum / Double(self.count)
         
         
         if indexPath.row == 0 {
@@ -79,7 +70,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate,UICollectio
             }
         }
         if indexPath.row == 1 {
-            cell.homeExtraInfoLabel.text = "\(userTotal)"
+            cell.homeExtraInfoLabel.text = String(format:"%.02f", round(userTotal*100)/100)
              }
         if indexPath.row == 2 {
             cell.homeExtraInfoLabel.text = groupName
@@ -107,17 +98,25 @@ class HomeViewController: UIViewController, UICollectionViewDelegate,UICollectio
        }
        
     
-
+    override func viewDidAppear(_ animated: Bool) {
+        DispatchQueue.global(qos: .background).async {
+        self.getUserInfo()
+            DispatchQueue.main.async {
+                self.collectionView.dataSource = self
+                self.collectionView.delegate = self
+                self.collectionView.reloadData()
+            }
+        }
+    }
     override func viewDidLoad() {
         DispatchQueue.global(qos: .background).async {
         self.getUserInfo()
-        DispatchQueue.main.async {
-            super.viewDidLoad()
-            self.collectionView.dataSource = self
-            self.collectionView.delegate = self
-            self.collectionView.reloadData()
+            DispatchQueue.main.async {
+                super.viewDidLoad()
+                self.collectionView.dataSource = self
+                self.collectionView.delegate = self
+                self.collectionView.reloadData()
+            }
         }
-        // Do any additional setup after loading the view.
-    }
 }
 }

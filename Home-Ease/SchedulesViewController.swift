@@ -22,9 +22,6 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
     
     var userGroup: String = ""
     
-    //data pool
-    //     var arrayOfEvents = [["2020-11-29", "CSE438 Project Update Submission Due"], ["2020-11-28", "Grocery"], ["2020-11-30", "CSE438 Project Status Update"], ["2020-12-02", "CSE438 Lecture"], ["2020-11-20", "event0"], ["2020-11-20", "event1"], ["2020-11-20", "event2"], ["2020-11-20", "event3"], ["2020-11-21", "event5"], ["2020-11-29","zoom meeting"]]
-    
     var arrayOfEvents : [[String]] = []
     
     var fireArray = [[String]]()
@@ -154,23 +151,14 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     
-    
-    
-    //    var tempArray: [String] = []
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         let calendar = FSCalendar(frame: CGRect(x: 17, y: 100, width: 343, height: 290))
         calendar.dataSource = self
         calendar.delegate = self
         view.addSubview(calendar)
         self.calendar = calendar
-        
         calendar.backgroundColor = UIColor.systemGray6
-        
         eventTableView.register(UITableViewCell.self, forCellReuseIdentifier: "eventCell")
         eventTableView.dataSource = self
         eventTableView.reloadData()
@@ -180,7 +168,6 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
         eventTableView.backgroundColor = UIColor.systemGray5
         
         let today = dateFormatter2.string(from: calendar.today!)
-        //        print(today)
         
         //display today's event as view loads
         for index in 0..<arrayOfEvents.count{
@@ -195,18 +182,13 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
         let docRef = Firestore.firestore().collection("users").document(email ?? "")
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
-                //                print("Document uid: \(document.data()!["firstName"] ?? "")")
             } else {
-                //                print("Document does not exist")
+                    print("Document does not exist")
             }
             
             self.userFirstName = document?.data()!["firstName"] as! String
             self.userGroup = document?.data()!["group"] as! String
-            //            print("my name is \(self.userFirstName)")
-            //            print("my group is \(self.userGroup)")
-            
             self.ref = Database.database().reference().child(self.userGroup)
-            
             self.ref?.observe(.value, with: {
                 snapshot in
                 
@@ -228,9 +210,6 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
 }  //end of scope for class SchedulesViewController
-
-
-
 
 //creating secondary dateFormatter with fixed date format
 //reference: https://stackoverflow.com/questions/37874349/how-to-add-events-to-fscalendar-swift
@@ -257,7 +236,6 @@ extension SchedulesViewController: FSCalendarDataSource, FSCalendarDelegate{
     //call this function when user taps on the date
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         let dateString = dateFormatter2.string(from: date)
-        //        print("date selected == \(dateString)")
         dateSelected = dateString
         self.arrayForTableView = [] //empty this array for table view
         self.eventTableView.reloadData()

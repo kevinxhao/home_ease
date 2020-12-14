@@ -77,10 +77,7 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
                             let pendingTasks: [String] = (document2.data()!["namesOfPendingTasks"] ?? []) as! [String]
                             let completedTasks: [String] = (document2.data()!["namesOfCompletedTasks"] ?? []) as! [String]
                             self.pendingCount = pendingTasks.count
-                            print("pending count is now: \(self.pendingCount)")
                             self.completedCount = completedTasks.count
-                            print("completed count is now: \(self.completedCount)")
-                            print(self.completedCount)
                             self.completedTableView.reloadData()
                             self.pendingTableView.reloadData()
                         }
@@ -140,7 +137,6 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
                                     for i in 0..<loopMax{
                                         if(allEmails[i] == cellEmail){
                                             myCell.backgroundColor = UIColor(hex: colors[i])
-                                            print("colors[i] is \(colors[i])")
                                         }
                                     }
                                     
@@ -156,7 +152,6 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
                                     for i in 0..<loopMax{
                                         if(allEmails[i] == cellEmail){
                                             myCell.backgroundColor = UIColor(hex: colors[i])
-                                            print("colors[i] is \(colors[i])")
                                         }
                                     }
                                 }
@@ -232,8 +227,6 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
                                     self.pendingCount = pendingTasks.count
                                     docRef2.updateData(["namesOfPendingTasks" : pendingTasks])
                                     docRef2.updateData(["emailsOfPendingTasks" : pendingEmails])
-                                    print("pending count is now: \(self.pendingCount)")
-                                    print(self.completedCount)
                                     self.taskField.text = ""
                                     self.roommateField.text = ""
                                     self.pendingTableView.reloadData()

@@ -63,7 +63,6 @@ class SignInViewController: UIViewController {
                 let vc = self.storyboard?.instantiateViewController(identifier: "InitialTabBar") as! UITabBarController
                 self.navigationController?.setNavigationBarHidden(true, animated: true)
                 self.navigationController?.pushViewController(vc, animated: true)
-                print(Auth.auth().currentUser!.email!)
             }
         }
     }

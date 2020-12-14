@@ -16,7 +16,7 @@ class CreateNewGroupViewController: UIViewController {
     @IBOutlet weak var groupName: UITextField!
     @IBOutlet weak var groupPassword: UITextField!
     
-    let colorsArray: [String] = ["#f231f2ff", "#6565bfff", "#6efdfdff"]
+    let colorsArray: [String] = ["#f231f2ff", "#6565bfff", "#6efdfdff", "#fff000ff", "#66ff00ff"]
     
     //function definition borrowed from create new user view controller
     func validate() -> String? {
@@ -44,8 +44,6 @@ class CreateNewGroupViewController: UIViewController {
                 }
                 else {
                     for document in querySnapshot!.documents {
-                        print(document.documentID)
-                        print(newGroupName)
                         if (document.documentID == newGroupName) {
                             self.errorLabel.isHidden = false
                             self.errorLabel.text = "This group name already exists."
@@ -66,12 +64,11 @@ class CreateNewGroupViewController: UIViewController {
                     let docRef = Firestore.firestore().collection("users").document(email ?? "")
                     docRef.getDocument { (document, error) in
                         if let document = document, document.exists {
-                            print("Document uid: \(document.data()!["firstName"] ?? "")")
                             database.collection("users").document(currentUser ?? "").updateData(["group":newGroupName])
                             let arr: [String] = [(document.data()!["firstName"] as! String)]
                             let emailArr: [String] = [email!]
                             let taskEmailArr: [String] = []
-                            let colorArr: [String] = ["#fff000ff"]
+                            let colorArr: [String] = ["#f231f2ff"]
                             database.collection("groups").document(newGroupName).setData(["password": newPassword, "count": 1, "roommateNames": arr, "finances": finances, "dueDates":dates, "taskCompletion": completion, "taskRoommates": taskRoommates, "roommateEmails": emailArr, "roommateColors": colorArr, "emailsOfPendingTasks": taskEmailArr, "emailsOfCompletedTasks": taskEmailArr, "namesOfPendingTasks": namesOfPendingTasks, "namesOfCompletedTasks": namesOfCompletedTasks])
                             { (error) in
                                 if error != nil {
@@ -111,15 +108,12 @@ class CreateNewGroupViewController: UIViewController {
         else {
             let currentUser = Auth.auth().currentUser?.email
             for document in querySnapshot!.documents {
-                print(document.documentID)
-                print(potentialGroupName)
                 if (document.documentID == potentialGroupName && (document.data()["password"] as! String) == potentialGroupPassword) {
                     //the group name exists AND the password matches
                     //need to get count and roommate names array from group
                     let docRef = dbGroups.document(potentialGroupName)
                     docRef.getDocument { (document, error) in
                         if let document = document, document.exists {
-                            print("Group Found")
                             var nameArray = document.data()!["roommateNames"] as! [String]
                             var emailArray = document.data()!["roommateEmails"] as! [String]
                             var currentCount = document.data()!["count"] as! Int
@@ -127,10 +121,9 @@ class CreateNewGroupViewController: UIViewController {
                             let docRef2 = dbUsers.document(currentUser ?? "")
                             docRef2.getDocument { (document2, error2) in
                                 if let document2 = document2, document2.exists{
-                                    print("User Found")
                                     nameArray.append(document2.data()!["firstName"] as! String)
                                     emailArray.append(document2.documentID)
-                                    taskColorsArray.append(self.colorsArray[taskColorsArray.count%8])
+                                    taskColorsArray.append(self.colorsArray[taskColorsArray.count%5])
                                     currentCount += 1
                                     dbGroups.document(potentialGroupName).updateData(["count": currentCount, "roommateNames": nameArray])
                                     dbUsers.document(currentUser ?? "").updateData(["group": potentialGroupName])

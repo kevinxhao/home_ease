@@ -9,6 +9,7 @@
 import UIKit
 
 class HomeCollectionViewCell: UICollectionViewCell {
+    @IBOutlet weak var homeExtraInfoLabel: UILabel!
     @IBOutlet weak var homeInfoView: UIView!
     @IBOutlet weak var homeInfoLabel: UILabel!
 }

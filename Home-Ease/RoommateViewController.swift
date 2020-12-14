@@ -7,13 +7,53 @@
 //
 
 import UIKit
+import Firebase
 
-class RoommateViewController: UIViewController {
-
+class RoommateViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    @IBOutlet weak var roommateCollectionView: UICollectionView!
+    
+    var users: [String] = []
+    
+    func getUsers(){
+        let currentUser = Auth.auth().currentUser?.email ?? ""
+        let userInfo = Firestore.firestore().collection("users").document(currentUser)
+        userInfo.getDocument { (document, error) in
+            if let document = document, document.exists{
+                let group = document.data()!["group"] ?? ""
+                let groupInfo = Firestore.firestore().collection("groups").document(group as! String)
+                groupInfo.getDocument { (groupDocument, groupError) in
+                    if let groupDocument = groupDocument, groupDocument.exists{
+                        self.users = (groupDocument.data()!["roommateNames"] ?? []) as! [String]
+                        self.roommateCollectionView.reloadData()
+                    }
+                }
+            }
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return users.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RoommateViewCell", for: indexPath) as! RoommateCollectionViewCell
+        cell.roomateNameLabel.text = users[indexPath.row]
+        return cell
+    }
+    
+    
     override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        DispatchQueue.global(qos: .background).async {
+            self.getUsers()
+            DispatchQueue.main.async {
+                super.viewDidLoad()
+                self.roommateCollectionView.dataSource = self
+                self.roommateCollectionView.delegate = self
+                self.roommateCollectionView.reloadData()
+            }
+            // Do any additional setup after loading the view.
+        }
     }
     
 

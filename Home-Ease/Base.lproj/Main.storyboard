@@ -553,7 +553,7 @@
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="212" height="104"/>
                                         <connections>
-                                            <outlet property="roomateNameLabel" destination="sxR-6C-5lr" id="iCC-HI-iqs"/>
+                                            <outlet property="roommateNameLabel" destination="sxR-6C-5lr" id="aIA-Ql-CmD"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

@@ -11,13 +11,13 @@
 		703063CD2573113E00028888 /* listOfTasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703063CC2573113E00028888 /* listOfTasksViewController.swift */; };
 		703F10512582FB1100C1E433 /* CreateNewGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703F10502582FB1100C1E433 /* CreateNewGroupViewController.swift */; };
 		732FAD4D2586A92300567297 /* WelcomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732FAD4C2586A92300567297 /* WelcomePageViewController.swift */; };
-		732FAD532586D5BE00567297 /* RoommateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732FAD522586D5BE00567297 /* RoommateCollectionViewCell.swift */; };
 		7362A6262586929D00466A98 /* UserSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7362A6252586929D00466A98 /* UserSettingsViewController.swift */; };
 		7362A6282586984300466A98 /* NewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7362A6272586984300466A98 /* NewPasswordViewController.swift */; };
 		73A410FF2574541E0078436F /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A410FE2574541E0078436F /* SettingsTableViewController.swift */; };
 		73B8414D2581C16A003112AE /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B8414C2581C16A003112AE /* SignInViewController.swift */; };
 		73B8414F2581C579003112AE /* CreateNewUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B8414E2581C579003112AE /* CreateNewUserViewController.swift */; };
 		73BD1FBD2580515600B8A319 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 73BD1FBC2580515600B8A319 /* GoogleService-Info.plist */; };
+		73C9844E2586FD2200CC4D22 /* RoomateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C9844D2586FD2200CC4D22 /* RoomateCollectionViewCell.swift */; };
 		73CBDDA52574424200F36E2F /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBDDA42574424200F36E2F /* HomeCollectionViewCell.swift */; };
 		73CBDDAF257453BD00F36E2F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBDDAE257453BD00F36E2F /* HomeViewController.swift */; };
 		73CBDDB3257475E100F36E2F /* RoommateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBDDB2257475E100F36E2F /* RoommateViewController.swift */; };
@@ -65,13 +65,13 @@
 		703063CC2573113E00028888 /* listOfTasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = listOfTasksViewController.swift; sourceTree = "<group>"; };
 		703F10502582FB1100C1E433 /* CreateNewGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewGroupViewController.swift; sourceTree = "<group>"; };
 		732FAD4C2586A92300567297 /* WelcomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePageViewController.swift; sourceTree = "<group>"; };
-		732FAD522586D5BE00567297 /* RoommateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RoommateCollectionViewCell.swift; path = "/Users/snowhao/Desktop/home_ease/Home-Ease/RoommateCollectionViewCell.swift"; sourceTree = "<absolute>"; };
 		7362A6252586929D00466A98 /* UserSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsViewController.swift; sourceTree = "<group>"; };
 		7362A6272586984300466A98 /* NewPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordViewController.swift; sourceTree = "<group>"; };
 		73A410FE2574541E0078436F /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		73B8414C2581C16A003112AE /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		73B8414E2581C579003112AE /* CreateNewUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewUserViewController.swift; sourceTree = "<group>"; };
 		73BD1FBC2580515600B8A319 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		73C9844D2586FD2200CC4D22 /* RoomateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomateCollectionViewCell.swift; sourceTree = "<group>"; };
 		73CBDDA42574424200F36E2F /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		73CBDDAE257453BD00F36E2F /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		73CBDDB2257475E100F36E2F /* RoommateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoommateViewController.swift; sourceTree = "<group>"; };
@@ -207,7 +207,7 @@
 				73CBDDAE257453BD00F36E2F /* HomeViewController.swift */,
 				73CBDDA42574424200F36E2F /* HomeCollectionViewCell.swift */,
 				73CBDDB2257475E100F36E2F /* RoommateViewController.swift */,
-				732FAD522586D5BE00567297 /* RoommateCollectionViewCell.swift */,
+				73C9844D2586FD2200CC4D22 /* RoomateCollectionViewCell.swift */,
 				A16C3C6C256F252D008C38D7 /* RentViewController.swift */,
 				A19E4B282582D6A500F831A7 /* PopUpViewController.swift */,
 				A1599E4A25731C1500C68C8A /* DetailedFinancesCollectionViewCell.swift */,
@@ -544,11 +544,11 @@
 				A15CC0272571D40500F3754D /* FinancesCollectionViewCell.swift in Sources */,
 				A16C3C6F256F29F9008C38D7 /* FinancesViewController.swift in Sources */,
 				A9DD5FB625814287003FD798 /* SchedulesViewController.swift in Sources */,
+				73C9844E2586FD2200CC4D22 /* RoomateCollectionViewCell.swift in Sources */,
 				A16C3C6B256F24F9008C38D7 /* ElectricityViewController.swift in Sources */,
 				A19E4B292582D6A500F831A7 /* PopUpViewController.swift in Sources */,
 				73CBDDAF257453BD00F36E2F /* HomeViewController.swift in Sources */,
 				A134FFF1256099D4005D811C /* SceneDelegate.swift in Sources */,
-				732FAD532586D5BE00567297 /* RoommateCollectionViewCell.swift in Sources */,
 				73CBDDB3257475E100F36E2F /* RoommateViewController.swift in Sources */,
 				703F10512582FB1100C1E433 /* CreateNewGroupViewController.swift in Sources */,
 				7362A6282586984300466A98 /* NewPasswordViewController.swift in Sources */,

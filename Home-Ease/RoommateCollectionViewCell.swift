@@ -1,5 +1,5 @@
 //
-//  RoomateCollectionViewCell.swift
+//  RoommateCollectionViewCell.swift
 //  Home-Ease
 //
 //  Created by Snow Hao on 12/13/20.
@@ -8,9 +8,7 @@
 
 import UIKit
 
-class RoomateCollectionViewCell: UICollectionViewCell {
+class RoommateCollectionViewCell: UICollectionViewCell {
     
-
     @IBOutlet weak var roommateNameLabel: UILabel!
-    
 }

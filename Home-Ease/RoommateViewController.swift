@@ -37,7 +37,7 @@ class RoommateViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RoommateViewCell", for: indexPath) as! RoomateCollectionViewCell
+         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RoommateViewCell", for: indexPath) as! RoommateCollectionViewCell
         cell.roommateNameLabel.text = users[indexPath.row]
         return cell
     }

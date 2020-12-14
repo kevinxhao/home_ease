@@ -9,7 +9,33 @@
 import UIKit
 import Firebase
 
+extension UIColor {
+    public convenience init?(hex: String) {
+        let r, g, b, a: CGFloat
 
+        if hex.hasPrefix("#") {
+            let start = hex.index(hex.startIndex, offsetBy: 1)
+            let hexColor = String(hex[start...])
+
+            if hexColor.count == 8 {
+                let scanner = Scanner(string: hexColor)
+                var hexNumber: UInt64 = 0
+
+                if scanner.scanHexInt64(&hexNumber) {
+                    r = CGFloat((hexNumber & 0xff000000) >> 24) / 255
+                    g = CGFloat((hexNumber & 0x00ff0000) >> 16) / 255
+                    b = CGFloat((hexNumber & 0x0000ff00) >> 8) / 255
+                    a = CGFloat(hexNumber & 0x000000ff) / 255
+
+                    self.init(red: r, green: g, blue: b, alpha: a)
+                    return
+                }
+            }
+        }
+
+        return nil
+    }
+}
 
 class listOfTasksViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -23,6 +49,9 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
         taskField.text = ""
         roommateField.text = ""
     }
+    
+    
+    
     
     
     //@IBOutlet weak var markAllAsCompletedBtn: UIButton!
@@ -103,9 +132,33 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
                             DispatchQueue.main.async{
                                 if tableView == self.completedTableView{
                                     myCell.textLabel!.text = "\(completedTasks[indexPath.row])"
+                                    let loopMax: Int = document2.data()!["count"] as! Int
+                                    let emails: [String] = document2.data()!["emailsOfCompletedTasks"] as! [String]
+                                    let allEmails: [String] = document2.data()!["roommateEmails"] as! [String]
+                                    let cellEmail = emails[indexPath.row]
+                                    let colors: [String] = document2.data()!["roommateColors"] as! [String]
+                                    for i in 0..<loopMax{
+                                        if(allEmails[i] == cellEmail){
+                                            myCell.backgroundColor = UIColor(hex: colors[i])
+                                            print("colors[i] is \(colors[i])")
+                                        }
+                                    }
+                                    
+                                    //completedEmails
                                 }
                                 else if tableView == self.pendingTableView{
                                     myCell.textLabel!.text = "\(pendingTasks[indexPath.row])"
+                                    let loopMax: Int = document2.data()!["count"] as! Int
+                                    let emails: [String] = document2.data()!["emailsOfPendingTasks"] as! [String]
+                                    let allEmails: [String] = document2.data()!["roommateEmails"] as! [String]
+                                    let cellEmail = emails[indexPath.row]
+                                    let colors: [String] = document2.data()!["roommateColors"] as! [String]
+                                    for i in 0..<loopMax{
+                                        if(allEmails[i] == cellEmail){
+                                            myCell.backgroundColor = UIColor(hex: colors[i])
+                                            print("colors[i] is \(colors[i])")
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -158,27 +211,27 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
                     docRef2.getDocument { (document2, error) in
                         if let document2 = document2, document2.exists {
                             //make sure that user exists. if they do not, return
-                            let roommatesInGroup: [String] = (document2.data()!["roommateNames"] ?? []) as! [String]
-                            for i in 0..<roommatesInGroup.count{
-                                if(roommatesInGroup[i] == self.roommateField.text!){
+                            let emailsInGroup: [String] = (document2.data()!["roommateEmails"] ?? []) as! [String]
+                            for i in 0..<emailsInGroup.count{
+                                if(emailsInGroup[i] == self.roommateField.text!){
                                     var pendingTasks: [String] = (document2.data()!["namesOfPendingTasks"] ?? []) as! [String]
-                                    var pendingUsers: [String] = (document2.data()!["usersOfPendingTasks"] ?? []) as! [String]
-                                    
-                                    if((pendingTasks.count == 1 && pendingUsers[0] == "")){
-                                        pendingTasks[0] = self.taskField.text!
+                                    //var pendingUsers: [String] = (document2.data()!["usersOfPendingTasks"] ?? []) as! [String]
+                                    var pendingEmails: [String] = (document2.data()!["emailsOfPendingTasks"] ?? []) as! [String]
+                                    if((pendingTasks.count == 1 && pendingEmails[0] == "")){
+                                        pendingEmails[0] = self.taskField.text!
                                     }
                                     else{
                                         pendingTasks.append(self.taskField.text!)
                                     }
-                                    if((pendingUsers.count == 1 && pendingUsers[0] == "")){
-                                        pendingUsers[0] = self.roommateField.text!
+                                    if((pendingEmails.count == 1 && pendingEmails[0] == "")){
+                                        pendingEmails[0] = self.roommateField.text!
                                     }
                                     else{
-                                        pendingUsers.append(self.roommateField.text!)
+                                        pendingEmails.append(self.roommateField.text!)
                                     }
                                     self.pendingCount = pendingTasks.count
                                     docRef2.updateData(["namesOfPendingTasks" : pendingTasks])
-                                    docRef2.updateData(["usersOfPendingTasks" : pendingUsers])
+                                    docRef2.updateData(["emailsOfPendingTasks" : pendingEmails])
                                     print("pending count is now: \(self.pendingCount)")
                                     print(self.completedCount)
                                     self.taskField.text = ""
@@ -191,6 +244,8 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
                     }
                 } else {
                     print("Document does not exist")
+                    self.taskField.text = ""
+                    self.roommateField.text = ""
                 }
             }
         }
@@ -210,23 +265,26 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
                         docRef2.getDocument { (document2, error) in
                             if let document2 = document2, document2.exists {
                                 var pendingTasks: [String] = (document2.data()!["namesOfPendingTasks"] ?? []) as! [String]
-                                var pendingUsers: [String] = (document2.data()!["usersOfPendingTasks"] ?? []) as! [String]
+                                //var pendingUsers: [String] = (document2.data()!["usersOfPendingTasks"] ?? []) as! [String]
+                                var pendingEmails: [String] = (document2.data()!["emailsOfPendingTasks"] ?? []) as! [String]
                                 var completedTasks: [String] = (document2.data()!["namesOfCompletedTasks"] ?? []) as! [String]
-                                var completedUsers: [String] = (document2.data()!["usersOfCompletedTasks"] ?? []) as! [String]
+                                //var completedUsers: [String] = (document2.data()!["usersOfCompletedTasks"] ?? []) as! [String]
+                                var completedEmails: [String] = (document2.data()!["emailsOfCompletedTasks"] ?? []) as! [String]
                                 completedTasks.append(pendingTasks[indexOfCell])
-                                completedUsers.append(pendingUsers[indexOfCell])
+                                completedEmails.append(pendingEmails[indexOfCell])
                                 pendingTasks.remove(at: indexOfCell)
-                                pendingUsers.remove(at: indexOfCell)
+                                pendingEmails.remove(at: indexOfCell)
                                 docRef2.updateData(["namesOfPendingTasks" : pendingTasks])
-                                docRef2.updateData(["usersOfPendingTasks" : pendingUsers])
+                               // docRef2.updateData(["usersOfPendingTasks" : pendingUsers])
                                 docRef2.updateData(["namesOfCompletedTasks" : completedTasks])
-                                docRef2.updateData(["usersOfCompletedTasks" : completedUsers])
+                                //docRef2.updateData(["usersOfCompletedTasks" : completedUsers])
+                                docRef2.updateData(["emailsOfPendingTasks" : pendingEmails])
+                                docRef2.updateData(["emailsOfCompletedTasks" : completedEmails])
                                 self.pendingCount -= 1
                                 self.completedCount += 1
                                 self.pendingTableView.reloadData()
                                 self.completedTableView.reloadData()
                                 DispatchQueue.main.async{
-                                    
                                     //the above cause the code to crash
                                 }
                             }
@@ -251,11 +309,12 @@ class listOfTasksViewController: UIViewController, UITableViewDataSource, UITabl
                         docRef2.getDocument { (document2, error) in
                             if let document2 = document2, document2.exists {
                                 var completedTasks: [String] = (document2.data()!["namesOfCompletedTasks"] ?? []) as! [String]
-                                var completedUsers: [String] = (document2.data()!["usersOfCompletedTasks"] ?? []) as! [String]
+                                var completedEmails: [String] = (document2.data()!["emailsOfCompletedTasks"] ?? []) as! [String]
                                 completedTasks.remove(at: indexOfCell)
-                                completedUsers.remove(at: indexOfCell)
+                                completedEmails.remove(at: indexOfCell)
+                                //completedUsers.remove(at: indexOfCell)
                                 docRef2.updateData(["namesOfCompletedTasks" : completedTasks])
-                                docRef2.updateData(["usersOfCompletedTasks" : completedUsers])
+                                docRef2.updateData(["emailsOfCompletedTasks" : completedEmails])
                                 self.completedCount -= 1
                                 self.completedTableView.reloadData()
                                 DispatchQueue.main.async{

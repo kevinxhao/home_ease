@@ -16,7 +16,7 @@ class CreateNewGroupViewController: UIViewController {
     @IBOutlet weak var groupName: UITextField!
     @IBOutlet weak var groupPassword: UITextField!
     
-    let colorsArray: [String] = ["#fff000ff", "#f231f2ff", "6565bfff", "6efdfdff"]
+    let colorsArray: [String] = ["#f231f2ff", "#6565bfff", "#6efdfdff"]
     
     //function definition borrowed from create new user view controller
     func validate() -> String? {
@@ -71,7 +71,7 @@ class CreateNewGroupViewController: UIViewController {
                             let arr: [String] = [(document.data()!["firstName"] as! String)]
                             let emailArr: [String] = [email!]
                             let taskEmailArr: [String] = []
-                            let colorArr: [String] = [".blue"]
+                            let colorArr: [String] = ["#fff000ff"]
                             database.collection("groups").document(newGroupName).setData(["password": newPassword, "count": 1, "roommateNames": arr, "finances": finances, "dueDates":dates, "taskCompletion": completion, "taskRoommates": taskRoommates, "roommateEmails": emailArr, "roommateColors": colorArr, "emailsOfPendingTasks": taskEmailArr, "emailsOfCompletedTasks": taskEmailArr, "namesOfPendingTasks": namesOfPendingTasks, "namesOfCompletedTasks": namesOfCompletedTasks])
                             { (error) in
                                 if error != nil {

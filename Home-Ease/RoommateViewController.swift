@@ -16,7 +16,7 @@ class RoommateViewController: UIViewController, UICollectionViewDelegate, UIColl
     var users: [String] = []
     
     func getUsers(){
-        let currentUser = Auth.auth().currentUser?.email ?? ""
+       let currentUser = Auth.auth().currentUser?.email ?? ""
         let userInfo = Firestore.firestore().collection("users").document(currentUser)
         userInfo.getDocument { (document, error) in
             if let document = document, document.exists{

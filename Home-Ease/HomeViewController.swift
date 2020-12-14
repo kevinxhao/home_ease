@@ -29,21 +29,29 @@ class HomeViewController: UIViewController, UICollectionViewDelegate,UICollectio
         return CGSize(width: 340, height: 180)
     }
     func getUserInfo(){
+        print("entering get user info method")
         let currentUser = Auth.auth().currentUser?.email ?? ""
         let userInfo = Firestore.firestore().collection("users").document(currentUser)
+        print("got user info!")
         userInfo.getDocument { (document, error) in
             if let document = document, document.exists{
-                let group = document.data()!["group"] ?? ""
-                let groupInfo = Firestore.firestore().collection("groups").document(group as! String)
+                print("document exists!")
+                let group = document.data()!["group"] as! String
+                
+                print("group is \(group) line finished")
+                let groupInfo = Firestore.firestore().collection("groups").document(group)
+                print("got gorup info")
                 groupInfo.getDocument { (groupDocument, groupError) in
                     if let groupDocument = groupDocument, groupDocument.exists{
+                        print("group document exists!")
                         self.tasks = (groupDocument.data()!["namesOfPendingTasks"] ?? []) as! [String]
                         //self.taskUsers = (groupDocument.data()!["usersOfPendingTasks"] ?? []) as! [String]
                         self.count = groupDocument.data()?["count"] as! Int
                         self.finances = (groupDocument.data()!["finances"] ?? []) as! [Int]
                         self.groupName = (document.data()!["group"] ?? []) as! String
-                    
+                        print("can't wait to reload this data!")
                         self.collectionView.reloadData()
+                        print("finished get user info method")
                     }
                 }
             }
